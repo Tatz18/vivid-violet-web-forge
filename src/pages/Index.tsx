@@ -26,8 +26,9 @@ import {
   Plus,
   Minus
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 const Index = () => {
   const [searchLocation, setSearchLocation] = useState("");
@@ -35,6 +36,8 @@ const Index = () => {
   const [budget, setBudget] = useState("");
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [currentNewProperty, setCurrentNewProperty] = useState(0);
+  const [popularProperties, setPopularProperties] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const handleSearch = () => {
@@ -156,75 +159,43 @@ const Index = () => {
     }
   ];
 
-  // Popular Listings
-  const popularProperties = [
-    {
-      id: 1,
-      title: "2BHK Apartment - Avidipta",
-      price: "₹88 Lakhs",
-      location: "EM Bypass, Kolkata",
-      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=500",
-      beds: 2,
-      baths: 2,
-      sqft: 834,
-      tag: "Featured"
-    },
-    {
-      id: 2,
-      title: "3BHK Apartment - Sucasa",
-      price: "₹73 Lakhs",
-      location: "EM Bypass, Kolkata",
-      image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=500",
-      beds: 3,
-      baths: 2,
-      sqft: 1454,
-      tag: "New Listed"
-    },
-    {
-      id: 3,
-      title: "3BHK Apartment - Dhakuria",
-      price: "₹90 Lakhs",
-      location: "Dhakuria, Kolkata",
-      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=500",
-      beds: 3,
-      baths: 2,
-      sqft: 1226,
-      tag: "Hot Listed"
-    },
-    {
-      id: 4,
-      title: "3BHK Apartment - Manjuri Garden",
-      price: "₹70 Lakhs",
-      location: "EM Bypass, Kolkata",
-      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500",
-      beds: 3,
-      baths: 2,
-      sqft: 1180,
-      tag: "Popular"
-    },
-    {
-      id: 5,
-      title: "3BHK Apartment - Bakul Bagan",
-      price: "₹65 Lakhs",
-      location: "Bhawanipur, Kolkata",
-      image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=500",
-      beds: 3,
-      baths: 2,
-      sqft: 1600,
-      tag: "Featured"
-    },
-    {
-      id: 6,
-      title: "3BHK Premium - Sarat Bose Road",
-      price: "₹2.25 Cr",
-      location: "Near Sishu Mangal Hospital, Kolkata",
-      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=500",
-      beds: 3,
-      baths: 3,
-      sqft: 1765,
-      tag: "Premium"
-    }
-  ];
+  // Fetch properties from database
+  useEffect(() => {
+    const fetchProperties = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("properties")
+          .select("*")
+          .order("created_at", { ascending: false })
+          .limit(6);
+
+        if (error) throw error;
+        
+        // Transform database properties to match the expected format
+        const transformedProperties = data?.map((property, index) => ({
+          id: property.id,
+          title: property.title,
+          price: property.price ? `₹${(property.price / 100000).toFixed(1)} Lakhs` : "Price on request",
+          location: property.location || "Location not specified",
+          image: property.image_url || "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=500",
+          beds: property.bedrooms || 0,
+          baths: property.bathrooms || 0,
+          sqft: property.square_feet || 0,
+          tag: index === 0 ? "Featured" : index === 1 ? "New Listed" : index === 2 ? "Hot Listed" : "Popular"
+        })) || [];
+
+        setPopularProperties(transformedProperties);
+      } catch (error) {
+        console.error("Error fetching properties:", error);
+        // Fallback to empty array if no properties
+        setPopularProperties([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProperties();
+  }, []);
 
   // Newest Properties (last 3)
   const newestProperties = popularProperties.slice(-3);
@@ -382,50 +353,75 @@ const Index = () => {
             </Link>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {popularProperties.map((property, index) => (
-              <Link key={property.id} to={`/property/${property.id}`}>
-                <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 group animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                  <div className="relative">
-                    <img 
-                      src={property.image} 
-                      alt={property.title}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold">
-                        {property.tag}
-                      </span>
-                    </div>
-                  </div>
+          
+          {loading ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[...Array(6)].map((_, index) => (
+                <Card key={index} className="overflow-hidden animate-pulse">
+                  <div className="bg-gray-300 h-48 w-full"></div>
                   <CardContent className="p-4">
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className="font-semibold text-gray-900 text-sm">{property.title}</h3>
-                      <span className="text-lg font-bold text-gray-900">{property.price}</span>
-                    </div>
-                    <div className="flex items-center text-gray-600 text-sm mb-3">
-                      <MapPin className="w-4 h-4 mr-1" />
-                      {property.location}
-                    </div>
-                    <div className="flex items-center justify-between text-sm text-gray-600">
-                      <div className="flex items-center">
-                        <Bed className="w-4 h-4 mr-1" />
-                        {property.beds} Bed
-                      </div>
-                      <div className="flex items-center">
-                        <Bath className="w-4 h-4 mr-1" />
-                        {property.baths} Bathroom
-                      </div>
-                      <div className="flex items-center">
-                        <Square className="w-4 h-4 mr-1" />
-                        {property.sqft} sqft
-                      </div>
+                    <div className="h-4 bg-gray-300 rounded mb-2"></div>
+                    <div className="h-3 bg-gray-300 rounded mb-3 w-3/4"></div>
+                    <div className="flex justify-between">
+                      <div className="h-3 bg-gray-300 rounded w-1/4"></div>
+                      <div className="h-3 bg-gray-300 rounded w-1/4"></div>
+                      <div className="h-3 bg-gray-300 rounded w-1/4"></div>
                     </div>
                   </CardContent>
                 </Card>
-              </Link>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : popularProperties.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-gray-600 text-lg">No properties available at the moment.</p>
+              <p className="text-gray-500 text-sm mt-2">Check back later for new listings!</p>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {popularProperties.map((property, index) => (
+                <Link key={property.id} to={`/property/${property.id}`}>
+                  <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 group animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                    <div className="relative">
+                      <img 
+                        src={property.image} 
+                        alt={property.title}
+                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="absolute top-4 left-4">
+                        <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold">
+                          {property.tag}
+                        </span>
+                      </div>
+                    </div>
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="font-semibold text-gray-900 text-sm">{property.title}</h3>
+                        <span className="text-lg font-bold text-gray-900">{property.price}</span>
+                      </div>
+                      <div className="flex items-center text-gray-600 text-sm mb-3">
+                        <MapPin className="w-4 h-4 mr-1" />
+                        {property.location}
+                      </div>
+                      <div className="flex items-center justify-between text-sm text-gray-600">
+                        <div className="flex items-center">
+                          <Bed className="w-4 h-4 mr-1" />
+                          {property.beds} Bed
+                        </div>
+                        <div className="flex items-center">
+                          <Bath className="w-4 h-4 mr-1" />
+                          {property.baths} Bathroom
+                        </div>
+                        <div className="flex items-center">
+                          <Square className="w-4 h-4 mr-1" />
+                          {property.sqft} sqft
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
