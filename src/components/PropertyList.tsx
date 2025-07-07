@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { Trash2, Edit } from "lucide-react";
+import { PropertyEditModal } from "@/components/PropertyEditModal";
 
 interface PropertyListProps {
   properties: any[];
@@ -13,6 +14,7 @@ interface PropertyListProps {
 
 export const PropertyList = ({ properties, onUpdate }: PropertyListProps) => {
   const [loading, setLoading] = useState<string | null>(null);
+  const [editingProperty, setEditingProperty] = useState<any | null>(null);
   const { toast } = useToast();
 
   const handleDelete = async (id: string) => {
@@ -72,7 +74,8 @@ export const PropertyList = ({ properties, onUpdate }: PropertyListProps) => {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {properties.map((property) => (
         <Card key={property.id} className="overflow-hidden">
           {property.image_url && (
@@ -131,7 +134,7 @@ export const PropertyList = ({ properties, onUpdate }: PropertyListProps) => {
                 variant="outline"
                 size="sm"
                 className="flex-1"
-                onClick={() => {/* TODO: Implement edit */}}
+                onClick={() => setEditingProperty(property)}
               >
                 <Edit className="w-4 h-4 mr-2" />
                 Edit
@@ -148,6 +151,19 @@ export const PropertyList = ({ properties, onUpdate }: PropertyListProps) => {
           </CardContent>
         </Card>
       ))}
-    </div>
+      </div>
+
+      {editingProperty && (
+        <PropertyEditModal
+          property={editingProperty}
+          isOpen={!!editingProperty}
+          onClose={() => setEditingProperty(null)}
+          onUpdate={() => {
+            onUpdate();
+            setEditingProperty(null);
+          }}
+        />
+      )}
+    </>
   );
 };
