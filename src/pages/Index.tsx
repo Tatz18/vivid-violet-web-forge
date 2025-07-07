@@ -20,19 +20,93 @@ import {
   Star,
   Bed,
   Bath,
-  Square
+  Square,
+  ChevronLeft,
+  ChevronRight,
+  Plus,
+  Minus
 } from "lucide-react";
 import { useState } from "react";
+import React from "react";
 
 const Index = () => {
   const [searchLocation, setSearchLocation] = useState("");
   const [propertyType, setPropertyType] = useState("");
   const [budget, setBudget] = useState("");
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const navigate = useNavigate();
 
   const handleSearch = () => {
     navigate('/properties');
   };
+
+  // Testimonials Data
+  const testimonials = [
+    {
+      name: "Amit Sengupta",
+      role: "Property Investor",
+      content: "Phoenix Realesthatic made my property investment journey incredible. Their market insights helped me choose the perfect location in Salt Lake. The team was professional and guided me through every step.",
+      rating: 5,
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100"
+    },
+    {
+      name: "Priya Chakraborty", 
+      role: "First-time Buyer",
+      content: "Exceptional service from start to finish. They guided me through every step of buying my first home in Kolkata. The transparency and support were outstanding. Highly recommended!",
+      rating: 5,
+      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100"
+    },
+    {
+      name: "Rajesh Banerjee",
+      role: "Home Seller",
+      content: "Outstanding professionalism and market knowledge. They sold my property in Bhawanipur within just 2 weeks at the best price. The entire process was smooth and hassle-free.",
+      rating: 5,
+      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100"
+    },
+    {
+      name: "Sneha Roy",
+      role: "Property Buyer",
+      content: "Found my dream 3BHK apartment through Phoenix Realesthatic. Their understanding of my requirements and budget constraints was remarkable. Great team with excellent service.",
+      rating: 5,
+      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100"
+    }
+  ];
+
+  // FAQ Data
+  const faqs = [
+    {
+      question: "How Much Can I Afford To Spend On A House?",
+      answer: "Your budget should typically be 3-4 times your annual income. Consider down payment, monthly payments, and additional costs like maintenance, taxes, and registration fees. Our experts can help you calculate the exact affordable range based on your financial situation."
+    },
+    {
+      question: "What Is The Process Of Buying A House?",
+      answer: "The process includes property search, site visits, price negotiation, token payment, loan approval, legal verification, registration, and possession. We guide you through each step ensuring transparency and smooth completion."
+    },
+    {
+      question: "What Should I Look For When Viewing A Property?",
+      answer: "Check the location, connectivity, legal documents, construction quality, amenities, parking, water supply, electricity backup, and future development plans. Our experts accompany you for detailed property evaluation."
+    },
+    {
+      question: "How Much Should I Offer When Buying A Home?",
+      answer: "Your offer should be based on market analysis, property condition, location benefits, and comparable sales in the area. We provide expert guidance on competitive pricing and negotiation strategies."
+    },
+    {
+      question: "What Documents Are Required For Property Purchase?",
+      answer: "Key documents include sale deed, khatiyan, mutation certificate, tax receipts, NOC from society, and loan approval letter. We assist in document verification and ensure all legal requirements are met."
+    },
+    {
+      question: "How Long Does The Property Registration Process Take?",
+      answer: "Typically 15-30 days depending on document readiness and bank loan processing. With our assistance and proper preparation, the process can be completed efficiently within the timeline."
+    }
+  ];
+
+  // Auto-rotate testimonials
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
 
   // How it Works Steps
   const workSteps = [
@@ -165,7 +239,7 @@ const Index = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-teal-400 via-teal-500 to-teal-600 text-white py-20 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-white py-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
@@ -261,7 +335,7 @@ const Index = () => {
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             {workSteps.map((step, index) => (
               <div key={index} className="text-center animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className="w-16 h-16 bg-teal-500 text-white rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
+                <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
                   {step.step}
                 </div>
                 <h3 className="text-xl font-semibold mb-4 text-gray-900">{step.title}</h3>
@@ -274,7 +348,7 @@ const Index = () => {
           <div className="grid md:grid-cols-3 gap-8">
             {workSteps.map((step, index) => (
               <div key={`second-${index}`} className="text-center animate-fade-in" style={{ animationDelay: `${(index + 3) * 0.1}s` }}>
-                <div className="w-16 h-16 bg-teal-500 text-white rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
+                <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
                   {step.step}
                 </div>
                 <h3 className="text-xl font-semibold mb-4 text-gray-900">{step.title}</h3>
@@ -296,8 +370,8 @@ const Index = () => {
             {whyChooseUs.map((item, index) => (
               <Card key={index} className="text-center p-6 hover:shadow-lg transition-shadow border-0 shadow-sm">
                 <CardContent className="p-0">
-                  <div className="w-16 h-16 bg-teal-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                    <item.icon className="w-8 h-8 text-teal-600" />
+                  <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <item.icon className="w-8 h-8 text-primary" />
                   </div>
                   <h3 className="text-xl font-semibold mb-4 text-gray-900">{item.title}</h3>
                   <p className="text-gray-600 leading-relaxed">{item.description}</p>
@@ -314,7 +388,7 @@ const Index = () => {
           <div className="flex items-center justify-between mb-12">
             <h2 className="text-4xl font-bold text-gray-900">Popular Listing</h2>
             <Link to="/properties">
-              <Button className="bg-gray-900 hover:bg-gray-800 text-white">
+              <Button className="bg-primary hover:bg-primary/90 text-white">
                 All View Property
               </Button>
             </Link>
@@ -331,7 +405,7 @@ const Index = () => {
                       className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     <div className="absolute top-4 left-4">
-                      <span className="bg-teal-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                      <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold">
                         {property.tag}
                       </span>
                     </div>
@@ -385,7 +459,7 @@ const Index = () => {
                       className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     <div className="absolute top-4 left-4">
-                      <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                      <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold">
                         New
                       </span>
                     </div>
@@ -416,6 +490,109 @@ const Index = () => {
                   </CardContent>
                 </Card>
               </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section - Movable */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
+            <p className="text-xl text-gray-600">Real experiences from satisfied customers who achieved their real estate goals with us</p>
+          </div>
+          
+          <div className="relative">
+            <div className="overflow-hidden">
+              <div 
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}
+              >
+                {testimonials.map((testimonial, index) => (
+                  <div key={index} className="w-full flex-shrink-0 px-4">
+                    <Card className="max-w-4xl mx-auto text-center hover:shadow-lg transition-shadow p-8">
+                      <CardContent className="p-0">
+                        <img 
+                          src={testimonial.image} 
+                          alt={testimonial.name}
+                          className="w-20 h-20 rounded-full object-cover mx-auto mb-6"
+                        />
+                        <p className="text-gray-700 mb-6 text-lg leading-relaxed italic max-w-3xl mx-auto">
+                          "{testimonial.content}"
+                        </p>
+                        <h4 className="font-semibold text-gray-900 mb-1 text-xl">{testimonial.name}</h4>
+                        <p className="text-gray-600 mb-4">{testimonial.role}</p>
+                        <div className="flex justify-center mb-4">
+                          {[...Array(testimonial.rating)].map((_, i) => (
+                            <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            {/* Navigation Buttons */}
+            <Button
+              variant="outline"
+              size="sm"
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg border-primary text-primary hover:bg-primary hover:text-white"
+              onClick={() => setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg border-primary text-primary hover:bg-primary hover:text-white"
+              onClick={() => setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)}
+            >
+              <ChevronRight className="w-4 h-4" />
+            </Button>
+            
+            {/* Dots Indicator */}
+            <div className="flex justify-center space-x-2 mt-8">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  className={`w-3 h-3 rounded-full transition-colors ${
+                    index === currentTestimonial ? 'bg-primary' : 'bg-gray-300'
+                  }`}
+                  onClick={() => setCurrentTestimonial(index)}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+            <p className="text-xl text-gray-600">Get answers to the most common questions about property buying and selling</p>
+          </div>
+          
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <Card key={index} className="border border-gray-200 hover:shadow-md transition-shadow">
+                <CardContent className="p-0">
+                  <details className="group">
+                    <summary className="flex justify-between items-center w-full p-6 text-left bg-white hover:bg-gray-50 cursor-pointer transition-colors">
+                      <h3 className="font-semibold text-gray-900 pr-4">{faq.question}</h3>
+                      <Plus className="w-5 h-5 text-primary group-open:hidden flex-shrink-0" />
+                      <Minus className="w-5 h-5 text-primary hidden group-open:block flex-shrink-0" />
+                    </summary>
+                    <div className="px-6 pb-6">
+                      <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                    </div>
+                  </details>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
