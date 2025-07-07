@@ -54,7 +54,7 @@ const Header = () => {
             <img 
               src="/lovable-uploads/81af2cac-f0ff-4ba8-ad13-a820ef1020f9.png" 
               alt="Phoenix Realesthatic - Turning Properties into Prosperities" 
-              className="h-12 w-auto hover-scale"
+              className="h-16 w-auto hover-scale"
             />
           </Link>
 
