@@ -30,16 +30,27 @@ export const PhotoUpload = ({ onImageUrlChange, currentImageUrl }: PhotoUploadPr
     }
 
     setUploading(true);
+    console.log("Starting upload for file:", file.name, file.type, file.size);
 
     try {
       // Create preview URL
       const preview = URL.createObjectURL(file);
       setPreviewUrl(preview);
 
+      // Check if user is authenticated
+      const { data: { user }, error: authError } = await supabase.auth.getUser();
+      if (authError || !user) {
+        throw new Error("You must be logged in to upload images");
+      }
+
+      console.log("User authenticated:", user.id);
+
       // Upload to Supabase Storage
       const fileExt = file.name.split('.').pop();
-      const fileName = `${Math.random().toString(36).substring(2)}.${fileExt}`;
-      const filePath = `${fileName}`;
+      const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+      const filePath = fileName;
+
+      console.log("Uploading to path:", filePath);
 
       const { data, error } = await supabase.storage
         .from('property-images')
@@ -48,12 +59,19 @@ export const PhotoUpload = ({ onImageUrlChange, currentImageUrl }: PhotoUploadPr
           upsert: false
         });
 
-      if (error) throw error;
+      if (error) {
+        console.error("Upload error:", error);
+        throw error;
+      }
+
+      console.log("Upload successful:", data);
 
       // Get public URL
       const { data: { publicUrl } } = supabase.storage
         .from('property-images')
         .getPublicUrl(data.path);
+
+      console.log("Public URL:", publicUrl);
 
       onImageUrlChange(publicUrl);
       
@@ -62,6 +80,7 @@ export const PhotoUpload = ({ onImageUrlChange, currentImageUrl }: PhotoUploadPr
         description: "Your image has been uploaded successfully!",
       });
     } catch (error: any) {
+      console.error("Upload failed:", error);
       toast({
         title: "Upload Failed",
         description: error.message || "Failed to upload image. Please try again.",
