@@ -27,44 +27,42 @@ const PropertyDetail = () => {
   const properties = [
     {
       id: 1,
-      title: "Modern Downtown Loft",
-      price: "$850,000",
-      location: "Downtown District",
-      image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800",
+      title: "2BHK Apartment - Avidipta",
+      price: "₹88 Lakhs",
+      location: "EM Bypass, Kolkata",
+      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=800",
       beds: 2,
       baths: 2,
-      sqft: 1200,
-      type: "Loft",
-      featured: true,
-      description: "Experience luxury living in this stunning modern loft located in the heart of downtown. This beautifully designed space features high ceilings, large windows, and premium finishes throughout.",
-      yearBuilt: 2020,
-      parking: 1,
-      features: ["High Ceilings", "Hardwood Floors", "Modern Kitchen", "City Views", "In-unit Laundry", "Rooftop Access"],
-      amenities: ["Gym", "Rooftop Terrace", "Concierge", "Security", "Storage"],
+      sqft: 834,
+      type: "Apartment",
+      description: "Beautiful 2BHK apartment in Avidipta complex on EM Bypass. Features modern amenities and excellent connectivity to major parts of Kolkata.",
+      yearBuilt: 2019,
+      floor: "2nd Floor",
+      features: ["Modular Kitchen", "Vitrified Tiles", "24x7 Security", "Power Backup", "Parking Space", "Gated Community"],
+      amenities: ["Lift", "Security", "Power Backup", "Water Supply", "Parking"],
       gallery: [
-        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800",
+        "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=800",
         "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=800",
         "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800"
       ]
     },
     {
       id: 2,
-      title: "Luxury Family Home",
-      price: "$1,250,000",
-      location: "Suburban Hills",
-      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800",
-      beds: 4,
-      baths: 3,
-      sqft: 2500,
-      type: "House",
-      featured: true,
-      description: "Beautiful family home nestled in the prestigious Suburban Hills neighborhood. This spacious property offers comfort, elegance, and modern amenities perfect for family living.",
-      yearBuilt: 2018,
-      parking: 2,
-      features: ["Open Floor Plan", "Gourmet Kitchen", "Master Suite", "Walk-in Closets", "Backyard", "Fireplace"],
-      amenities: ["Swimming Pool", "Garden", "Garage", "Security System", "Central Air"],
+      title: "3BHK Apartment - Sucasa",
+      price: "₹73 Lakhs",
+      location: "EM Bypass, Kolkata",
+      image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800",
+      beds: 3,
+      baths: 2,
+      sqft: 1454,
+      type: "Apartment",
+      description: "Spacious 3BHK apartment in Sucasa apartment complex. Well-planned layout with modern fittings and excellent location on EM Bypass.",
+      yearBuilt: 2020,
+      floor: "1st Floor",
+      features: ["Semi-furnished", "Modular Kitchen", "Marble Flooring", "Balcony", "Cross Ventilation", "Ready to Move"],
+      amenities: ["Lift", "Security", "Generator", "Water Tank", "Parking", "Garden"],
       gallery: [
-        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800",
+        "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800",
         "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=800",
         "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800"
       ]
@@ -125,9 +123,6 @@ const PropertyDetail = () => {
                 <Badge className="bg-[#dd4dc7] hover:bg-[#c341b3]">
                   {property.type}
                 </Badge>
-                {property.featured && (
-                  <Badge variant="secondary">Featured</Badge>
-                )}
               </div>
               
               <h1 className="text-3xl font-bold text-gray-900 mb-2">{property.title}</h1>
@@ -169,9 +164,9 @@ const PropertyDetail = () => {
                       <span className="ml-2">{property.yearBuilt}</span>
                     </div>
                     <div className="flex items-center">
-                      <Car className="w-5 h-5 mr-3 text-[#dd4dc7]" />
-                      <span className="font-medium">Parking:</span>
-                      <span className="ml-2">{property.parking} spaces</span>
+                      <Home className="w-5 h-5 mr-3 text-[#dd4dc7]" />
+                      <span className="font-medium">Floor:</span>
+                      <span className="ml-2">{property.floor}</span>
                     </div>
                     <div className="flex items-center">
                       <Home className="w-5 h-5 mr-3 text-[#dd4dc7]" />

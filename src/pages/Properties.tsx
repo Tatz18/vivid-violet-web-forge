@@ -33,109 +33,6 @@ const Properties = () => {
   const properties = [
     {
       id: 1,
-      title: "Modern Downtown Loft",
-      price: "$850,000",
-      location: "Downtown District",
-      image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=500",
-      beds: 2,
-      baths: 2,
-      sqft: 1200,
-      type: "Loft",
-      featured: true
-    },
-    {
-      id: 2,
-      title: "Luxury Family Home",
-      price: "$1,250,000",
-      location: "Suburban Hills",
-      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500",
-      beds: 4,
-      baths: 3,
-      sqft: 2500,
-      type: "House",
-      featured: true
-    },
-    {
-      id: 3,
-      title: "Waterfront Condo",
-      price: "$675,000",
-      location: "Marina Bay",
-      image: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500",
-      beds: 1,
-      baths: 1,
-      sqft: 850,
-      type: "Condo"
-    },
-    {
-      id: 4,
-      title: "Victorian Townhouse",
-      price: "$950,000",
-      location: "Historic Quarter",
-      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500",
-      beds: 3,
-      baths: 2,
-      sqft: 1800,
-      type: "Townhouse"
-    },
-    {
-      id: 5,
-      title: "Penthouse Suite",
-      price: "$2,100,000",
-      location: "City Center",
-      image: "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=500",
-      beds: 3,
-      baths: 3,
-      sqft: 2200,
-      type: "Penthouse",
-      featured: true
-    },
-    {
-      id: 6,
-      title: "Garden Apartment",
-      price: "$425,000",
-      location: "Green Valley",
-      image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=500",
-      beds: 2,
-      baths: 1,
-      sqft: 950,
-      type: "Apartment"
-    },
-    {
-      id: 7,
-      title: "Contemporary Villa",
-      price: "$1,800,000",
-      location: "Hillside Estates",
-      image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=500",
-      beds: 5,
-      baths: 4,
-      sqft: 3500,
-      type: "Villa"
-    },
-    {
-      id: 8,
-      title: "Studio Downtown",
-      price: "$320,000",
-      location: "Arts District",
-      image: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=500",
-      beds: 1,
-      baths: 1,
-      sqft: 600,
-      type: "Studio"
-    },
-    {
-      id: 9,
-      title: "Beachfront House",
-      price: "$1,650,000",
-      location: "Coastal Drive",
-      image: "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=500",
-      beds: 4,
-      baths: 3,
-      sqft: 2800,
-      type: "House",
-      featured: true
-    },
-    {
-      id: 10,
       title: "2BHK Apartment - Avidipta",
       price: "₹88 Lakhs",
       location: "EM Bypass, Kolkata",
@@ -146,7 +43,7 @@ const Properties = () => {
       type: "Apartment"
     },
     {
-      id: 11,
+      id: 2,
       title: "3BHK Apartment - Sucasa",
       price: "₹73 Lakhs",
       location: "EM Bypass, Kolkata",
@@ -157,7 +54,7 @@ const Properties = () => {
       type: "Apartment"
     },
     {
-      id: 12,
+      id: 3,
       title: "3BHK Apartment - Dhakuria",
       price: "₹90 Lakhs",
       location: "Dhakuria, Kolkata",
@@ -168,7 +65,7 @@ const Properties = () => {
       type: "Apartment"
     },
     {
-      id: 13,
+      id: 4,
       title: "2BHK Apartment",
       price: "₹45 Lakhs",
       location: "EM Bypass, Kolkata",
@@ -179,7 +76,7 @@ const Properties = () => {
       type: "Apartment"
     },
     {
-      id: 14,
+      id: 5,
       title: "3BHK Manjuri Garden",
       price: "₹70 Lakhs",
       location: "EM Bypass, Kolkata",
@@ -190,7 +87,7 @@ const Properties = () => {
       type: "Apartment"
     },
     {
-      id: 15,
+      id: 6,
       title: "3BHK Bakul Bagan",
       price: "₹65 Lakhs",
       location: "Bhawanipur, Kolkata",
@@ -201,7 +98,7 @@ const Properties = () => {
       type: "Apartment"
     },
     {
-      id: 16,
+      id: 7,
       title: "3BHK Near Sishu Mangal Hospital",
       price: "₹2.25 Crores",
       location: "Sarat Bose Road, Kolkata",
@@ -213,7 +110,7 @@ const Properties = () => {
       featured: true
     },
     {
-      id: 17,
+      id: 8,
       title: "3BHK Near Gaja Park",
       price: "₹3.2 Crores",
       location: "Asutosh Mukherjee Road, Kolkata",
@@ -238,12 +135,16 @@ const Properties = () => {
         property.type.toLowerCase() === propertyType.toLowerCase();
 
       const matchesPrice = priceRange === "" || (() => {
-        const price = parseInt(property.price.replace(/[$,]/g, ''));
+        const priceText = property.price.replace(/[₹,]/g, '').toLowerCase();
+        const lakhs = priceText.includes('lakhs') ? parseFloat(priceText) : 0;
+        const crores = priceText.includes('crores') ? parseFloat(priceText) * 100 : 0;
+        const totalLakhs = lakhs + crores;
+        
         switch (priceRange) {
-          case "0-500k": return price <= 500000;
-          case "500k-1m": return price > 500000 && price <= 1000000;
-          case "1m-2m": return price > 1000000 && price <= 2000000;
-          case "2m+": return price > 2000000;
+          case "0-50l": return totalLakhs <= 50;
+          case "50l-1cr": return totalLakhs > 50 && totalLakhs <= 100;
+          case "1cr-2cr": return totalLakhs > 100 && totalLakhs <= 200;
+          case "2cr+": return totalLakhs > 200;
           default: return true;
         }
       })();
@@ -294,10 +195,10 @@ const Properties = () => {
                   <SelectValue placeholder="Price Range" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="0-500k">$0 - $500k</SelectItem>
-                  <SelectItem value="500k-1m">$500k - $1M</SelectItem>
-                  <SelectItem value="1m-2m">$1M - $2M</SelectItem>
-                  <SelectItem value="2m+">$2M+</SelectItem>
+                  <SelectItem value="0-50l">₹0 - ₹50 Lakhs</SelectItem>
+                  <SelectItem value="50l-1cr">₹50 Lakhs - ₹1 Crore</SelectItem>
+                  <SelectItem value="1cr-2cr">₹1 Crore - ₹2 Crore</SelectItem>
+                  <SelectItem value="2cr+">₹2 Crore+</SelectItem>
                 </SelectContent>
               </Select>
 
