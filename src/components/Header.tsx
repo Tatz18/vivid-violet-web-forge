@@ -27,11 +27,11 @@ const Header = () => {
             <div className="flex items-center space-x-6">
               <div className="flex items-center">
                 <Phone className="w-4 h-4 mr-2" />
-                <span>+1 (555) 123-4567</span>
+                <span>+91 98765 43210</span>
               </div>
               <div className="flex items-center">
                 <Mail className="w-4 h-4 mr-2" />
-                <span>info@realestate.com</span>
+                <span>info@phoenixrealesthatic.com</span>
               </div>
             </div>
             <div className="hidden md:flex items-center space-x-4">
@@ -51,15 +51,11 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center animate-fade-in">
-            <div className="flex items-center">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center mr-3 hover-scale">
-                <span className="text-white font-bold text-xl">R</span>
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-gray-900">RealEstate</h1>
-                <p className="text-xs text-gray-500">Premium Properties</p>
-              </div>
-            </div>
+            <img 
+              src="/lovable-uploads/9b7e4e15-8d70-4513-a466-0c45ca0995ec.png" 
+              alt="Phoenix Realesthatic" 
+              className="h-10 w-auto hover-scale"
+            />
           </Link>
 
           {/* Desktop Navigation */}

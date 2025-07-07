@@ -372,7 +372,7 @@ const Index = () => {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <h3 className="text-2xl font-bold mb-4 text-primary">
-                PropertyHub
+                Phoenix Realesthatic
               </h3>
               <p className="text-gray-400 mb-4">
                 Your trusted partner in real estate, helping you find the perfect property since 2008.
@@ -406,12 +406,12 @@ const Index = () => {
                 <p>123 Property Street</p>
                 <p>Kolkata, West Bengal 700001</p>
                 <p>Phone: +91 98765 43210</p>
-                <p>Email: info@propertyhub.com</p>
+                <p>Email: info@phoenixrealesthatic.com</p>
               </div>
             </div>
           </div>
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 PropertyHub. All rights reserved. | Licensed Real Estate Broker</p>
+            <p>&copy; 2024 Phoenix Realesthatic. All rights reserved. | Licensed Real Estate Broker</p>
           </div>
         </div>
       </footer>
