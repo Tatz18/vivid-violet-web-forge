@@ -1,7 +1,8 @@
 
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, Search } from "lucide-react";
+import { useState } from "react";
 
 interface HeroProps {
   title: string;
@@ -10,6 +11,23 @@ interface HeroProps {
 }
 
 const Hero = ({ title, subtitle, showSearch = false }: HeroProps) => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      navigate(`/properties?search=${encodeURIComponent(searchQuery.trim())}`);
+    } else {
+      navigate('/properties');
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   return (
     <section className="relative min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-[#dd4dc7] via-[#e966d4] to-[#f47ee0] text-white">
       <div className="absolute inset-0 bg-black/20"></div>
@@ -26,10 +44,13 @@ const Hero = ({ title, subtitle, showSearch = false }: HeroProps) => {
             <div className="flex flex-col sm:flex-row gap-4 bg-white/10 backdrop-blur-sm p-4 rounded-lg">
               <input
                 type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyPress={handleKeyPress}
                 placeholder="Enter location, property type..."
                 className="flex-1 px-4 py-3 rounded-lg bg-white/20 backdrop-blur-sm border border-white/30 placeholder-white/70 text-white focus:outline-none focus:ring-2 focus:ring-white/50"
               />
-              <Button className="bg-white text-[#dd4dc7] hover:bg-gray-100 px-8 py-3">
+              <Button onClick={handleSearch} className="bg-white text-[#dd4dc7] hover:bg-gray-100 px-8 py-3">
                 <Search className="w-4 h-4 mr-2" />
                 Search
               </Button>

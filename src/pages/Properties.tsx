@@ -12,13 +12,23 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Search, Filter, MapPin, SlidersHorizontal } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const Properties = () => {
+  const [searchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState("");
   const [priceRange, setPriceRange] = useState("");
   const [propertyType, setPropertyType] = useState("");
   const [location, setLocation] = useState("");
+
+  // Set search term from URL params on component mount
+  useEffect(() => {
+    const urlSearch = searchParams.get('search');
+    if (urlSearch) {
+      setSearchTerm(urlSearch);
+    }
+  }, [searchParams]);
 
   const properties = [
     {
@@ -126,6 +136,32 @@ const Properties = () => {
     }
   ];
 
+  // Filter properties based on search criteria
+  const filteredProperties = useMemo(() => {
+    return properties.filter((property) => {
+      const matchesSearch = searchTerm === "" || 
+        property.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        property.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        property.type.toLowerCase().includes(searchTerm.toLowerCase());
+
+      const matchesType = propertyType === "" || 
+        property.type.toLowerCase() === propertyType.toLowerCase();
+
+      const matchesPrice = priceRange === "" || (() => {
+        const price = parseInt(property.price.replace(/[$,]/g, ''));
+        switch (priceRange) {
+          case "0-500k": return price <= 500000;
+          case "500k-1m": return price > 500000 && price <= 1000000;
+          case "1m-2m": return price > 1000000 && price <= 2000000;
+          case "2m+": return price > 2000000;
+          default: return true;
+        }
+      })();
+
+      return matchesSearch && matchesType && matchesPrice;
+    });
+  }, [properties, searchTerm, propertyType, priceRange]);
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
@@ -214,10 +250,10 @@ const Properties = () => {
         <div className="flex justify-between items-center mb-8">
           <div>
             <h2 className="text-2xl font-bold text-gray-900">
-              {properties.length} Properties Found
+              {filteredProperties.length} Properties Found
             </h2>
             <p className="text-gray-600 mt-1">
-              Showing all available properties in your area
+              {searchTerm ? `Showing results for "${searchTerm}"` : "Showing all available properties in your area"}
             </p>
           </div>
           <div className="flex gap-2">
@@ -228,7 +264,7 @@ const Properties = () => {
 
         {/* Properties Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {properties.map((property) => (
+          {filteredProperties.map((property) => (
             <PropertyCard key={property.id} {...property} />
           ))}
         </div>
