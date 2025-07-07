@@ -40,6 +40,30 @@ const Index = () => {
     { number: "4.9", label: "Customer Rating" }
   ];
 
+  const testimonials = [
+    {
+      name: "Amit Sengupta",
+      role: "Property Investor",
+      content: "Phoenix Realesthatic made my property investment journey incredible. Their market insights helped me choose the perfect location in Salt Lake.",
+      rating: 5,
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100"
+    },
+    {
+      name: "Priya Chakraborty", 
+      role: "First-time Buyer",
+      content: "Exceptional service from start to finish. They guided me through every step of buying my first home in Kolkata. Highly recommended!",
+      rating: 5,
+      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100"
+    },
+    {
+      name: "Rajesh Banerjee",
+      role: "Home Seller",
+      content: "Outstanding professionalism and market knowledge. They sold my property in Bhawanipur within just 2 weeks at the best price. Truly amazing!",
+      rating: 5,
+      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100"
+    }
+  ];
+
   const featuredProperties = [
     {
       id: 1,
@@ -311,60 +335,44 @@ const Index = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Testimonials - "We've Helped Our Clients Achieve Their Dreams" */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Explore Our FAQ
+              We've Helped Our Clients Achieve Their Dreams!
             </h2>
+            <p className="text-xl text-gray-600">
+              Real experiences from satisfied customers who achieved their real estate goals with us
+            </p>
           </div>
           
-          <div className="space-y-6">
-            <Card className="p-6">
-              <h3 className="font-semibold text-gray-900 mb-2">How Much Can I Afford To Spend On A House?</h3>
-              <p className="text-gray-600">Your budget should typically be 3-4 times your annual income. Consider down payment, monthly payments, and additional costs like maintenance and taxes.</p>
-            </Card>
-            <Card className="p-6">
-              <h3 className="font-semibold text-gray-900 mb-2">What Is The Process Of Buying A House?</h3>
-              <p className="text-gray-600">The process includes getting pre-approved, finding a property, making an offer, inspection, and closing. We guide you through each step.</p>
-            </Card>
-            <Card className="p-6">
-              <h3 className="font-semibold text-gray-900 mb-2">What Should I Look For When Viewing A Property?</h3>
-              <p className="text-gray-600">Check the location, condition, size, amenities, and potential for appreciation. Our agents help you evaluate each property thoroughly.</p>
-            </Card>
-            <Card className="p-6">
-              <h3 className="font-semibold text-gray-900 mb-2">How Much Should I Offer When Buying A Home?</h3>
-              <p className="text-gray-600">Your offer should be based on market analysis, property condition, and comparable sales. We provide expert guidance on competitive pricing.</p>
-            </Card>
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow text-center p-8">
+                <CardContent className="p-0">
+                  <img 
+                    src={testimonial.image} 
+                    alt={testimonial.name}
+                    className="w-16 h-16 rounded-full object-cover mx-auto mb-4"
+                  />
+                  <h4 className="font-semibold text-gray-900 mb-1">{testimonial.name}</h4>
+                  <p className="text-gray-600 text-sm mb-4">{testimonial.role}</p>
+                  <p className="text-gray-700 mb-4 leading-relaxed italic">
+                    "{testimonial.content}"
+                  </p>
+                  <div className="flex justify-center">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-primary text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-6">
-            Ready to Find Your Perfect Property?
-          </h2>
-          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-            Join thousands of satisfied customers who found their dream homes with PropertyHub. Let's start your real estate journey today.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact">
-              <Button size="lg" className="bg-white text-primary hover:bg-gray-100 px-8">
-                <Phone className="w-4 h-4 mr-2" />
-                Get Started Today
-              </Button>
-            </Link>
-            <Link to="/properties">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8">
-                Browse Properties
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-16">

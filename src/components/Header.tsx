@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Phone, Mail } from "lucide-react";
+import { Menu, X, Phone, Mail, Facebook, Instagram, Linkedin } from "lucide-react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -36,10 +36,31 @@ const Header = () => {
             </div>
             <div className="hidden md:flex items-center space-x-4">
               <span>Follow us:</span>
-              <div className="flex space-x-2">
-                <a href="#" className="hover:opacity-80 transition-opacity">Facebook</a>
-                <a href="#" className="hover:opacity-80 transition-opacity">Twitter</a>
-                <a href="#" className="hover:opacity-80 transition-opacity">LinkedIn</a>
+              <div className="flex space-x-3">
+                <a 
+                  href="https://www.facebook.com/profile.php?id=61574123769484" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:opacity-80 transition-opacity"
+                >
+                  <Facebook className="w-4 h-4" />
+                </a>
+                <a 
+                  href="https://www.instagram.com/phoenixrealesthatic?igsh=MXBkcTU0MnZzeDUwcA==" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:opacity-80 transition-opacity"
+                >
+                  <Instagram className="w-4 h-4" />
+                </a>
+                <a 
+                  href="https://www.linkedin.com/company/phoenix-realesthatic/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:opacity-80 transition-opacity"
+                >
+                  <Linkedin className="w-4 h-4" />
+                </a>
               </div>
             </div>
           </div>
