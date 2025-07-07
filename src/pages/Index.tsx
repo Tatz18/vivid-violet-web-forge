@@ -34,6 +34,7 @@ const Index = () => {
   const [propertyType, setPropertyType] = useState("");
   const [budget, setBudget] = useState("");
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [currentNewProperty, setCurrentNewProperty] = useState(0);
   const navigate = useNavigate();
 
   const handleSearch = () => {
@@ -54,7 +55,7 @@ const Index = () => {
       role: "First-time Buyer",
       content: "Exceptional service from start to finish. They guided me through every step of buying my first home in Kolkata. The transparency and support were outstanding. Highly recommended!",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100"
+      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100"
     },
     {
       name: "Rajesh Banerjee",
@@ -100,13 +101,7 @@ const Index = () => {
     }
   ];
 
-  // Auto-rotate testimonials
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [testimonials.length]);
+
 
   // How it Works Steps
   const workSteps = [
@@ -234,6 +229,22 @@ const Index = () => {
   // Newest Properties (last 3)
   const newestProperties = popularProperties.slice(-3);
 
+  // Auto-rotate testimonials and new properties
+  React.useEffect(() => {
+    const testimonialInterval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 4000);
+    
+    const propertyInterval = setInterval(() => {
+      setCurrentNewProperty((prev) => (prev + 1) % newestProperties.length);
+    }, 5000);
+    
+    return () => {
+      clearInterval(testimonialInterval);
+      clearInterval(propertyInterval);
+    };
+  }, [testimonials.length, newestProperties.length]);
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -359,29 +370,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Why Work With Us Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Work With Us?</h2>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {whyChooseUs.map((item, index) => (
-              <Card key={index} className="text-center p-6 hover:shadow-lg transition-shadow border-0 shadow-sm">
-                <CardContent className="p-0">
-                  <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                    <item.icon className="w-8 h-8 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-4 text-gray-900">{item.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{item.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Popular Listing Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -441,56 +429,122 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Newest Property Section */}
+      {/* Why Work With Us Section */}
       <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Work With Us?</h2>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {whyChooseUs.map((item, index) => (
+              <Card key={index} className="text-center p-6 hover:shadow-lg transition-shadow border-0 shadow-sm">
+                <CardContent className="p-0">
+                  <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <item.icon className="w-8 h-8 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-4 text-gray-900">{item.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Newest Property Section - Movable */}
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900">Newest Property</h2>
+            <p className="text-xl text-gray-600 mt-4">Discover our latest property listings with modern amenities</p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-6">
-            {newestProperties.map((property, index) => (
-              <Link key={property.id} to={`/property/${property.id}`}>
-                <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 group">
-                  <div className="relative">
-                    <img 
-                      src={property.image} 
-                      alt={property.title}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold">
-                        New
-                      </span>
+          <div className="relative">
+            <div className="overflow-hidden">
+              <div 
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{ transform: `translateX(-${currentNewProperty * 100}%)` }}
+              >
+                {newestProperties.map((property, index) => (
+                  <div key={property.id} className="w-full flex-shrink-0 px-4">
+                    <div className="max-w-2xl mx-auto">
+                      <Link to={`/property/${property.id}`}>
+                        <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 group">
+                          <div className="relative">
+                            <img 
+                              src={property.image} 
+                              alt={property.title}
+                              className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                            <div className="absolute top-4 left-4">
+                              <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                New
+                              </span>
+                            </div>
+                          </div>
+                          <CardContent className="p-6">
+                            <div className="flex items-center justify-between mb-2">
+                              <h3 className="font-semibold text-gray-900 text-lg">{property.title}</h3>
+                              <span className="text-xl font-bold text-primary">{property.price}</span>
+                            </div>
+                            <div className="flex items-center text-gray-600 text-sm mb-4">
+                              <MapPin className="w-4 h-4 mr-1" />
+                              {property.location}
+                            </div>
+                            <div className="flex items-center justify-between text-sm text-gray-600">
+                              <div className="flex items-center">
+                                <Bed className="w-4 h-4 mr-1" />
+                                {property.beds} Bed
+                              </div>
+                              <div className="flex items-center">
+                                <Bath className="w-4 h-4 mr-1" />
+                                {property.baths} Bathroom
+                              </div>
+                              <div className="flex items-center">
+                                <Square className="w-4 h-4 mr-1" />
+                                {property.sqft} sqft
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </Link>
                     </div>
                   </div>
-                  <CardContent className="p-4">
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className="font-semibold text-gray-900 text-sm">{property.title}</h3>
-                      <span className="text-lg font-bold text-gray-900">{property.price}</span>
-                    </div>
-                    <div className="flex items-center text-gray-600 text-sm mb-3">
-                      <MapPin className="w-4 h-4 mr-1" />
-                      {property.location}
-                    </div>
-                    <div className="flex items-center justify-between text-sm text-gray-600">
-                      <div className="flex items-center">
-                        <Bed className="w-4 h-4 mr-1" />
-                        {property.beds} Bed
-                      </div>
-                      <div className="flex items-center">
-                        <Bath className="w-4 h-4 mr-1" />
-                        {property.baths} Bathroom
-                      </div>
-                      <div className="flex items-center">
-                        <Square className="w-4 h-4 mr-1" />
-                        {property.sqft} sqft
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
+                ))}
+              </div>
+            </div>
+            
+            {/* Navigation Buttons */}
+            <Button
+              variant="outline"
+              size="sm"
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg border-primary text-primary hover:bg-primary hover:text-white z-10"
+              onClick={() => setCurrentNewProperty((prev) => (prev - 1 + newestProperties.length) % newestProperties.length)}
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg border-primary text-primary hover:bg-primary hover:text-white z-10"
+              onClick={() => setCurrentNewProperty((prev) => (prev + 1) % newestProperties.length)}
+            >
+              <ChevronRight className="w-4 h-4" />
+            </Button>
+            
+            {/* Dots Indicator */}
+            <div className="flex justify-center space-x-2 mt-8">
+              {newestProperties.map((_, index) => (
+                <button
+                  key={index}
+                  className={`w-3 h-3 rounded-full transition-colors ${
+                    index === currentNewProperty ? 'bg-primary' : 'bg-gray-300'
+                  }`}
+                  onClick={() => setCurrentNewProperty(index)}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
