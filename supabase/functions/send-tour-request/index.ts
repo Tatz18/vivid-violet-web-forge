@@ -27,17 +27,17 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     const { name, phone, email, property, tour_date, tour_time, special_requests }: TourRequestData = await req.json();
 
-    // Send simple email with tour details to the person who submitted the form
+    // Send tour request details to admin email
     const emailResponse = await resend.emails.send({
       from: "Phoenix Realesthatic <noreply@phoenixrealesthatic.com>",
-      to: [email],
-      subject: "Your Tour Request Details - Phoenix Realesthatic",
+      to: ["mondaldebdip7585@gmail.com"],
+      subject: "New Tour Request - Phoenix Realesthatic",
       html: `
-        <h2>Hello ${name},</h2>
-        <p>Thank you for your interest in scheduling a property tour. Here are the details you submitted:</p>
+        <h2>New Tour Request Received</h2>
+        <p>A customer has submitted a tour request with the following details:</p>
         
         <div style="background-color: #f9f9f9; padding: 20px; margin: 20px 0; border-radius: 8px;">
-          <h3>Tour Request Details:</h3>
+          <h3>Customer Details:</h3>
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>Phone:</strong> ${phone}</p>
           <p><strong>Email:</strong> ${email}</p>
@@ -47,11 +47,9 @@ const handler = async (req: Request): Promise<Response> => {
           ${special_requests ? `<p><strong>Special Requests:</strong> ${special_requests}</p>` : ''}
         </div>
         
-        <p>We will contact you soon to confirm your appointment.</p>
+        <p>Please contact the customer to confirm the appointment.</p>
         
-        <p>For any immediate questions, feel free to contact us at +91 98765 43210</p>
-        
-        <p>Best regards,<br>Phoenix Realesthatic Team<br><em>"Turning Properties into Prosperities"</em></p>
+        <p>Phoenix Realesthatic Admin Panel</p>
       `,
     });
 
