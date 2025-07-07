@@ -133,6 +133,96 @@ const Properties = () => {
       sqft: 2800,
       type: "House",
       featured: true
+    },
+    {
+      id: 10,
+      title: "2BHK Apartment - Avidipta",
+      price: "₹88 Lakhs",
+      location: "EM Bypass, Kolkata",
+      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=500",
+      beds: 2,
+      baths: 2,
+      sqft: 834,
+      type: "Apartment"
+    },
+    {
+      id: 11,
+      title: "3BHK Apartment - Sucasa",
+      price: "₹73 Lakhs",
+      location: "EM Bypass, Kolkata",
+      image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=500",
+      beds: 3,
+      baths: 2,
+      sqft: 1454,
+      type: "Apartment"
+    },
+    {
+      id: 12,
+      title: "3BHK Apartment - Dhakuria",
+      price: "₹90 Lakhs",
+      location: "Dhakuria, Kolkata",
+      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500",
+      beds: 3,
+      baths: 2,
+      sqft: 1226,
+      type: "Apartment"
+    },
+    {
+      id: 13,
+      title: "2BHK Apartment",
+      price: "₹45 Lakhs",
+      location: "EM Bypass, Kolkata",
+      image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=500",
+      beds: 2,
+      baths: 2,
+      sqft: 920,
+      type: "Apartment"
+    },
+    {
+      id: 14,
+      title: "3BHK Manjuri Garden",
+      price: "₹70 Lakhs",
+      location: "EM Bypass, Kolkata",
+      image: "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=500",
+      beds: 3,
+      baths: 2,
+      sqft: 1180,
+      type: "Apartment"
+    },
+    {
+      id: 15,
+      title: "3BHK Bakul Bagan",
+      price: "₹65 Lakhs",
+      location: "Bhawanipur, Kolkata",
+      image: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=500",
+      beds: 3,
+      baths: 2,
+      sqft: 1600,
+      type: "Apartment"
+    },
+    {
+      id: 16,
+      title: "3BHK Near Sishu Mangal Hospital",
+      price: "₹2.25 Crores",
+      location: "Sarat Bose Road, Kolkata",
+      image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=500",
+      beds: 3,
+      baths: 3,
+      sqft: 1765,
+      type: "Apartment",
+      featured: true
+    },
+    {
+      id: 17,
+      title: "3BHK Near Gaja Park",
+      price: "₹3.2 Crores",
+      location: "Asutosh Mukherjee Road, Kolkata",
+      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500",
+      beds: 3,
+      baths: 2,
+      sqft: 2325,
+      type: "Apartment",
+      featured: true
     }
   ];
 
