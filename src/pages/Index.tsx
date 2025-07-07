@@ -182,7 +182,7 @@ const Index = () => {
     },
     {
       id: 3,
-      title: "3BHK Apartment",
+      title: "3BHK Apartment - Dhakuria",
       price: "₹90 Lakhs",
       location: "Dhakuria, Kolkata",
       image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=500",
@@ -193,17 +193,6 @@ const Index = () => {
     },
     {
       id: 4,
-      title: "2BHK Apartment",
-      price: "₹45 Lakhs",
-      location: "EM Bypass, Kolkata",
-      image: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500",
-      beds: 2,
-      baths: 2,
-      sqft: 920,
-      tag: "Popular"
-    },
-    {
-      id: 5,
       title: "3BHK Apartment - Manjuri Garden",
       price: "₹70 Lakhs",
       location: "EM Bypass, Kolkata",
@@ -211,10 +200,10 @@ const Index = () => {
       beds: 3,
       baths: 2,
       sqft: 1180,
-      tag: "New Listed"
+      tag: "Popular"
     },
     {
-      id: 6,
+      id: 5,
       title: "3BHK Apartment - Bakul Bagan",
       price: "₹65 Lakhs",
       location: "Bhawanipur, Kolkata",
@@ -223,6 +212,17 @@ const Index = () => {
       baths: 2,
       sqft: 1600,
       tag: "Featured"
+    },
+    {
+      id: 6,
+      title: "3BHK Premium - Sarat Bose Road",
+      price: "₹2.25 Cr",
+      location: "Near Sishu Mangal Hospital, Kolkata",
+      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=500",
+      beds: 3,
+      baths: 3,
+      sqft: 1765,
+      tag: "Premium"
     }
   ];
 
