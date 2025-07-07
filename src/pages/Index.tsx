@@ -1,158 +1,233 @@
-
 import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import PropertyCard from "@/components/PropertyCard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Link } from "react-router-dom";
+import { Input } from "@/components/ui/input";
+import { Link, useNavigate } from "react-router-dom";
 import { 
   Home, 
   Search, 
   TrendingUp, 
   Users, 
   ArrowRight,
-  Star,
-  Quote,
+  MapPin,
+  Building2,
+  DollarSign,
+  Filter,
+  Phone,
+  Mail,
+  Clock,
   Award,
   Shield,
   CheckCircle,
-  Phone
+  Star
 } from "lucide-react";
+import { useState } from "react";
 
 const Index = () => {
+  const [searchLocation, setSearchLocation] = useState("");
+  const [propertyType, setPropertyType] = useState("");
+  const [budget, setBudget] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    navigate('/properties');
+  };
+
+  const stats = [
+    { number: "250+", label: "Properties Available" },
+    { number: "100+", label: "Happy Customers" },
+    { number: "30%", label: "Average Price Drop" },
+    { number: "4.9", label: "Customer Rating" }
+  ];
+
   const featuredProperties = [
     {
       id: 1,
-      title: "Modern Downtown Loft",
-      price: "$850,000",
-      location: "Downtown District",
-      image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=500",
-      beds: 2,
+      title: "Historic Home With Modern Upgrades",
+      location: "Salt Lake, Kolkata",
+      price: "₹95 Lakh",
+      beds: 3,
       baths: 2,
-      sqft: 1200,
-      type: "Loft",
-      featured: true
+      sqft: "1,456 sq ft",
+      tag: "Sale",
+      image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=500"
     },
     {
       id: 2,
-      title: "Luxury Family Home",
-      price: "$1,250,000",
-      location: "Suburban Hills",
-      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500",
-      beds: 4,
-      baths: 3,
-      sqft: 2500,
-      type: "House",
-      featured: true
+      title: "Conveniently Located Townhouse",
+      location: "Dhakuria, Kolkata",
+      price: "₹90 Lakh",
+      beds: 3,
+      baths: 2,
+      sqft: "1,226 sq ft",
+      tag: "Sale",
+      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500"
     },
     {
       id: 3,
-      title: "Waterfront Condo",
-      price: "$675,000",
-      location: "Marina Bay",
-      image: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500",
-      beds: 1,
-      baths: 1,
-      sqft: 850,
-      type: "Condo",
-      featured: true
+      title: "Historic Home With Modern Upgrades",
+      location: "EM Bypass, Kolkata",
+      price: "₹70 Lakh",
+      beds: 3,
+      baths: 2,
+      sqft: "1,180 sq ft",
+      tag: "Sale",
+      image: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500"
+    },
+    {
+      id: 4,
+      title: "Conveniently Located Townhouse",
+      location: "Bhawanipur, Kolkata",
+      price: "₹65 Lakh",
+      beds: 3,
+      baths: 2,
+      sqft: "1,600 sq ft",
+      tag: "Sale",
+      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=500"
     }
   ];
 
   const services = [
     {
-      icon: Home,
-      title: "Property Sales",
-      description: "Expert guidance through every step of buying or selling your property with market insights and professional support."
-    },
-    {
-      icon: Search,
-      title: "Property Search",
-      description: "Advanced search tools and personalized assistance to find your perfect home or investment opportunity."
-    },
-    {
-      icon: TrendingUp,
-      title: "Market Analysis",
-      description: "Comprehensive market insights, property valuations, and investment analysis to make informed decisions."
+      icon: Building2,
+      title: "Personalized Service",
+      description: "Dedicated agents to help you navigate the complex real estate process."
     },
     {
       icon: Users,
-      title: "Property Management",
-      description: "Full-service property management for landlords and investors including tenant screening and maintenance."
-    }
-  ];
-
-  const stats = [
-    { number: "2,500+", label: "Properties Sold" },
-    { number: "98%", label: "Client Satisfaction" },
-    { number: "15+", label: "Years Experience" },
-    { number: "50+", label: "Expert Agents" }
-  ];
-
-  const testimonials = [
-    {
-      name: "Sarah Johnson",
-      role: "First-time Buyer",
-      content: "PropertyHub made buying my first home incredibly smooth. Their team was professional and supportive throughout the entire process. I couldn't have asked for better service.",
-      rating: 5,
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100"
+      title: "Expert Local Agents",
+      description: "Experienced professionals who know your neighborhood inside and out."
     },
     {
-      name: "Michael Chen",
-      role: "Property Investor", 
-      content: "I've used PropertyHub for multiple investments. Their market analysis is spot-on and has helped me make profitable decisions. Truly exceptional expertise.",
-      rating: 5,
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100"
+      icon: TrendingUp,
+      title: "Track Records",
+      description: "Proven success in helping clients buy and sell properties efficiently."
     },
-    {
-      name: "Emma Rodriguez",
-      role: "Home Seller",
-      content: "Selling our family home was emotional, but PropertyHub handled everything with care and professionalism. We got above asking price in just two weeks!",
-      rating: 5,
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100"
-    }
-  ];
-
-  const whyChooseUs = [
     {
       icon: Award,
-      title: "Award-Winning Service",
-      description: "Recognized industry leader with multiple awards for excellence in customer service and sales performance."
-    },
-    {
-      icon: Shield,
-      title: "Trusted & Licensed",
-      description: "Fully licensed, bonded, and insured real estate professionals with impeccable reputation and credentials."
-    },
-    {
-      icon: TrendingUp,
-      title: "Market Expertise",
-      description: "Deep local market knowledge and cutting-edge technology to give you competitive advantage."
-    },
-    {
-      icon: Users,
-      title: "Dedicated Support",
-      description: "Personal attention from experienced agents who are committed to your success and satisfaction."
+      title: "Advanced Search Filters",
+      description: "Find exactly what you're looking for with our powerful search tools."
     }
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gray-50">
       <Header />
       
-      <Hero 
-        title="Find Your Dream Property"
-        subtitle="Discover exceptional homes and investment opportunities with our expert real estate services and personalized guidance"
-        showSearch={true}
-      />
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-white py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div className="animate-fade-in">
+              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                Start Your Search
+                <br />
+                For The <span className="text-white/90">Perfect Living Space</span> Now
+              </h1>
+              <p className="text-xl mb-8 opacity-90 max-w-lg">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequam non molestie 
+                laboriosam accusamus ratione ut voluptatem a adipisci dignissimos ab.
+              </p>
+              
+              {/* Search Form */}
+              <div className="bg-white rounded-2xl p-6 shadow-2xl animate-scale-in">
+                <div className="grid md:grid-cols-3 gap-4 mb-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Location</label>
+                    <div className="relative">
+                      <MapPin className="w-5 h-5 text-gray-400 absolute left-3 top-3" />
+                      <Input
+                        placeholder="Enter location"
+                        value={searchLocation}
+                        onChange={(e) => setSearchLocation(e.target.value)}
+                        className="pl-10"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Select Type</label>
+                    <div className="relative">
+                      <Home className="w-5 h-5 text-gray-400 absolute left-3 top-3" />
+                      <Input
+                        placeholder="Property type"
+                        value={propertyType}
+                        onChange={(e) => setPropertyType(e.target.value)}
+                        className="pl-10"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Budget</label>
+                    <div className="relative">
+                      <DollarSign className="w-5 h-5 text-gray-400 absolute left-3 top-3" />
+                      <Input
+                        placeholder="Max budget"
+                        value={budget}
+                        onChange={(e) => setBudget(e.target.value)}
+                        className="pl-10"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <Button 
+                  onClick={handleSearch}
+                  className="w-full bg-primary hover:bg-primary/90 text-white py-3 text-lg font-semibold"
+                >
+                  Search Property
+                </Button>
+              </div>
+
+              {/* Trust Indicators */}
+              <div className="flex items-center gap-4 mt-8">
+                <div className="flex -space-x-2">
+                  <img className="w-10 h-10 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100" alt="" />
+                  <img className="w-10 h-10 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100" alt="" />
+                  <img className="w-10 h-10 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100" alt="" />
+                  <div className="w-10 h-10 rounded-full bg-white/20 border-2 border-white flex items-center justify-center text-sm font-bold">
+                    2K+
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm opacity-90">Your Trusted Real Estate Adviser! Dedicated to Making Your</p>
+                  <p className="text-sm opacity-90">Home Dreams a Reality! Connect Services</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Content - Property Image */}
+            <div className="relative animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              <div className="relative">
+                <img 
+                  src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=700&fit=crop" 
+                  alt="Modern home"
+                  className="rounded-3xl shadow-2xl w-full h-[600px] object-cover"
+                />
+                {/* Floating Stats */}
+                <div className="absolute top-8 right-8 bg-white rounded-2xl p-4 shadow-lg animate-float">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                      <TrendingUp className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-2xl font-bold text-gray-900">98%</p>
+                      <p className="text-sm text-gray-600">Customer satisfaction</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Stats Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             {stats.map((stat, index) => (
-              <div key={index} className="p-6">
-                <div className="text-4xl font-bold text-[#dd4dc7] mb-2">{stat.number}</div>
+              <div key={index} className="p-6 animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                <div className="text-4xl font-bold text-primary mb-2">{stat.number}</div>
                 <div className="text-gray-600 font-medium">{stat.label}</div>
               </div>
             ))}
@@ -160,202 +235,124 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* Discover Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Our Services
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Discover Your Ideal Living Space!
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Comprehensive real estate solutions tailored to your needs with expert guidance every step of the way
-            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {featuredProperties.map((property, index) => (
+              <Card key={property.id} className="overflow-hidden hover:shadow-lg transition-all duration-300 group animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                <div className="relative">
+                  <img 
+                    src={property.image} 
+                    alt={property.title}
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold">
+                      {property.tag}
+                    </span>
+                  </div>
+                </div>
+                <CardContent className="p-4">
+                  <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">{property.title}</h3>
+                  <div className="flex items-center text-gray-600 text-sm mb-3">
+                    <MapPin className="w-4 h-4 mr-1" />
+                    {property.location}
+                  </div>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-xl font-bold text-primary">{property.price}</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm text-gray-600">
+                    <span>{property.beds} beds</span>
+                    <span>{property.baths} baths</span>
+                    <span>{property.sqft}</span>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Button className="bg-primary hover:bg-primary/90 text-white px-8 py-3">
+              Explore all listings
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Your Trusted Real Estate Partner
+            </h2>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
-              <Card key={index} className="text-center hover:shadow-lg transition-shadow group">
-                <CardContent className="p-8">
-                  <div className="w-16 h-16 bg-[#dd4dc7]/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#dd4dc7]/20 transition-colors">
-                    <service.icon className="w-8 h-8 text-[#dd4dc7]" />
+              <Card key={index} className="text-center p-8 hover:shadow-lg transition-shadow group border-0 shadow-sm">
+                <CardContent className="p-0">
+                  <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-colors">
+                    <service.icon className="w-8 h-8 text-primary" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-4">{service.title}</h3>
-                  <p className="text-gray-600">{service.description}</p>
+                  <h3 className="text-xl font-semibold mb-4 text-gray-900">{service.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{service.description}</p>
                 </CardContent>
               </Card>
             ))}
           </div>
-          
-          <div className="text-center mt-12">
-            <Link to="/services">
-              <Button size="lg" className="bg-[#dd4dc7] hover:bg-[#c341b3] text-white px-8">
-                View All Services
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* Featured Properties */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Featured Properties
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-              Handpicked premium properties that offer exceptional value, quality, and investment potential
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {featuredProperties.map((property) => (
-              <PropertyCard key={property.id} {...property} />
-            ))}
-          </div>
-          
-          <div className="text-center">
-            <Link to="/properties">
-              <Button size="lg" className="bg-[#dd4dc7] hover:bg-[#c341b3] text-white px-8">
-                View All Properties
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us */}
+      {/* FAQ Section */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose PropertyHub
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Explore Our FAQ
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Experience the difference with our commitment to excellence, integrity, and client satisfaction
-            </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {whyChooseUs.map((item, index) => (
-              <Card key={index} className="text-center hover:shadow-lg transition-shadow group">
-                <CardContent className="p-8">
-                  <div className="w-16 h-16 bg-[#dd4dc7]/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#dd4dc7]/20 transition-colors">
-                    <item.icon className="w-8 h-8 text-[#dd4dc7]" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-4">{item.title}</h3>
-                  <p className="text-gray-600">{item.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              What Our Clients Say
-            </h2>
-            <p className="text-xl text-gray-600">
-              Real experiences from satisfied customers who achieved their real estate goals with us
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-8">
-                  <Quote className="w-8 h-8 text-[#dd4dc7] mb-4" />
-                  <p className="text-gray-700 mb-6 text-lg leading-relaxed">
-                    "{testimonial.content}"
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <img 
-                        src={testimonial.image} 
-                        alt={testimonial.name}
-                        className="w-12 h-12 rounded-full object-cover"
-                      />
-                      <div>
-                        <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
-                        <p className="text-gray-600 text-sm">{testimonial.role}</p>
-                      </div>
-                    </div>
-                    <div className="flex">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                      ))}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              How We Work
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our proven process ensures smooth transactions and successful outcomes for every client
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-[#dd4dc7] text-white rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
-                01
-              </div>
-              <h3 className="text-xl font-semibold mb-4">Consultation</h3>
-              <p className="text-gray-600">We start with understanding your goals, preferences, and budget requirements.</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-[#dd4dc7] text-white rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
-                02
-              </div>
-              <h3 className="text-xl font-semibold mb-4">Market Research</h3>
-              <p className="text-gray-600">Our team conducts comprehensive market analysis to inform your strategy.</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-[#dd4dc7] text-white rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
-                03
-              </div>
-              <h3 className="text-xl font-semibold mb-4">Property Search</h3>
-              <p className="text-gray-600">We find properties that match your criteria or market your property effectively.</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-[#dd4dc7] text-white rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
-                04
-              </div>
-              <h3 className="text-xl font-semibold mb-4">Closing</h3>
-              <p className="text-gray-600">Expert negotiation and seamless transaction management through closing.</p>
-            </div>
+          <div className="space-y-6">
+            <Card className="p-6">
+              <h3 className="font-semibold text-gray-900 mb-2">How Much Can I Afford To Spend On A House?</h3>
+              <p className="text-gray-600">Your budget should typically be 3-4 times your annual income. Consider down payment, monthly payments, and additional costs like maintenance and taxes.</p>
+            </Card>
+            <Card className="p-6">
+              <h3 className="font-semibold text-gray-900 mb-2">What Is The Process Of Buying A House?</h3>
+              <p className="text-gray-600">The process includes getting pre-approved, finding a property, making an offer, inspection, and closing. We guide you through each step.</p>
+            </Card>
+            <Card className="p-6">
+              <h3 className="font-semibold text-gray-900 mb-2">What Should I Look For When Viewing A Property?</h3>
+              <p className="text-gray-600">Check the location, condition, size, amenities, and potential for appreciation. Our agents help you evaluate each property thoroughly.</p>
+            </Card>
+            <Card className="p-6">
+              <h3 className="font-semibold text-gray-900 mb-2">How Much Should I Offer When Buying A Home?</h3>
+              <p className="text-gray-600">Your offer should be based on market analysis, property condition, and comparable sales. We provide expert guidance on competitive pricing.</p>
+            </Card>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-[#dd4dc7] to-[#e966d4] text-white">
+      <section className="py-20 bg-primary text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <h2 className="text-4xl font-bold mb-6">
             Ready to Find Your Perfect Property?
           </h2>
-          <p className="text-xl mb-8 opacity-90">
+          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
             Join thousands of satisfied customers who found their dream homes with PropertyHub. Let's start your real estate journey today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
-              <Button size="lg" className="bg-white text-[#dd4dc7] hover:bg-gray-100 px-8">
+              <Button size="lg" className="bg-white text-primary hover:bg-gray-100 px-8">
                 <Phone className="w-4 h-4 mr-2" />
                 Get Started Today
               </Button>
@@ -374,7 +371,7 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-2xl font-bold mb-4" style={{ color: '#dd4dc7' }}>
+              <h3 className="text-2xl font-bold mb-4 text-primary">
                 PropertyHub
               </h3>
               <p className="text-gray-400 mb-4">
@@ -407,8 +404,8 @@ const Index = () => {
               <h4 className="font-semibold mb-4">Contact Info</h4>
               <div className="space-y-2 text-gray-400">
                 <p>123 Property Street</p>
-                <p>Real Estate City, RE 12345</p>
-                <p>Phone: (555) 123-4567</p>
+                <p>Kolkata, West Bengal 700001</p>
+                <p>Phone: +91 98765 43210</p>
                 <p>Email: info@propertyhub.com</p>
               </div>
             </div>
