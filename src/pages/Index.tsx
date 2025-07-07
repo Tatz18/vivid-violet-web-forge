@@ -574,6 +574,33 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Certifications Section */}
+      <section className="py-16 bg-gradient-to-r from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Certified By</h2>
+            <p className="text-lg text-gray-600">Recognized and certified by leading real estate organizations</p>
+          </div>
+          
+          <div className="flex items-center justify-center space-x-12 md:space-x-16">
+            <div className="flex items-center justify-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+              <img 
+                src="/lovable-uploads/4a54c843-f6bd-4e57-8340-23f3ce226eb6.png" 
+                alt="National Association of Realtors"
+                className="h-16 w-auto object-contain"
+              />
+            </div>
+            <div className="flex items-center justify-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+              <img 
+                src="/lovable-uploads/9a9ff7fc-fbd2-4585-bc9e-aa11b7d33756.png" 
+                alt="RECA Kolkata"
+                className="h-16 w-auto object-contain"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials Section - Movable */}
       <section className="py-20 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
