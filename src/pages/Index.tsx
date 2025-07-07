@@ -336,7 +336,7 @@ const Index = () => {
       </section>
 
       {/* How it Works Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">How its Work</h2>
@@ -371,7 +371,7 @@ const Index = () => {
       </section>
 
       {/* Popular Listing Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-br from-gray-50 via-primary/5 to-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-12">
             <h2 className="text-4xl font-bold text-gray-900">Popular Listing</h2>
@@ -430,7 +430,7 @@ const Index = () => {
       </section>
 
       {/* Why Work With Us Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gradient-to-t from-white to-primary/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Work With Us?</h2>
@@ -453,7 +453,7 @@ const Index = () => {
       </section>
 
       {/* Newest Property Section - Movable */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-bl from-primary/8 via-white to-primary/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900">Newest Property</h2>
@@ -470,7 +470,7 @@ const Index = () => {
                   <div key={property.id} className="w-full flex-shrink-0 px-4">
                     <div className="max-w-2xl mx-auto">
                       <Link to={`/property/${property.id}`}>
-                        <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 group">
+                        <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 group bg-white/90 backdrop-blur-sm border border-primary/10">
                           <div className="relative">
                             <img 
                               src={property.image} 
@@ -549,8 +549,37 @@ const Index = () => {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section className="py-20 bg-gradient-to-br from-primary/5 via-white to-primary/10">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+            <p className="text-xl text-gray-600">Get answers to the most common questions about property buying and selling</p>
+          </div>
+          
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <Card key={index} className="border border-gray-200 hover:shadow-md transition-shadow bg-white/80 backdrop-blur-sm">
+                <CardContent className="p-0">
+                  <details className="group">
+                    <summary className="flex justify-between items-center w-full p-6 text-left bg-white/50 hover:bg-primary/5 cursor-pointer transition-colors">
+                      <h3 className="font-semibold text-gray-900 pr-4">{faq.question}</h3>
+                      <Plus className="w-5 h-5 text-primary group-open:hidden flex-shrink-0" />
+                      <Minus className="w-5 h-5 text-primary hidden group-open:block flex-shrink-0" />
+                    </summary>
+                    <div className="px-6 pb-6 bg-white/70">
+                      <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                    </div>
+                  </details>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials Section - Movable */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
@@ -565,7 +594,7 @@ const Index = () => {
               >
                 {testimonials.map((testimonial, index) => (
                   <div key={index} className="w-full flex-shrink-0 px-4">
-                    <Card className="max-w-4xl mx-auto text-center hover:shadow-lg transition-shadow p-8">
+                    <Card className="max-w-4xl mx-auto text-center hover:shadow-lg transition-shadow p-8 bg-white/90 backdrop-blur-sm border border-primary/10">
                       <CardContent className="p-0">
                         <img 
                           src={testimonial.image} 
@@ -593,7 +622,7 @@ const Index = () => {
             <Button
               variant="outline"
               size="sm"
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg border-primary text-primary hover:bg-primary hover:text-white"
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/90 backdrop-blur-sm shadow-lg border-primary text-primary hover:bg-primary hover:text-white"
               onClick={() => setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
             >
               <ChevronLeft className="w-4 h-4" />
@@ -601,7 +630,7 @@ const Index = () => {
             <Button
               variant="outline"
               size="sm"
-              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg border-primary text-primary hover:bg-primary hover:text-white"
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/90 backdrop-blur-sm shadow-lg border-primary text-primary hover:bg-primary hover:text-white"
               onClick={() => setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)}
             >
               <ChevronRight className="w-4 h-4" />
@@ -623,37 +652,9 @@ const Index = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-            <p className="text-xl text-gray-600">Get answers to the most common questions about property buying and selling</p>
-          </div>
-          
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <Card key={index} className="border border-gray-200 hover:shadow-md transition-shadow">
-                <CardContent className="p-0">
-                  <details className="group">
-                    <summary className="flex justify-between items-center w-full p-6 text-left bg-white hover:bg-gray-50 cursor-pointer transition-colors">
-                      <h3 className="font-semibold text-gray-900 pr-4">{faq.question}</h3>
-                      <Plus className="w-5 h-5 text-primary group-open:hidden flex-shrink-0" />
-                      <Minus className="w-5 h-5 text-primary hidden group-open:block flex-shrink-0" />
-                    </summary>
-                    <div className="px-6 pb-6">
-                      <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
-                    </div>
-                  </details>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
+      <footer className="bg-gradient-to-t from-gray-900 to-gray-800 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
