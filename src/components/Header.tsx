@@ -51,13 +51,11 @@ const Header = () => {
         <div className="flex items-center justify-between h-24">
           {/* Logo */}
           <Link to="/" className="flex items-center animate-fade-in">
-            <div className="bg-white/80 rounded-lg p-2 shadow-sm">
-              <img 
-                src="/lovable-uploads/81af2cac-f0ff-4ba8-ad13-a820ef1020f9.png" 
-                alt="Phoenix Realesthatic - Turning Properties into Prosperities" 
-                className="h-24 w-auto hover-scale"
-              />
-            </div>
+            <img 
+              src="/lovable-uploads/81af2cac-f0ff-4ba8-ad13-a820ef1020f9.png" 
+              alt="Phoenix Realesthatic - Turning Properties into Prosperities" 
+              className="h-24 w-auto hover-scale"
+            />
           </Link>
 
           {/* Desktop Navigation */}
