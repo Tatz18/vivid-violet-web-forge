@@ -66,6 +66,132 @@ const PropertyDetail = () => {
         "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=800",
         "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800"
       ]
+    },
+    {
+      id: 3,
+      title: "3BHK Apartment",
+      price: "₹90 Lakhs",
+      location: "Dhakuria, Kolkata",
+      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800",
+      beds: 3,
+      baths: 2,
+      sqft: 1226,
+      type: "Apartment",
+      description: "Well-maintained 3BHK apartment in the heart of Dhakuria. Perfect for families looking for a peaceful residential area with good connectivity.",
+      yearBuilt: 2018,
+      floor: "5th Floor",
+      features: ["Balcony", "Cross Ventilation", "Modular Kitchen", "Marble Flooring", "Ready to Move", "East Facing"],
+      amenities: ["Lift", "Security", "Power Backup", "Water Supply", "Parking", "Terrace Access"],
+      gallery: [
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800",
+        "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800",
+        "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=800"
+      ]
+    },
+    {
+      id: 4,
+      title: "2BHK Apartment",
+      price: "₹45 Lakhs",
+      location: "EM Bypass, Kolkata",
+      image: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=800",
+      beds: 2,
+      baths: 2,
+      sqft: 920,
+      type: "Apartment",
+      description: "Affordable 2BHK apartment on EM Bypass. Great for first-time buyers with easy access to IT hubs and shopping centers.",
+      yearBuilt: 2017,
+      floor: "4th Floor",
+      features: ["Compact Design", "Good Ventilation", "Modular Kitchen", "Vitrified Tiles", "Ready to Move"],
+      amenities: ["Lift", "Security", "Generator", "Water Tank", "Parking"],
+      gallery: [
+        "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=800",
+        "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800",
+        "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=800"
+      ]
+    },
+    {
+      id: 5,
+      title: "3BHK Apartment - Manjuri Garden",
+      price: "₹70 Lakhs",
+      location: "EM Bypass, Kolkata",
+      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800",
+      beds: 3,
+      baths: 2,
+      sqft: 1180,
+      type: "Apartment",
+      description: "Beautiful 3BHK apartment in Manjuri Garden complex. Well-planned layout with garden view and modern amenities.",
+      yearBuilt: 2019,
+      floor: "2nd Floor",
+      features: ["Garden View", "Spacious Rooms", "Modular Kitchen", "Marble Flooring", "Balcony", "Cross Ventilation"],
+      amenities: ["Lift", "24x7 Security", "Power Backup", "Water Supply", "Parking", "Garden", "Children's Play Area"],
+      gallery: [
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800",
+        "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=800",
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800"
+      ]
+    },
+    {
+      id: 6,
+      title: "3BHK Apartment - Bakul Bagan",
+      price: "₹65 Lakhs",
+      location: "Bhawanipur, Kolkata",
+      image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800",
+      beds: 3,
+      baths: 2,
+      sqft: 1600,
+      type: "Apartment",
+      description: "Spacious 3BHK apartment in Bakul Bagan area of Bhawanipur. Prime location with excellent connectivity and local amenities.",
+      yearBuilt: 2020,
+      floor: "4th Floor",
+      features: ["Prime Location", "Spacious Layout", "High Ceiling", "Modular Kitchen", "Marble Flooring", "Multiple Balconies"],
+      amenities: ["Lift", "Security", "Generator", "Water Supply", "Parking", "Rooftop Access"],
+      gallery: [
+        "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800",
+        "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=800",
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800"
+      ]
+    },
+    {
+      id: 7,
+      title: "3BHK Apartment - Near Sishu Mangal Hospital",
+      price: "₹2.25 Crores",
+      location: "Sarat Bose Road, Kolkata",
+      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800",
+      beds: 3,
+      baths: 3,
+      sqft: 1765,
+      type: "Apartment",
+      description: "Premium 3BHK apartment near Sishu Mangal Hospital on Sarat Bose Road. High-end building with modern amenities and prime location.",
+      yearBuilt: 2021,
+      floor: "3rd Floor (G+7 Building)",
+      features: ["Premium Location", "3 Toilets", "Balcony", "High-end Fittings", "Near Gaja Park", "Hospital Proximity"],
+      amenities: ["Lift", "24x7 Security", "Power Backup", "Water Supply", "Parking", "Intercom", "CCTV"],
+      gallery: [
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800",
+        "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800",
+        "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=800"
+      ]
+    },
+    {
+      id: 8,
+      title: "3BHK Apartment - Near Gaja Park",
+      price: "₹2.10 Crores",
+      location: "Asutosh Mukherjee Road, Kolkata",
+      image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800",
+      beds: 3,
+      baths: 2,
+      sqft: 2325,
+      type: "Apartment",
+      description: "Luxurious 3BHK apartment on Asutosh Mukherjee Road near Gaja Park. Spacious layout with premium fittings and excellent location.",
+      yearBuilt: 2022,
+      floor: "5th Floor",
+      features: ["Luxury Fittings", "Near Park", "Spacious Layout", "Premium Location", "High-end Building", "Modern Design"],
+      amenities: ["Lift", "24x7 Security", "Power Backup", "Water Supply", "Parking", "Gym", "Swimming Pool"],
+      gallery: [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800",
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800",
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800"
+      ]
     }
   ];
 
