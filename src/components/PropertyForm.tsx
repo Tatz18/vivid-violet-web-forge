@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { PhotoUpload } from "@/components/PhotoUpload";
 
 interface PropertyFormProps {
   onSuccess: () => void;
@@ -186,16 +187,12 @@ export const PropertyForm = ({ onSuccess }: PropertyFormProps) => {
             </SelectContent>
           </Select>
         </div>
-        <div className="space-y-2">
-          <Label htmlFor="image_url">Image URL</Label>
-          <Input
-            id="image_url"
-            value={formData.image_url}
-            onChange={(e) => handleInputChange("image_url", e.target.value)}
-            placeholder="Property image URL"
-          />
-        </div>
       </div>
+
+      <PhotoUpload 
+        onImageUrlChange={(url) => handleInputChange("image_url", url)}
+        currentImageUrl={formData.image_url}
+      />
 
       <Button type="submit" disabled={loading} className="w-full">
         {loading ? "Adding..." : "Add Property"}
