@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { Upload, X, Image } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 interface PhotoUploadProps {
   onImageUrlChange: (url: string) => void;
@@ -14,10 +15,11 @@ interface PhotoUploadProps {
 export const PhotoUpload = ({ onImageUrlChange, currentImageUrl }: PhotoUploadProps) => {
   const [previewUrl, setPreviewUrl] = useState<string>(currentImageUrl || "");
   const [isDragging, setIsDragging] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
 
-  const handleFileSelect = (file: File) => {
+  const handleFileSelect = async (file: File) => {
     if (!file.type.startsWith('image/')) {
       toast({
         title: "Invalid File",
@@ -27,19 +29,47 @@ export const PhotoUpload = ({ onImageUrlChange, currentImageUrl }: PhotoUploadPr
       return;
     }
 
-    // Create preview URL
-    const preview = URL.createObjectURL(file);
-    setPreviewUrl(preview);
+    setUploading(true);
 
-    // For demo purposes, we'll use a placeholder URL
-    // In a real app, you'd upload to your storage service here
-    const mockUploadUrl = `https://images.unsplash.com/photo-${Date.now()}?w=800&auto=format&fit=crop&q=80`;
-    onImageUrlChange(mockUploadUrl);
-    
-    toast({
-      title: "Image Uploaded",
-      description: "Your image has been uploaded successfully!",
-    });
+    try {
+      // Create preview URL
+      const preview = URL.createObjectURL(file);
+      setPreviewUrl(preview);
+
+      // Upload to Supabase Storage
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Math.random().toString(36).substring(2)}.${fileExt}`;
+      const filePath = `${fileName}`;
+
+      const { data, error } = await supabase.storage
+        .from('property-images')
+        .upload(filePath, file, {
+          cacheControl: '3600',
+          upsert: false
+        });
+
+      if (error) throw error;
+
+      // Get public URL
+      const { data: { publicUrl } } = supabase.storage
+        .from('property-images')
+        .getPublicUrl(data.path);
+
+      onImageUrlChange(publicUrl);
+      
+      toast({
+        title: "Image Uploaded",
+        description: "Your image has been uploaded successfully!",
+      });
+    } catch (error: any) {
+      toast({
+        title: "Upload Failed",
+        description: error.message || "Failed to upload image. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setUploading(false);
+    }
   };
 
   const handleDragOver = (e: React.DragEvent) => {
@@ -138,9 +168,10 @@ export const PhotoUpload = ({ onImageUrlChange, currentImageUrl }: PhotoUploadPr
                 <Button
                   variant="outline"
                   onClick={() => fileInputRef.current?.click()}
+                  disabled={uploading}
                 >
                   <Image className="w-4 h-4 mr-2" />
-                  Choose Image
+                  {uploading ? "Uploading..." : "Choose Image"}
                 </Button>
               </div>
             </div>
