@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone, Mail, Facebook, Instagram, Linkedin } from "lucide-react";
+import { ScheduleTourModal } from "@/components/ScheduleTourModal";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -99,13 +100,15 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center space-x-4 animate-fade-in">
-            <Button 
-              variant="outline" 
-              size="sm"
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover-lift"
-            >
-              Schedule Tour
-            </Button>
+            <ScheduleTourModal>
+              <Button 
+                variant="outline" 
+                size="sm"
+                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover-lift"
+              >
+                Schedule Tour
+              </Button>
+            </ScheduleTourModal>
             <Button 
               size="sm"
               className="bg-primary hover:bg-primary/90 hover-scale transition-all duration-300"
@@ -141,14 +144,16 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
-              <div className="flex flex-col space-y-2 pt-4 border-t border-gray-100">
-                <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                  Schedule Tour
-                </Button>
-                <Button size="sm" className="bg-primary hover:bg-primary/90">
-                  Get Started
-                </Button>
-              </div>
+               <div className="flex flex-col space-y-2 pt-4 border-t border-gray-100">
+                 <ScheduleTourModal>
+                   <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                     Schedule Tour
+                   </Button>
+                 </ScheduleTourModal>
+                 <Button size="sm" className="bg-primary hover:bg-primary/90">
+                   Get Started
+                 </Button>
+               </div>
             </div>
           </div>
         )}
