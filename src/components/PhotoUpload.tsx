@@ -166,6 +166,7 @@ export const PhotoUpload = ({ onImageUrlChange, currentImageUrl }: PhotoUploadPr
               <Button
                 variant="destructive"
                 size="sm"
+                type="button"
                 className="absolute top-2 right-2"
                 onClick={clearImage}
               >
@@ -186,6 +187,7 @@ export const PhotoUpload = ({ onImageUrlChange, currentImageUrl }: PhotoUploadPr
                 </div>
                 <Button
                   variant="outline"
+                  type="button"
                   onClick={() => fileInputRef.current?.click()}
                   disabled={uploading}
                 >
