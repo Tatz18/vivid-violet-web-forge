@@ -52,9 +52,9 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center animate-fade-in">
             <img 
-              src="/lovable-uploads/9b7e4e15-8d70-4513-a466-0c45ca0995ec.png" 
-              alt="Phoenix Realesthatic" 
-              className="h-10 w-auto hover-scale"
+              src="/lovable-uploads/81af2cac-f0ff-4ba8-ad13-a820ef1020f9.png" 
+              alt="Phoenix Realesthatic - Turning Properties into Prosperities" 
+              className="h-12 w-auto hover-scale"
             />
           </Link>
 
