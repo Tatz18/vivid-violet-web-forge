@@ -2,24 +2,25 @@ import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Link, useNavigate } from "react-router-dom";
 import { 
-  Home, 
   Search, 
-  TrendingUp, 
-  Users, 
   ArrowRight,
   MapPin,
   Building2,
   DollarSign,
-  Filter,
-  Phone,
-  Mail,
+  Home,
+  Users,
   Clock,
   Award,
   Shield,
   CheckCircle,
-  Star
+  Phone,
+  Star,
+  Bed,
+  Bath,
+  Square
 } from "lucide-react";
 import { useState } from "react";
 
@@ -33,346 +34,392 @@ const Index = () => {
     navigate('/properties');
   };
 
-  const stats = [
-    { number: "250+", label: "Properties Available" },
-    { number: "100+", label: "Happy Customers" },
-    { number: "30%", label: "Average Price Drop" },
-    { number: "4.9", label: "Customer Rating" }
-  ];
-
-  const testimonials = [
+  // How it Works Steps
+  const workSteps = [
     {
-      name: "Amit Sengupta",
-      role: "Property Investor",
-      content: "Phoenix Realesthatic made my property investment journey incredible. Their market insights helped me choose the perfect location in Salt Lake.",
-      rating: 5,
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100"
+      step: "1",
+      title: "Start & Discuss",
+      description: "We start by understanding your needs, budget, and preferences for your perfect property."
     },
     {
-      name: "Priya Chakraborty", 
-      role: "First-time Buyer",
-      content: "Exceptional service from start to finish. They guided me through every step of buying my first home in Kolkata. Highly recommended!",
-      rating: 5,
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100"
+      step: "2",
+      title: "Choose A List",
+      description: "Browse through our curated list of properties that match your specific criteria."
     },
     {
-      name: "Rajesh Banerjee",
-      role: "Home Seller",
-      content: "Outstanding professionalism and market knowledge. They sold my property in Bhawanipur within just 2 weeks at the best price. Truly amazing!",
-      rating: 5,
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100"
+      step: "3",
+      title: "Finalize & Buy",
+      description: "Complete the paperwork and finalize your dream property with our expert guidance."
     }
   ];
 
-  const featuredProperties = [
+  // Why Work With Us Features
+  const whyChooseUs = [
     {
-      id: 1,
-      title: "Historic Home With Modern Upgrades",
-      location: "Salt Lake, Kolkata",
-      price: "₹95 Lakh",
-      beds: 3,
-      baths: 2,
-      sqft: "1,456 sq ft",
-      tag: "Sale",
-      image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=500"
+      icon: Shield,
+      title: "Our Benefits",
+      description: "Comprehensive insurance coverage and legal protection for all transactions."
     },
     {
-      id: 2,
-      title: "Conveniently Located Townhouse",
-      location: "Dhakuria, Kolkata",
-      price: "₹90 Lakh",
-      beds: 3,
-      baths: 2,
-      sqft: "1,226 sq ft",
-      tag: "Sale",
-      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500"
-    },
-    {
-      id: 3,
-      title: "Historic Home With Modern Upgrades",
-      location: "EM Bypass, Kolkata",
-      price: "₹70 Lakh",
-      beds: 3,
-      baths: 2,
-      sqft: "1,180 sq ft",
-      tag: "Sale",
-      image: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500"
-    },
-    {
-      id: 4,
-      title: "Conveniently Located Townhouse",
-      location: "Bhawanipur, Kolkata",
-      price: "₹65 Lakh",
-      beds: 3,
-      baths: 2,
-      sqft: "1,600 sq ft",
-      tag: "Sale",
-      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=500"
-    }
-  ];
-
-  const services = [
-    {
-      icon: Building2,
-      title: "Personalized Service",
-      description: "Dedicated agents to help you navigate the complex real estate process."
+      icon: Clock,
+      title: "Traditional methods",
+      description: "Time-tested approaches combined with modern technology for optimal results."
     },
     {
       icon: Users,
-      title: "Expert Local Agents",
-      description: "Experienced professionals who know your neighborhood inside and out."
-    },
-    {
-      icon: TrendingUp,
-      title: "Track Records",
-      description: "Proven success in helping clients buy and sell properties efficiently."
+      title: "Flexibility",
+      description: "Customized solutions and flexible payment terms to suit your requirements."
     },
     {
       icon: Award,
-      title: "Advanced Search Filters",
-      description: "Find exactly what you're looking for with our powerful search tools."
+      title: "Communication",
+      description: "Clear and transparent communication throughout your property journey."
+    },
+    {
+      icon: CheckCircle,
+      title: "Greater control",
+      description: "You maintain full control over decisions with our expert guidance and support."
+    },
+    {
+      icon: Star,
+      title: "Increased transparency",
+      description: "Complete transparency in pricing, documentation, and all property details."
     }
   ];
 
+  // Popular Listings
+  const popularProperties = [
+    {
+      id: 1,
+      title: "2BHK Apartment - Avidipta",
+      price: "₹88 Lakhs",
+      location: "EM Bypass, Kolkata",
+      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=500",
+      beds: 2,
+      baths: 2,
+      sqft: 834,
+      tag: "Featured"
+    },
+    {
+      id: 2,
+      title: "3BHK Apartment - Sucasa",
+      price: "₹73 Lakhs",
+      location: "EM Bypass, Kolkata",
+      image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=500",
+      beds: 3,
+      baths: 2,
+      sqft: 1454,
+      tag: "New Listed"
+    },
+    {
+      id: 3,
+      title: "3BHK Apartment",
+      price: "₹90 Lakhs",
+      location: "Dhakuria, Kolkata",
+      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=500",
+      beds: 3,
+      baths: 2,
+      sqft: 1226,
+      tag: "Hot Listed"
+    },
+    {
+      id: 4,
+      title: "2BHK Apartment",
+      price: "₹45 Lakhs",
+      location: "EM Bypass, Kolkata",
+      image: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500",
+      beds: 2,
+      baths: 2,
+      sqft: 920,
+      tag: "Popular"
+    },
+    {
+      id: 5,
+      title: "3BHK Apartment - Manjuri Garden",
+      price: "₹70 Lakhs",
+      location: "EM Bypass, Kolkata",
+      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500",
+      beds: 3,
+      baths: 2,
+      sqft: 1180,
+      tag: "New Listed"
+    },
+    {
+      id: 6,
+      title: "3BHK Apartment - Bakul Bagan",
+      price: "₹65 Lakhs",
+      location: "Bhawanipur, Kolkata",
+      image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=500",
+      beds: 3,
+      baths: 2,
+      sqft: 1600,
+      tag: "Featured"
+    }
+  ];
+
+  // Newest Properties (last 3)
+  const newestProperties = popularProperties.slice(-3);
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Header />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-white py-20">
+      <section className="relative bg-gradient-to-br from-teal-400 via-teal-500 to-teal-600 text-white py-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div className="animate-fade-in">
               <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                Start Your Search
+                Discover and Your
                 <br />
-                For The <span className="text-white/90">Perfect Living Space</span> Now
+                <span className="text-white/90">Perfect Dream Home</span>
               </h1>
               <p className="text-xl mb-8 opacity-90 max-w-lg">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequam non molestie 
-                laboriosam accusamus ratione ut voluptatem a adipisci dignissimos ab.
+                Whether you're looking for a cozy retreat, a modern apartment or a spacious family home, we have the perfect property waiting for you.
               </p>
               
               {/* Search Form */}
-              <div className="bg-white rounded-2xl p-6 shadow-2xl animate-scale-in">
-                <div className="grid md:grid-cols-3 gap-4 mb-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Location</label>
-                    <div className="relative">
-                      <MapPin className="w-5 h-5 text-gray-400 absolute left-3 top-3" />
-                      <Input
-                        placeholder="Enter location"
-                        value={searchLocation}
-                        onChange={(e) => setSearchLocation(e.target.value)}
-                        className="pl-10"
-                      />
+              <div className="bg-white rounded-2xl p-6 shadow-2xl animate-scale-in text-gray-900">
+                <h3 className="text-lg font-semibold mb-4 text-gray-900">Find your Best Property what do you want!</h3>
+                <p className="text-sm text-gray-600 mb-4">Please fill all the details</p>
+                
+                <div className="space-y-4">
+                  <div className="flex items-center">
+                    <MapPin className="w-5 h-5 text-gray-400 mr-3" />
+                    <div className="flex-1">
+                      <label className="block text-sm text-gray-600 mb-1">Kolkata, Location</label>
+                      <Input placeholder="Enter location" className="border-0 bg-gray-50" />
                     </div>
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Select Type</label>
-                    <div className="relative">
-                      <Home className="w-5 h-5 text-gray-400 absolute left-3 top-3" />
-                      <Input
-                        placeholder="Property type"
-                        value={propertyType}
-                        onChange={(e) => setPropertyType(e.target.value)}
-                        className="pl-10"
-                      />
+                  
+                  <div className="flex items-center">
+                    <Home className="w-5 h-5 text-gray-400 mr-3" />
+                    <div className="flex-1">
+                      <label className="block text-sm text-gray-600 mb-1">Apartment Types</label>
+                      <Select>
+                        <SelectTrigger className="border-0 bg-gray-50">
+                          <SelectValue placeholder="Select type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="2bhk">2 BHK</SelectItem>
+                          <SelectItem value="3bhk">3 BHK</SelectItem>
+                          <SelectItem value="4bhk">4 BHK</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Budget</label>
-                    <div className="relative">
-                      <DollarSign className="w-5 h-5 text-gray-400 absolute left-3 top-3" />
-                      <Input
-                        placeholder="Max budget"
-                        value={budget}
-                        onChange={(e) => setBudget(e.target.value)}
-                        className="pl-10"
-                      />
+                  
+                  <div className="flex items-center">
+                    <DollarSign className="w-5 h-5 text-gray-400 mr-3" />
+                    <div className="flex-1">
+                      <label className="block text-sm text-gray-600 mb-1">₹30-50 Lakh</label>
+                      <Select>
+                        <SelectTrigger className="border-0 bg-gray-50">
+                          <SelectValue placeholder="Budget range" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="30-50">₹30-50 Lakh</SelectItem>
+                          <SelectItem value="50-80">₹50-80 Lakh</SelectItem>
+                          <SelectItem value="80-1cr">₹80 Lakh - 1 Crore</SelectItem>
+                          <SelectItem value="1cr+">₹1 Crore+</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
                   </div>
-                </div>
-                <Button 
-                  onClick={handleSearch}
-                  className="w-full bg-primary hover:bg-primary/90 text-white py-3 text-lg font-semibold"
-                >
-                  Search Property
-                </Button>
-              </div>
-
-              {/* Trust Indicators */}
-              <div className="flex items-center gap-4 mt-8">
-                <div className="flex -space-x-2">
-                  <img className="w-10 h-10 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100" alt="" />
-                  <img className="w-10 h-10 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100" alt="" />
-                  <img className="w-10 h-10 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100" alt="" />
-                  <div className="w-10 h-10 rounded-full bg-white/20 border-2 border-white flex items-center justify-center text-sm font-bold">
-                    2K+
-                  </div>
-                </div>
-                <div>
-                  <p className="text-sm opacity-90">Your Trusted Real Estate Adviser! Dedicated to Making Your</p>
-                  <p className="text-sm opacity-90">Home Dreams a Reality! Connect Services</p>
+                  
+                  <Button 
+                    onClick={handleSearch}
+                    className="w-full bg-gray-900 hover:bg-gray-800 text-white py-3 text-lg font-semibold rounded-lg"
+                  >
+                    Search
+                  </Button>
                 </div>
               </div>
             </div>
 
             {/* Right Content - Property Image */}
             <div className="relative animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <div className="relative">
-                <img 
-                  src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=700&fit=crop" 
-                  alt="Modern home"
-                  className="rounded-3xl shadow-2xl w-full h-[600px] object-cover"
-                />
-                {/* Floating Stats */}
-                <div className="absolute top-8 right-8 bg-white rounded-2xl p-4 shadow-lg animate-float">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                      <TrendingUp className="w-6 h-6 text-primary" />
-                    </div>
-                    <div>
-                      <p className="text-2xl font-bold text-gray-900">98%</p>
-                      <p className="text-sm text-gray-600">Customer satisfaction</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <img 
+                src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=500&fit=crop" 
+                alt="Modern home"
+                className="rounded-3xl shadow-2xl w-full h-[500px] object-cover"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-white">
+      {/* How it Works Section */}
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8 text-center">
-            {stats.map((stat, index) => (
-              <div key={index} className="p-6 animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className="text-4xl font-bold text-primary mb-2">{stat.number}</div>
-                <div className="text-gray-600 font-medium">{stat.label}</div>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">How its Work</h2>
+          </div>
+          
+          {/* First Row */}
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            {workSteps.map((step, index) => (
+              <div key={index} className="text-center animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                <div className="w-16 h-16 bg-teal-500 text-white rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
+                  {step.step}
+                </div>
+                <h3 className="text-xl font-semibold mb-4 text-gray-900">{step.title}</h3>
+                <p className="text-gray-600">{step.description}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Second Row - Same steps repeated as in design */}
+          <div className="grid md:grid-cols-3 gap-8">
+            {workSteps.map((step, index) => (
+              <div key={`second-${index}`} className="text-center animate-fade-in" style={{ animationDelay: `${(index + 3) * 0.1}s` }}>
+                <div className="w-16 h-16 bg-teal-500 text-white rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
+                  {step.step}
+                </div>
+                <h3 className="text-xl font-semibold mb-4 text-gray-900">{step.title}</h3>
+                <p className="text-gray-600">{step.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Discover Section */}
+      {/* Why Work With Us Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Work With Us?</h2>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {whyChooseUs.map((item, index) => (
+              <Card key={index} className="text-center p-6 hover:shadow-lg transition-shadow border-0 shadow-sm">
+                <CardContent className="p-0">
+                  <div className="w-16 h-16 bg-teal-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <item.icon className="w-8 h-8 text-teal-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-4 text-gray-900">{item.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Popular Listing Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Discover Your Ideal Living Space!
-            </h2>
+          <div className="flex items-center justify-between mb-12">
+            <h2 className="text-4xl font-bold text-gray-900">Popular Listing</h2>
+            <Link to="/properties">
+              <Button className="bg-gray-900 hover:bg-gray-800 text-white">
+                All View Property
+              </Button>
+            </Link>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredProperties.map((property, index) => (
-              <Card key={property.id} className="overflow-hidden hover:shadow-lg transition-all duration-300 group animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className="relative">
-                  <img 
-                    src={property.image} 
-                    alt={property.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      {property.tag}
-                    </span>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {popularProperties.map((property, index) => (
+              <Link key={property.id} to={`/property/${property.id}`}>
+                <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 group animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <div className="relative">
+                    <img 
+                      src={property.image} 
+                      alt={property.title}
+                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-teal-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                        {property.tag}
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <CardContent className="p-4">
-                  <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">{property.title}</h3>
-                  <div className="flex items-center text-gray-600 text-sm mb-3">
-                    <MapPin className="w-4 h-4 mr-1" />
-                    {property.location}
-                  </div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xl font-bold text-primary">{property.price}</span>
-                  </div>
-                  <div className="flex items-center justify-between text-sm text-gray-600">
-                    <span>{property.beds} beds</span>
-                    <span>{property.baths} baths</span>
-                    <span>{property.sqft}</span>
-                  </div>
-                </CardContent>
-              </Card>
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="font-semibold text-gray-900 text-sm">{property.title}</h3>
+                      <span className="text-lg font-bold text-gray-900">{property.price}</span>
+                    </div>
+                    <div className="flex items-center text-gray-600 text-sm mb-3">
+                      <MapPin className="w-4 h-4 mr-1" />
+                      {property.location}
+                    </div>
+                    <div className="flex items-center justify-between text-sm text-gray-600">
+                      <div className="flex items-center">
+                        <Bed className="w-4 h-4 mr-1" />
+                        {property.beds} Bed
+                      </div>
+                      <div className="flex items-center">
+                        <Bath className="w-4 h-4 mr-1" />
+                        {property.baths} Bathroom
+                      </div>
+                      <div className="flex items-center">
+                        <Square className="w-4 h-4 mr-1" />
+                        {property.sqft} sqft
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Button className="bg-primary hover:bg-primary/90 text-white px-8 py-3">
-              Explore all listings
-            </Button>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* Newest Property Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Your Trusted Real Estate Partner
-            </h2>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900">Newest Property</h2>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service, index) => (
-              <Card key={index} className="text-center p-8 hover:shadow-lg transition-shadow group border-0 shadow-sm">
-                <CardContent className="p-0">
-                  <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-colors">
-                    <service.icon className="w-8 h-8 text-primary" />
+          <div className="grid md:grid-cols-3 gap-6">
+            {newestProperties.map((property, index) => (
+              <Link key={property.id} to={`/property/${property.id}`}>
+                <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 group">
+                  <div className="relative">
+                    <img 
+                      src={property.image} 
+                      alt={property.title}
+                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                        New
+                      </span>
+                    </div>
                   </div>
-                  <h3 className="text-xl font-semibold mb-4 text-gray-900">{service.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{service.description}</p>
-                </CardContent>
-              </Card>
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="font-semibold text-gray-900 text-sm">{property.title}</h3>
+                      <span className="text-lg font-bold text-gray-900">{property.price}</span>
+                    </div>
+                    <div className="flex items-center text-gray-600 text-sm mb-3">
+                      <MapPin className="w-4 h-4 mr-1" />
+                      {property.location}
+                    </div>
+                    <div className="flex items-center justify-between text-sm text-gray-600">
+                      <div className="flex items-center">
+                        <Bed className="w-4 h-4 mr-1" />
+                        {property.beds} Bed
+                      </div>
+                      <div className="flex items-center">
+                        <Bath className="w-4 h-4 mr-1" />
+                        {property.baths} Bathroom
+                      </div>
+                      <div className="flex items-center">
+                        <Square className="w-4 h-4 mr-1" />
+                        {property.sqft} sqft
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>
       </section>
-
-      {/* Testimonials - "We've Helped Our Clients Achieve Their Dreams" */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              We've Helped Our Clients Achieve Their Dreams!
-            </h2>
-            <p className="text-xl text-gray-600">
-              Real experiences from satisfied customers who achieved their real estate goals with us
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow text-center p-8">
-                <CardContent className="p-0">
-                  <img 
-                    src={testimonial.image} 
-                    alt={testimonial.name}
-                    className="w-16 h-16 rounded-full object-cover mx-auto mb-4"
-                  />
-                  <h4 className="font-semibold text-gray-900 mb-1">{testimonial.name}</h4>
-                  <p className="text-gray-600 text-sm mb-4">{testimonial.role}</p>
-                  <p className="text-gray-700 mb-4 leading-relaxed italic">
-                    "{testimonial.content}"
-                  </p>
-                  <div className="flex justify-center">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-16">

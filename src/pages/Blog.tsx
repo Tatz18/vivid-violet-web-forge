@@ -166,8 +166,10 @@ const Blog = () => {
                       <span className="text-sm text-gray-600">{post.author}</span>
                     </div>
                     <Button className="bg-primary hover:bg-primary/90">
-                      Read More
-                      <ArrowRight className="w-4 h-4 ml-2" />
+                      <Link to={`/blog/${post.id}`}>
+                        Read More
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </Link>
                     </Button>
                   </div>
                 </CardContent>
@@ -220,9 +222,11 @@ const Blog = () => {
                       <User className="w-4 h-4 mr-2 text-gray-400" />
                       <span className="text-sm text-gray-600">{post.author}</span>
                     </div>
-                    <Button size="sm" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
-                      Read More
-                    </Button>
+                    <Link to={`/blog/${post.id}`}>
+                      <Button size="sm" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white">
+                        Read More
+                      </Button>
+                    </Link>
                   </div>
                 </CardContent>
               </Card>
