@@ -31,7 +31,7 @@ const PropertyCard = ({
 }: PropertyCardProps) => {
   return (
     <Link to={`/property/${id}`}>
-      <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer">
+      <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer hover-lift animate-fade-in">
         <div className="relative overflow-hidden">
           <img 
             src={image} 
@@ -39,7 +39,7 @@ const PropertyCard = ({
             className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
           />
           {featured && (
-            <Badge className="absolute top-3 left-3 bg-[#dd4dc7] hover:bg-[#c341b3]">
+            <Badge className="absolute top-3 left-3 bg-primary hover:bg-primary/90 animate-scale-in">
               Featured
             </Badge>
           )}
@@ -52,14 +52,14 @@ const PropertyCard = ({
         
         <CardContent className="p-6">
           <div className="mb-4">
-            <h3 className="text-xl font-semibold mb-2 group-hover:text-[#dd4dc7] transition-colors">
+            <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
               {title}
             </h3>
             <div className="flex items-center text-gray-600 mb-2">
               <MapPin className="w-4 h-4 mr-1" />
               <span className="text-sm">{location}</span>
             </div>
-            <p className="text-2xl font-bold text-[#dd4dc7]">{price}</p>
+            <p className="text-2xl font-bold text-primary">{price}</p>
           </div>
           
           <div className="flex justify-between text-sm text-gray-600 pt-4 border-t">

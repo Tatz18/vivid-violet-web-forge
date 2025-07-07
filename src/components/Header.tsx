@@ -1,94 +1,141 @@
 
-import { Link, useLocation } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X, Phone, Mail } from "lucide-react";
 
 const Header = () => {
-  const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
-  const navigation = [
-    { name: "Home", href: "/" },
-    { name: "Properties", href: "/properties" },
-    { name: "About", href: "/about" },
-    { name: "Services", href: "/services" },
-    { name: "Contact", href: "/contact" },
+  const isActive = (path: string) => location.pathname === path;
+
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "Properties", path: "/properties" },
+    { name: "About", path: "/about" },
+    { name: "Services", path: "/services" },
+    { name: "Contact", path: "/contact" },
   ];
 
   return (
-    <header className="bg-white shadow-sm border-b sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex items-center">
-            <Link to="/" className="text-2xl font-bold" style={{ color: '#dd4dc7' }}>
-              PropertyHub
-            </Link>
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
+      {/* Top Bar */}
+      <div className="bg-primary text-primary-foreground py-2">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center text-sm">
+            <div className="flex items-center space-x-6">
+              <div className="flex items-center">
+                <Phone className="w-4 h-4 mr-2" />
+                <span>+1 (555) 123-4567</span>
+              </div>
+              <div className="flex items-center">
+                <Mail className="w-4 h-4 mr-2" />
+                <span>info@realestate.com</span>
+              </div>
+            </div>
+            <div className="hidden md:flex items-center space-x-4">
+              <span>Follow us:</span>
+              <div className="flex space-x-2">
+                <a href="#" className="hover:opacity-80 transition-opacity">Facebook</a>
+                <a href="#" className="hover:opacity-80 transition-opacity">Twitter</a>
+                <a href="#" className="hover:opacity-80 transition-opacity">LinkedIn</a>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
+
+      {/* Main Navigation */}
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <Link to="/" className="flex items-center animate-fade-in">
+            <div className="flex items-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center mr-3 hover-scale">
+                <span className="text-white font-bold text-xl">R</span>
+              </div>
+              <div>
+                <h1 className="text-xl font-bold text-gray-900">RealEstate</h1>
+                <p className="text-xs text-gray-500">Premium Properties</p>
+              </div>
+            </div>
+          </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            {navigation.map((item) => (
+          <div className="hidden md:flex items-center space-x-1">
+            {navItems.map((item, index) => (
               <Link
                 key={item.name}
-                to={item.href}
-                className={`px-3 py-2 text-sm font-medium transition-colors hover:text-[#dd4dc7] ${
-                  location.pathname === item.href
-                    ? "text-[#dd4dc7] border-b-2 border-[#dd4dc7]"
-                    : "text-gray-600"
+                to={item.path}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 story-link animate-fade-in ${
+                  isActive(item.path)
+                    ? "text-primary bg-primary/5"
+                    : "text-gray-600 hover:text-primary hover:bg-gray-50"
                 }`}
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {item.name}
               </Link>
             ))}
-          </nav>
+          </div>
 
           {/* CTA Button */}
-          <div className="hidden md:flex">
-            <Button className="bg-[#dd4dc7] hover:bg-[#c341b3] text-white">
+          <div className="hidden md:flex items-center space-x-4 animate-fade-in">
+            <Button 
+              variant="outline" 
+              size="sm"
+              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover-lift"
+            >
+              Schedule Tour
+            </Button>
+            <Button 
+              size="sm"
+              className="bg-primary hover:bg-primary/90 hover-scale transition-all duration-300"
+            >
               Get Started
             </Button>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </Button>
-          </div>
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden border-t">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {navigation.map((item) => (
+          <div className="md:hidden border-t border-gray-100 py-4 animate-slide-in-down">
+            <div className="flex flex-col space-y-2">
+              {navItems.map((item) => (
                 <Link
                   key={item.name}
-                  to={item.href}
-                  className={`block px-3 py-2 text-sm font-medium transition-colors hover:text-[#dd4dc7] ${
-                    location.pathname === item.href
-                      ? "text-[#dd4dc7] bg-pink-50"
-                      : "text-gray-600"
-                  }`}
+                  to={item.path}
                   onClick={() => setIsMenuOpen(false)}
+                  className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors hover-lift ${
+                    isActive(item.path)
+                      ? "text-primary bg-primary/5"
+                      : "text-gray-600 hover:text-primary hover:bg-gray-50"
+                  }`}
                 >
                   {item.name}
                 </Link>
               ))}
-              <div className="px-3 py-2">
-                <Button className="w-full bg-[#dd4dc7] hover:bg-[#c341b3] text-white">
+              <div className="flex flex-col space-y-2 pt-4 border-t border-gray-100">
+                <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                  Schedule Tour
+                </Button>
+                <Button size="sm" className="bg-primary hover:bg-primary/90">
                   Get Started
                 </Button>
               </div>
             </div>
           </div>
         )}
-      </div>
+      </nav>
     </header>
   );
 };

@@ -225,7 +225,7 @@ const Properties = () => {
                 </SelectContent>
               </Select>
 
-              <Button className="bg-[#dd4dc7] hover:bg-[#c341b3] text-white">
+              <Button className="bg-primary hover:bg-primary/90 text-white hover-scale">
                 <Filter className="w-4 h-4 mr-2" />
                 Filter
               </Button>
@@ -274,7 +274,7 @@ const Properties = () => {
           <Button 
             size="lg" 
             variant="outline" 
-            className="px-8 border-[#dd4dc7] text-[#dd4dc7] hover:bg-[#dd4dc7] hover:text-white"
+            className="px-8 border-primary text-primary hover:bg-primary hover:text-primary-foreground hover-scale"
           >
             Load More Properties
           </Button>
