@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowLeft, Loader2 } from "lucide-react";
+import { useSimpleAuth } from "@/components/SimpleAuth";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
@@ -14,42 +14,39 @@ const Auth = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { isAuthenticated, login } = useSimpleAuth();
 
   useEffect(() => {
-    // Check if user is already logged in
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) {
-        navigate("/dashboard");
-      }
-    });
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      if (session) {
-        navigate("/dashboard");
-      }
-    });
-
-    return () => subscription.unsubscribe();
-  }, [navigate]);
+    // Redirect if already authenticated
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-      if (error) throw error;
-      toast({
-        title: "Success",
-        description: "Logged in successfully!",
-      });
+      const success = login(email, password);
+      
+      if (success) {
+        toast({
+          title: "Success",
+          description: "Logged in successfully!",
+        });
+        navigate("/dashboard");
+      } else {
+        toast({
+          title: "Error",
+          description: "Invalid email or password",
+          variant: "destructive",
+        });
+      }
     } catch (error: any) {
       toast({
         title: "Error",
-        description: error.message,
+        description: "Login failed. Please try again.",
         variant: "destructive",
       });
     } finally {

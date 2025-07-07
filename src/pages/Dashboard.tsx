@@ -7,40 +7,26 @@ import { useToast } from "@/hooks/use-toast";
 import { PropertyForm } from "@/components/PropertyForm";
 import { PropertyList } from "@/components/PropertyList";
 import { BulkPropertyImport } from "@/components/BulkPropertyImport";
-import { User } from "@supabase/supabase-js";
+import { useSimpleAuth } from "@/components/SimpleAuth";
 
 const Dashboard = () => {
-  const [user, setUser] = useState<User | null>(null);
   const [properties, setProperties] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [showBulkImport, setShowBulkImport] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { isAuthenticated, logout } = useSimpleAuth();
 
   useEffect(() => {
     // Check authentication
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) {
-        setUser(session.user);
-        fetchProperties();
-      } else {
-        navigate("/auth");
-      }
-      setLoading(false);
-    });
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      if (session) {
-        setUser(session.user);
-        fetchProperties();
-      } else {
-        navigate("/auth");
-      }
-    });
-
-    return () => subscription.unsubscribe();
-  }, [navigate]);
+    if (!isAuthenticated) {
+      navigate("/auth");
+    } else {
+      fetchProperties();
+    }
+    setLoading(false);
+  }, [isAuthenticated, navigate]);
 
   const fetchProperties = async () => {
     try {
@@ -60,8 +46,8 @@ const Dashboard = () => {
     }
   };
 
-  const handleSignOut = async () => {
-    await supabase.auth.signOut();
+  const handleSignOut = () => {
+    logout();
     navigate("/auth");
   };
 
@@ -107,7 +93,7 @@ const Dashboard = () => {
             </nav>
           </div>
           <div className="flex items-center gap-4">
-            <span className="text-sm text-muted-foreground">{user?.email}</span>
+            <span className="text-sm text-muted-foreground">phoenixrealesthatic@gmail.com</span>
             <Button onClick={handleSignOut} variant="outline">
               Sign Out
             </Button>
