@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { useToast } from "@/hooks/use-toast";
 import { PropertyForm } from "@/components/PropertyForm";
 import { PropertyList } from "@/components/PropertyList";
+import { BulkPropertyImport } from "@/components/BulkPropertyImport";
 import { User } from "@supabase/supabase-js";
 
 const Dashboard = () => {
@@ -13,6 +14,7 @@ const Dashboard = () => {
   const [properties, setProperties] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
+  const [showBulkImport, setShowBulkImport] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -72,6 +74,11 @@ const Dashboard = () => {
     });
   };
 
+  const handleBulkImportSuccess = () => {
+    fetchProperties();
+    setShowBulkImport(false);
+  };
+
   if (loading) {
     return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
   }
@@ -111,9 +118,23 @@ const Dashboard = () => {
       <main className="container mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-semibold">Your Properties</h2>
-          <Button onClick={() => setShowForm(!showForm)}>
-            {showForm ? "Cancel" : "Add Property"}
-          </Button>
+          <div className="flex gap-2">
+            <Button 
+              onClick={() => {
+                setShowBulkImport(!showBulkImport);
+                setShowForm(false);
+              }}
+              variant="outline"
+            >
+              {showBulkImport ? "Cancel" : "Bulk Import"}
+            </Button>
+            <Button onClick={() => {
+              setShowForm(!showForm);
+              setShowBulkImport(false);
+            }}>
+              {showForm ? "Cancel" : "Add Property"}
+            </Button>
+          </div>
         </div>
 
         {showForm && (
@@ -126,6 +147,12 @@ const Dashboard = () => {
               <PropertyForm onSuccess={handlePropertyAdded} />
             </CardContent>
           </Card>
+        )}
+
+        {showBulkImport && (
+          <div className="mb-6">
+            <BulkPropertyImport onSuccess={handleBulkImportSuccess} />
+          </div>
         )}
 
         <PropertyList properties={properties} onUpdate={fetchProperties} />
