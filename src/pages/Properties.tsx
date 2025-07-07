@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Search, Filter, MapPin, SlidersHorizontal } from "lucide-react";
 import { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 
 const Properties = () => {
   const [searchParams] = useSearchParams();
@@ -21,6 +22,43 @@ const Properties = () => {
   const [priceRange, setPriceRange] = useState("");
   const [propertyType, setPropertyType] = useState("");
   const [location, setLocation] = useState("");
+  const [properties, setProperties] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch properties from database
+  useEffect(() => {
+    fetchProperties();
+  }, []);
+
+  const fetchProperties = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("properties")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) throw error;
+      
+      // Transform database properties to match the expected format
+      const transformedProperties = data?.map((property) => ({
+        id: property.id,
+        title: property.title,
+        price: property.price ? `₹${(property.price / 100000).toFixed(1)} Lakhs` : "Price on request",
+        location: property.location || "Location not specified",
+        image: property.image_url || "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=500",
+        beds: property.bedrooms || 0,
+        baths: property.bathrooms || 0,
+        sqft: property.square_feet || 0,
+        type: property.property_type || "Property"
+      })) || [];
+
+      setProperties(transformedProperties);
+    } catch (error) {
+      console.error("Error fetching properties:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // Set search term from URL params on component mount
   useEffect(() => {
@@ -30,98 +68,6 @@ const Properties = () => {
     }
   }, [searchParams]);
 
-  const properties = [
-    {
-      id: 1,
-      title: "2BHK Apartment - Avidipta",
-      price: "₹88 Lakhs",
-      location: "EM Bypass, Kolkata",
-      image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=500",
-      beds: 2,
-      baths: 2,
-      sqft: 834,
-      type: "Apartment"
-    },
-    {
-      id: 2,
-      title: "3BHK Apartment - Sucasa",
-      price: "₹73 Lakhs",
-      location: "EM Bypass, Kolkata",
-      image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=500",
-      beds: 3,
-      baths: 2,
-      sqft: 1454,
-      type: "Apartment"
-    },
-    {
-      id: 3,
-      title: "3BHK Apartment - Dhakuria",
-      price: "₹90 Lakhs",
-      location: "Dhakuria, Kolkata",
-      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500",
-      beds: 3,
-      baths: 2,
-      sqft: 1226,
-      type: "Apartment"
-    },
-    {
-      id: 4,
-      title: "2BHK Apartment",
-      price: "₹45 Lakhs",
-      location: "EM Bypass, Kolkata",
-      image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=500",
-      beds: 2,
-      baths: 2,
-      sqft: 920,
-      type: "Apartment"
-    },
-    {
-      id: 5,
-      title: "3BHK Manjuri Garden",
-      price: "₹70 Lakhs",
-      location: "EM Bypass, Kolkata",
-      image: "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?w=500",
-      beds: 3,
-      baths: 2,
-      sqft: 1180,
-      type: "Apartment"
-    },
-    {
-      id: 6,
-      title: "3BHK Bakul Bagan",
-      price: "₹65 Lakhs",
-      location: "Bhawanipur, Kolkata",
-      image: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=500",
-      beds: 3,
-      baths: 2,
-      sqft: 1600,
-      type: "Apartment"
-    },
-    {
-      id: 7,
-      title: "3BHK Near Sishu Mangal Hospital",
-      price: "₹2.25 Crores",
-      location: "Sarat Bose Road, Kolkata",
-      image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=500",
-      beds: 3,
-      baths: 3,
-      sqft: 1765,
-      type: "Apartment",
-      featured: true
-    },
-    {
-      id: 8,
-      title: "3BHK Near Gaja Park",
-      price: "₹3.2 Crores",
-      location: "Asutosh Mukherjee Road, Kolkata",
-      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500",
-      beds: 3,
-      baths: 2,
-      sqft: 2325,
-      type: "Apartment",
-      featured: true
-    }
-  ];
 
   // Filter properties based on search criteria
   const filteredProperties = useMemo(() => {
@@ -255,9 +201,17 @@ const Properties = () => {
 
         {/* Properties Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProperties.map((property) => (
-            <PropertyCard key={property.id} {...property} />
-          ))}
+          {loading ? (
+            <div className="text-center">Loading properties...</div>
+          ) : filteredProperties.length === 0 ? (
+            <div className="text-center text-gray-500">
+              No properties found. {searchTerm && `Try adjusting your search for "${searchTerm}".`}
+            </div>
+          ) : (
+            filteredProperties.map((property) => (
+              <PropertyCard key={property.id} {...property} />
+            ))
+          )}
         </div>
 
         {/* Load More */}
