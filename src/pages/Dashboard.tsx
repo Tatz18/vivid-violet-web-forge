@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -80,7 +80,25 @@ const Dashboard = () => {
     <div className="min-h-screen bg-background">
       <header className="border-b">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">Property Dashboard</h1>
+          <div className="flex items-center gap-6">
+            <Link to="/" className="text-2xl font-bold hover:text-primary transition-colors">
+              Property Dashboard
+            </Link>
+            <nav className="flex items-center gap-4">
+              <Link to="/" className="text-sm hover:text-primary transition-colors">
+                Home
+              </Link>
+              <Link to="/properties" className="text-sm hover:text-primary transition-colors">
+                Properties
+              </Link>
+              <Link to="/about" className="text-sm hover:text-primary transition-colors">
+                About
+              </Link>
+              <Link to="/contact" className="text-sm hover:text-primary transition-colors">
+                Contact
+              </Link>
+            </nav>
+          </div>
           <div className="flex items-center gap-4">
             <span className="text-sm text-muted-foreground">{user?.email}</span>
             <Button onClick={handleSignOut} variant="outline">
