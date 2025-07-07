@@ -396,7 +396,7 @@ const Index = () => {
               <ul className="space-y-2 text-gray-400">
                 <li><Link to="/about" className="hover:text-white transition-colors">About Us</Link></li>
                 <li><Link to="/about" className="hover:text-white transition-colors">Our Team</Link></li>
-                <li><Link to="#" className="hover:text-white transition-colors">Careers</Link></li>
+                <li><Link to="/blog" className="hover:text-white transition-colors">Blog</Link></li>
                 <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
               </ul>
             </div>
