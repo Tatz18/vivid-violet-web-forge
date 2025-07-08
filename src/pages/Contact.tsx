@@ -41,58 +41,42 @@ const Contact = () => {
       icon: MapPin,
       title: "Visit Our Office",
       details: [
-        "123 Property Street",
-        "Real Estate City, RE 12345",
-        "United States"
+        "Regus Globsyn Crystals",
+        "X-11& 12, Block-EP",
+        "Saltlake Sector-V, Kolkata-91, IN"
       ]
     },
     {
       icon: Phone,
       title: "Call Us",
       details: [
-        "Main: (555) 123-4567",
-        "Mobile: (555) 987-6543",
-        "Toll Free: 1-800-PROPERTY"
+        "Main: +91 93301 02817"
       ]
     },
     {
       icon: Mail,
       title: "Email Us",
       details: [
-        "info@propertyhub.com",
-        "sales@propertyhub.com",
-        "support@propertyhub.com"
+        "contact@phoenixrealesthatic.com"
       ]
     },
     {
       icon: Clock,
       title: "Business Hours",
       details: [
-        "Monday - Friday: 8:00 AM - 7:00 PM",
-        "Saturday: 9:00 AM - 5:00 PM",
-        "Sunday: 12:00 PM - 4:00 PM"
+        "Monday - Friday: 9:00 AM - 6:00 PM",
+        "Saturday: 10:00 AM - 4:00 PM",
+        "Sunday: Closed"
       ]
     }
   ];
 
   const offices = [
     {
-      name: "Downtown Office",
-      address: "123 Property Street, Real Estate City, RE 12345",
-      phone: "(555) 123-4567",
-      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400"
-    },
-    {
-      name: "Suburban Branch",
-      address: "456 Oak Avenue, Suburban Hills, SH 67890",
-      phone: "(555) 234-5678",
-      image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=400"
-    },
-    {
-      name: "Coastal Location",
-      address: "789 Beach Boulevard, Marina Bay, MB 13579",
-      phone: "(555) 345-6789",
-      image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=400"
+      name: "Phoenix Realesthatic",
+      address: "Regus Globsyn Crystals, X-11& 12, Block-EP, Saltlake Sector-V, Kolkata-91, IN",
+      phone: "+91 93301 02817",
+      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400"
     }
   ];
 
@@ -246,10 +230,10 @@ const Contact = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Our Office Locations
+              Our Office Location
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Visit us at any of our convenient locations throughout the region.
+              Visit us at our convenient location in Kolkata.
             </p>
           </div>
           
@@ -305,7 +289,7 @@ const Contact = () => {
             <div className="text-center">
               <MapPin className="w-12 h-12 text-gray-500 mx-auto mb-4" />
               <p className="text-gray-600 text-lg">Interactive Map Coming Soon</p>
-              <p className="text-gray-500 text-sm">123 Property Street, Real Estate City, RE 12345</p>
+              <p className="text-gray-500 text-sm">Regus Globsyn Crystals, X-11& 12, Block-EP, Saltlake Sector-V, Kolkata-91, IN</p>
             </div>
           </div>
         </div>
