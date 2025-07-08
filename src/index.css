@@ -38,6 +38,12 @@ All colors MUST be HSL.
 
     --radius: 0.75rem;
 
+    /* Pink gradient variables */
+    --gradient-pink-primary: linear-gradient(135deg, hsl(320, 65%, 52%), hsl(340, 75%, 60%));
+    --gradient-pink-secondary: linear-gradient(135deg, hsl(340, 60%, 55%), hsl(350, 70%, 65%));
+    --gradient-pink-accent: linear-gradient(135deg, hsl(310, 60%, 50%), hsl(330, 80%, 55%));
+    --gradient-pink-glow: linear-gradient(135deg, hsl(320, 70%, 55%), hsl(340, 80%, 65%));
+
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 320 65% 52%;
@@ -115,5 +121,45 @@ All colors MUST be HSL.
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
+  }
+
+  /* Button gradient utilities */
+  .btn-gradient-pink {
+    background: var(--gradient-pink-primary);
+    @apply text-white border-0 shadow-lg;
+  }
+
+  .btn-gradient-pink-secondary {
+    background: var(--gradient-pink-secondary);
+    @apply text-white border-0 shadow-md;
+  }
+
+  .btn-gradient-pink-accent {
+    background: var(--gradient-pink-accent);
+    @apply text-white border-0 shadow-sm;
+  }
+
+  /* Button hover animations */
+  .btn-hover-glow {
+    @apply transition-all duration-300 hover:shadow-xl hover:scale-105;
+  }
+
+  .btn-hover-glow:hover {
+    box-shadow: 0 10px 40px hsla(320, 65%, 52%, 0.4);
+    transform: translateY(-2px) scale(1.02);
+  }
+
+  .btn-hover-pulse {
+    @apply transition-all duration-300 hover:scale-105;
+    animation: pulse-pink 2s infinite;
+  }
+
+  @keyframes pulse-pink {
+    0%, 100% {
+      box-shadow: 0 0 0 0 hsla(320, 65%, 52%, 0.7);
+    }
+    50% {
+      box-shadow: 0 0 0 10px hsla(320, 65%, 52%, 0);
+    }
   }
 }
