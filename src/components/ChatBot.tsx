@@ -171,11 +171,14 @@ const ChatBot = () => {
                   className={`flex ${message.isBot ? "justify-start" : "justify-end"} items-end gap-2`}
                 >
                   {message.isBot && (
-                    <img 
-                      src="/lovable-uploads/81af2cac-f0ff-4ba8-ad13-a820ef1020f9.png" 
-                      alt="Phoenix Assistant" 
-                      className="w-8 h-8 rounded-full object-contain bg-white p-1 border border-border flex-shrink-0"
-                    />
+                    <div className="relative">
+                      <img 
+                        src="/lovable-uploads/81af2cac-f0ff-4ba8-ad13-a820ef1020f9.png" 
+                        alt="Phoenix Assistant" 
+                        className="w-8 h-8 rounded-full object-contain bg-white p-1 border border-border flex-shrink-0"
+                      />
+                      <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 border-2 border-background rounded-full"></div>
+                    </div>
                   )}
                   <div
                     className={`max-w-[70%] p-3 rounded-lg text-sm ${
