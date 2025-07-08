@@ -18,7 +18,7 @@ const Map: React.FC = () => {
     if (!mapContainer.current || mapRef.current) return;
 
     // Initialize map
-    const map = L.map(mapContainer.current).setView([22.573, 88.433], 16);
+    const map = L.map(mapContainer.current).setView([22.573, 88.433], 17);
 
     // Add OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
