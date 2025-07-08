@@ -1,5 +1,4 @@
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -663,7 +662,31 @@ const Index = () => {
       </section>
 
 
-      <Footer />
+      {/* Contact Section */}
+      <section className="py-20 bg-gradient-to-r from-primary via-primary/95 to-primary text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-4xl font-bold mb-8">Ready to Find Your Dream Home?</h2>
+            <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+              Let our experienced team help you navigate the real estate market and find the perfect property that meets all your needs.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link to="/contact">
+                <Button className="bg-white text-primary hover:bg-gray-50 text-lg px-8 py-3">
+                  <Phone className="w-5 h-5 mr-2" />
+                  Contact Us Today
+                </Button>
+              </Link>
+              <Link to="/properties">
+                <Button variant="outline" className="border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-3">
+                  View All Properties
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
