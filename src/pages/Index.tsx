@@ -766,6 +766,11 @@ const Index = () => {
                   </Link>
                 </li>
                 <li>
+                  <Link to="/dashboard" className="text-gray-300 hover:text-white transition-colors">
+                    Dashboard
+                  </Link>
+                </li>
+                <li>
                   <Link to="/contact" className="text-gray-300 hover:text-white transition-colors">
                     Contact
                   </Link>
