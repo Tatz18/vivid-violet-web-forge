@@ -1,5 +1,6 @@
 
 import Header from "@/components/Header";
+import Map from "@/components/Map";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,7 +13,8 @@ import {
   MessageSquare,
   Send
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -22,6 +24,22 @@ const Contact = () => {
     subject: '',
     message: ''
   });
+  const [mapboxApiKey, setMapboxApiKey] = useState<string>('');
+
+  useEffect(() => {
+    // Get Mapbox API key from Supabase secrets
+    const getMapboxKey = async () => {
+      try {
+        const { data, error } = await supabase.functions.invoke('get-mapbox-key');
+        if (data?.apiKey) {
+          setMapboxApiKey(data.apiKey);
+        }
+      } catch (error) {
+        console.log('Mapbox API key not configured');
+      }
+    };
+    getMapboxKey();
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -285,13 +303,7 @@ const Contact = () => {
             </p>
           </div>
           
-          <div className="bg-gray-300 rounded-lg h-96 flex items-center justify-center">
-            <div className="text-center">
-              <MapPin className="w-12 h-12 text-gray-500 mx-auto mb-4" />
-              <p className="text-gray-600 text-lg">Interactive Map Coming Soon</p>
-              <p className="text-gray-500 text-sm">Regus Globsyn Crystals, X-11& 12, Block-EP, Saltlake Sector-V, Kolkata-91, IN</p>
-            </div>
-          </div>
+          <Map apiKey={mapboxApiKey} />
         </div>
       </section>
     </div>
