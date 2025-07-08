@@ -1,5 +1,6 @@
 
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import PropertyCard from "@/components/PropertyCard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -225,6 +226,8 @@ const Properties = () => {
           </Button>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };
