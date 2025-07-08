@@ -282,6 +282,7 @@ const Contact = () => {
                     variant="outline" 
                     size="sm" 
                     className="w-full mt-4 border-[#dd4dc7] text-[#dd4dc7] hover:bg-[#dd4dc7] hover:text-white"
+                    onClick={() => window.open('https://g.co/kgs/L7wG5KL', '_blank')}
                   >
                     Get Directions
                   </Button>
