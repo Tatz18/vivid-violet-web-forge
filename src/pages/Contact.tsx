@@ -27,18 +27,18 @@ const Contact = () => {
   const [mapboxApiKey, setMapboxApiKey] = useState<string>('');
 
   useEffect(() => {
-    // Get Mapbox API key from Supabase secrets
-    const getMapboxKey = async () => {
+    // Get Google Maps API key from Supabase secrets
+    const getGoogleMapsKey = async () => {
       try {
         const { data, error } = await supabase.functions.invoke('get-mapbox-key');
         if (data?.apiKey) {
           setMapboxApiKey(data.apiKey);
         }
       } catch (error) {
-        console.log('Mapbox API key not configured');
+        console.log('Google Maps API key not configured');
       }
     };
-    getMapboxKey();
+    getGoogleMapsKey();
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

@@ -1,48 +1,83 @@
 import React, { useEffect, useRef } from 'react';
-import mapboxgl from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
 
 interface MapProps {
   apiKey?: string;
 }
 
+declare global {
+  interface Window {
+    google: any;
+    initMap: () => void;
+  }
+}
+
 const Map: React.FC<MapProps> = ({ apiKey }) => {
   const mapContainer = useRef<HTMLDivElement>(null);
-  const map = useRef<mapboxgl.Map | null>(null);
+  const mapRef = useRef<any>(null);
 
   useEffect(() => {
-    if (!mapContainer.current || !apiKey) return;
+    if (!apiKey || !mapContainer.current) return;
 
-    // Initialize map
-    mapboxgl.accessToken = apiKey;
-    
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/streets-v12',
-      center: [88.3639, 22.5726], // Kolkata coordinates
-      zoom: 15,
-    });
+    // Load Google Maps script
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
+    script.async = true;
+    script.defer = true;
 
-    // Add marker for Phoenix Realesthatic office
-    new mapboxgl.Marker()
-      .setLngLat([88.3639, 22.5726])
-      .setPopup(
-        new mapboxgl.Popup({ offset: 25 })
-          .setHTML(`
-            <div class="p-2">
-              <h3 class="font-semibold text-sm">Phoenix Realesthatic</h3>
-              <p class="text-xs text-gray-600">Regus Globsyn Crystals<br>X-11& 12, Block-EP<br>Saltlake Sector-V, Kolkata-91, IN</p>
-            </div>
-          `)
-      )
-      .addTo(map.current);
+    // Initialize map callback
+    window.initMap = () => {
+      if (!mapContainer.current) return;
 
-    // Add navigation controls
-    map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
+      const map = new window.google.maps.Map(mapContainer.current, {
+        center: { lat: 22.5726, lng: 88.3639 }, // Kolkata coordinates
+        zoom: 16,
+        mapTypeControl: true,
+        streetViewControl: true,
+        fullscreenControl: true,
+      });
 
-    // Cleanup
+      // Add marker for Phoenix Realesthatic office
+      const marker = new window.google.maps.Marker({
+        position: { lat: 22.5726, lng: 88.3639 },
+        map: map,
+        title: 'Phoenix Realesthatic',
+      });
+
+      // Add info window
+      const infoWindow = new window.google.maps.InfoWindow({
+        content: `
+          <div style="padding: 10px; max-width: 200px;">
+            <h3 style="margin: 0 0 8px 0; font-weight: bold; font-size: 14px;">Phoenix Realesthatic</h3>
+            <p style="margin: 0; font-size: 12px; color: #666;">
+              Regus Globsyn Crystals<br>
+              X-11& 12, Block-EP<br>
+              Saltlake Sector-V, Kolkata-91, IN
+            </p>
+          </div>
+        `,
+      });
+
+      marker.addListener('click', () => {
+        infoWindow.open(map, marker);
+      });
+
+      mapRef.current = map;
+    };
+
+    // Check if Google Maps is already loaded
+    if (window.google && window.google.maps) {
+      window.initMap();
+    } else {
+      document.head.appendChild(script);
+    }
+
     return () => {
-      map.current?.remove();
+      // Cleanup
+      const existingScript = document.querySelector(`script[src*="maps.googleapis.com"]`);
+      if (existingScript && existingScript.parentNode) {
+        existingScript.parentNode.removeChild(existingScript);
+      }
+      delete window.initMap;
     };
   }, [apiKey]);
 
@@ -53,8 +88,8 @@ const Map: React.FC<MapProps> = ({ apiKey }) => {
           <div className="w-12 h-12 bg-gray-400 rounded-full flex items-center justify-center mx-auto mb-4">
             <span className="text-gray-600 text-xs">MAP</span>
           </div>
-          <p className="text-gray-600 text-lg">Map API Key Required</p>
-          <p className="text-gray-500 text-sm">Please configure Mapbox API key to view the map</p>
+          <p className="text-gray-600 text-lg">Google Maps API Key Required</p>
+          <p className="text-gray-500 text-sm">Please configure Google Maps API key to view the map</p>
         </div>
       </div>
     );
