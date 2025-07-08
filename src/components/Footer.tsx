@@ -12,7 +12,7 @@ const Footer = () => {
               <img 
                 src="/lovable-uploads/81af2cac-f0ff-4ba8-ad13-a820ef1020f9.png" 
                 alt="Phoenix Realesthatic" 
-                className="h-20 w-auto"
+                className="h-12 w-auto"
               />
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
