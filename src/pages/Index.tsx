@@ -313,23 +313,9 @@ const Index = () => {
             <h2 className="text-4xl font-bold text-gray-900 mb-4">How its Work</h2>
           </div>
           
-          {/* First Row */}
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {workSteps.map((step, index) => (
-              <div key={index} className="text-center animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
-                  {step.step}
-                </div>
-                <h3 className="text-xl font-semibold mb-4 text-gray-900">{step.title}</h3>
-                <p className="text-gray-600">{step.description}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Second Row - Same steps repeated as in design */}
           <div className="grid md:grid-cols-3 gap-8">
             {workSteps.map((step, index) => (
-              <div key={`second-${index}`} className="text-center animate-fade-in" style={{ animationDelay: `${(index + 3) * 0.1}s` }}>
+              <div key={index} className="text-center animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                 <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
                   {step.step}
                 </div>
