@@ -168,13 +168,20 @@ const ChatBot = () => {
               {messages.map((message) => (
                 <div
                   key={message.id}
-                  className={`flex ${message.isBot ? "justify-start" : "justify-end"}`}
+                  className={`flex ${message.isBot ? "justify-start" : "justify-end"} items-end gap-2`}
                 >
+                  {message.isBot && (
+                    <img 
+                      src="/lovable-uploads/81af2cac-f0ff-4ba8-ad13-a820ef1020f9.png" 
+                      alt="Phoenix Assistant" 
+                      className="w-8 h-8 rounded-full object-contain bg-white p-1 border border-border flex-shrink-0"
+                    />
+                  )}
                   <div
-                    className={`max-w-[80%] p-3 rounded-lg text-sm ${
+                    className={`max-w-[70%] p-3 rounded-lg text-sm ${
                       message.isBot
-                        ? "bg-muted text-muted-foreground"
-                        : "bg-primary text-primary-foreground"
+                        ? "bg-muted text-muted-foreground rounded-bl-none"
+                        : "bg-primary text-primary-foreground rounded-br-none"
                     }`}
                   >
                     {message.text}
