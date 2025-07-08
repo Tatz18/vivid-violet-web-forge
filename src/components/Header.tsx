@@ -109,12 +109,6 @@ const Header = () => {
                 Schedule Tour
               </Button>
             </ScheduleTourModal>
-            <Button 
-              size="sm"
-              className="bg-primary hover:bg-primary/90 hover-scale transition-all duration-300"
-            >
-              Get Started
-            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -150,9 +144,6 @@ const Header = () => {
                      Schedule Tour
                    </Button>
                  </ScheduleTourModal>
-                 <Button size="sm" className="bg-primary hover:bg-primary/90">
-                   Get Started
-                 </Button>
                </div>
             </div>
           </div>
