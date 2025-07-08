@@ -255,7 +255,8 @@ const Contact = () => {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="flex justify-center">
+            <div className="w-full max-w-md">
             {offices.map((office, index) => (
               <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow">
                 <div className="aspect-video overflow-hidden">
@@ -287,6 +288,7 @@ const Contact = () => {
                 </CardContent>
               </Card>
             ))}
+            </div>
           </div>
         </div>
       </section>
