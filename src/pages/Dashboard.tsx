@@ -7,13 +7,19 @@ import { useToast } from "@/hooks/use-toast";
 import { PropertyForm } from "@/components/PropertyForm";
 import { PropertyList } from "@/components/PropertyList";
 import { BulkPropertyImport } from "@/components/BulkPropertyImport";
+import { BlogForm } from "@/components/BlogForm";
+import { BlogList } from "@/components/BlogList";
 import { useSimpleAuth } from "@/components/SimpleAuth";
 
 const Dashboard = () => {
   const [properties, setProperties] = useState<any[]>([]);
+  const [blogs, setBlogs] = useState<any[]>([]);
+  const [activeTab, setActiveTab] = useState("properties");
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [showBulkImport, setShowBulkImport] = useState(false);
+  const [showBlogForm, setShowBlogForm] = useState(false);
+  const [editingBlog, setEditingBlog] = useState(null);
   const navigate = useNavigate();
   const { toast } = useToast();
   const { isAuthenticated, logout } = useSimpleAuth();
@@ -24,6 +30,7 @@ const Dashboard = () => {
       navigate("/auth");
     } else {
       fetchProperties();
+      fetchBlogs();
     }
     setLoading(false);
   }, [isAuthenticated, navigate]);
@@ -46,6 +53,24 @@ const Dashboard = () => {
     }
   };
 
+  const fetchBlogs = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("blogs")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) throw error;
+      setBlogs(data || []);
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: "Failed to fetch blogs",
+        variant: "destructive",
+      });
+    }
+  };
+
   const handleSignOut = () => {
     logout();
     navigate("/auth");
@@ -63,6 +88,21 @@ const Dashboard = () => {
   const handleBulkImportSuccess = () => {
     fetchProperties();
     setShowBulkImport(false);
+  };
+
+  const handleBlogAdded = () => {
+    fetchBlogs();
+    setShowBlogForm(false);
+    setEditingBlog(null);
+    toast({
+      title: "Success",
+      description: "Blog saved successfully!",
+    });
+  };
+
+  const handleEditBlog = (blog: any) => {
+    setEditingBlog(blog);
+    setShowBlogForm(true);
   };
 
   if (loading) {
@@ -102,46 +142,114 @@ const Dashboard = () => {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-semibold">Your Properties</h2>
-          <div className="flex gap-2">
-            <Button 
-              onClick={() => {
-                setShowBulkImport(!showBulkImport);
-                setShowForm(false);
-              }}
-              variant="outline"
-            >
-              {showBulkImport ? "Cancel" : "Bulk Import"}
-            </Button>
-            <Button onClick={() => {
-              setShowForm(!showForm);
+        {/* Tab Navigation */}
+        <div className="flex gap-4 mb-6 border-b">
+          <button
+            onClick={() => {
+              setActiveTab("properties");
+              setShowForm(false);
               setShowBulkImport(false);
-            }}>
-              {showForm ? "Cancel" : "Add Property"}
-            </Button>
-          </div>
+              setShowBlogForm(false);
+            }}
+            className={`pb-2 px-1 font-medium transition-colors ${
+              activeTab === "properties"
+                ? "text-primary border-b-2 border-primary"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            Properties
+          </button>
+          <button
+            onClick={() => {
+              setActiveTab("blogs");
+              setShowForm(false);
+              setShowBulkImport(false);
+              setShowBlogForm(false);
+            }}
+            className={`pb-2 px-1 font-medium transition-colors ${
+              activeTab === "blogs"
+                ? "text-primary border-b-2 border-primary"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            Blogs
+          </button>
         </div>
 
-        {showForm && (
-          <Card className="mb-6">
-            <CardHeader>
-              <CardTitle>Add New Property</CardTitle>
-              <CardDescription>Fill in the details below to add a new property</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <PropertyForm onSuccess={handlePropertyAdded} />
-            </CardContent>
-          </Card>
-        )}
+        {/* Properties Tab */}
+        {activeTab === "properties" && (
+          <div>
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-xl font-semibold">Your Properties</h2>
+              <div className="flex gap-2">
+                <Button 
+                  onClick={() => {
+                    setShowBulkImport(!showBulkImport);
+                    setShowForm(false);
+                  }}
+                  variant="outline"
+                >
+                  {showBulkImport ? "Cancel" : "Bulk Import"}
+                </Button>
+                <Button onClick={() => {
+                  setShowForm(!showForm);
+                  setShowBulkImport(false);
+                }}>
+                  {showForm ? "Cancel" : "Add Property"}
+                </Button>
+              </div>
+            </div>
 
-        {showBulkImport && (
-          <div className="mb-6">
-            <BulkPropertyImport onSuccess={handleBulkImportSuccess} />
+            {showForm && (
+              <Card className="mb-6">
+                <CardHeader>
+                  <CardTitle>Add New Property</CardTitle>
+                  <CardDescription>Fill in the details below to add a new property</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <PropertyForm onSuccess={handlePropertyAdded} />
+                </CardContent>
+              </Card>
+            )}
+
+            {showBulkImport && (
+              <div className="mb-6">
+                <BulkPropertyImport onSuccess={handleBulkImportSuccess} />
+              </div>
+            )}
+
+            <PropertyList properties={properties} onUpdate={fetchProperties} />
           </div>
         )}
 
-        <PropertyList properties={properties} onUpdate={fetchProperties} />
+        {/* Blogs Tab */}
+        {activeTab === "blogs" && (
+          <div>
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-xl font-semibold">Your Blog Posts</h2>
+              <Button onClick={() => {
+                setShowBlogForm(!showBlogForm);
+                setEditingBlog(null);
+              }}>
+                {showBlogForm ? "Cancel" : "Add New Blog"}
+              </Button>
+            </div>
+
+            {showBlogForm && (
+              <Card className="mb-6">
+                <CardHeader>
+                  <CardTitle>{editingBlog ? "Edit Blog Post" : "Add New Blog Post"}</CardTitle>
+                  <CardDescription>Fill in the details below to {editingBlog ? "update" : "create"} a blog post</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <BlogForm onSuccess={handleBlogAdded} blog={editingBlog} />
+                </CardContent>
+              </Card>
+            )}
+
+            <BlogList blogs={blogs} onUpdate={fetchBlogs} onEdit={handleEditBlog} />
+          </div>
+        )}
       </main>
     </div>
   );
