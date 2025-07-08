@@ -18,7 +18,7 @@ const Map: React.FC = () => {
     if (!mapContainer.current || mapRef.current) return;
 
     // Initialize map
-    const map = L.map(mapContainer.current).setView([22.5726, 88.3639], 16);
+    const map = L.map(mapContainer.current).setView([22.573, 88.433], 16);
 
     // Add OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -27,7 +27,7 @@ const Map: React.FC = () => {
     }).addTo(map);
 
     // Add marker for Phoenix Realesthatic office
-    const marker = L.marker([22.5726, 88.3639]).addTo(map);
+    const marker = L.marker([22.573, 88.433]).addTo(map);
     
     // Add popup to marker
     marker.bindPopup(`
