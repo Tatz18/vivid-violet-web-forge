@@ -303,7 +303,7 @@ const Contact = () => {
             </p>
           </div>
           
-          <Map apiKey={mapboxApiKey} />
+          <Map />
         </div>
       </section>
     </div>

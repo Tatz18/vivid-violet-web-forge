@@ -1,99 +1,56 @@
 import React, { useEffect, useRef } from 'react';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
-interface MapProps {
-  apiKey?: string;
-}
+// Fix for default markers in Leaflet with bundlers
+delete (L.Icon.Default.prototype as any)._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png',
+  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+});
 
-declare global {
-  interface Window {
-    google: any;
-    initMap: () => void;
-  }
-}
-
-const Map: React.FC<MapProps> = ({ apiKey }) => {
+const Map: React.FC = () => {
   const mapContainer = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<any>(null);
+  const mapRef = useRef<L.Map | null>(null);
 
   useEffect(() => {
-    if (!apiKey || !mapContainer.current) return;
+    if (!mapContainer.current || mapRef.current) return;
 
-    // Load Google Maps script
-    const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
-    script.async = true;
-    script.defer = true;
+    // Initialize map
+    const map = L.map(mapContainer.current).setView([22.5726, 88.3639], 16);
 
-    // Initialize map callback
-    window.initMap = () => {
-      if (!mapContainer.current) return;
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxZoom: 19,
+    }).addTo(map);
 
-      const map = new window.google.maps.Map(mapContainer.current, {
-        center: { lat: 22.5726, lng: 88.3639 }, // Kolkata coordinates
-        zoom: 16,
-        mapTypeControl: true,
-        streetViewControl: true,
-        fullscreenControl: true,
-      });
-
-      // Add marker for Phoenix Realesthatic office
-      const marker = new window.google.maps.Marker({
-        position: { lat: 22.5726, lng: 88.3639 },
-        map: map,
-        title: 'Phoenix Realesthatic',
-      });
-
-      // Add info window
-      const infoWindow = new window.google.maps.InfoWindow({
-        content: `
-          <div style="padding: 10px; max-width: 200px;">
-            <h3 style="margin: 0 0 8px 0; font-weight: bold; font-size: 14px;">Phoenix Realesthatic</h3>
-            <p style="margin: 0; font-size: 12px; color: #666;">
-              Regus Globsyn Crystals<br>
-              X-11& 12, Block-EP<br>
-              Saltlake Sector-V, Kolkata-91, IN
-            </p>
-          </div>
-        `,
-      });
-
-      marker.addListener('click', () => {
-        infoWindow.open(map, marker);
-      });
-
-      mapRef.current = map;
-    };
-
-    // Check if Google Maps is already loaded
-    if (window.google && window.google.maps) {
-      window.initMap();
-    } else {
-      document.head.appendChild(script);
-    }
-
-    return () => {
-      // Cleanup
-      const existingScript = document.querySelector(`script[src*="maps.googleapis.com"]`);
-      if (existingScript && existingScript.parentNode) {
-        existingScript.parentNode.removeChild(existingScript);
-      }
-      delete window.initMap;
-    };
-  }, [apiKey]);
-
-  if (!apiKey) {
-    return (
-      <div className="bg-gray-300 rounded-lg h-96 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-12 h-12 bg-gray-400 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span className="text-gray-600 text-xs">MAP</span>
-          </div>
-          <p className="text-gray-600 text-lg">Google Maps API Key Required</p>
-          <p className="text-gray-500 text-sm">Please configure Google Maps API key to view the map</p>
-        </div>
+    // Add marker for Phoenix Realesthatic office
+    const marker = L.marker([22.5726, 88.3639]).addTo(map);
+    
+    // Add popup to marker
+    marker.bindPopup(`
+      <div style="padding: 8px; max-width: 200px;">
+        <h3 style="margin: 0 0 8px 0; font-weight: bold; font-size: 14px;">Phoenix Realesthatic</h3>
+        <p style="margin: 0; font-size: 12px; color: #666;">
+          Regus Globsyn Crystals<br>
+          X-11& 12, Block-EP<br>
+          Saltlake Sector-V, Kolkata-91, IN
+        </p>
       </div>
-    );
-  }
+    `);
+
+    mapRef.current = map;
+
+    // Cleanup
+    return () => {
+      if (mapRef.current) {
+        mapRef.current.remove();
+        mapRef.current = null;
+      }
+    };
+  }, []);
 
   return (
     <div className="relative w-full h-96">
