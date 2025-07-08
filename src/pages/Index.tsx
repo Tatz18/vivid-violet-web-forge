@@ -782,11 +782,31 @@ const Index = () => {
             <div>
               <h3 className="text-lg font-semibold mb-4">Our Services</h3>
               <ul className="space-y-3">
-                <li className="text-gray-300">Property Sales</li>
-                <li className="text-gray-300">Property Rental</li>
-                <li className="text-gray-300">Investment Consulting</li>
-                <li className="text-gray-300">Property Management</li>
-                <li className="text-gray-300">Market Analysis</li>
+                <li>
+                  <Link to="/services/property-sales" className="text-gray-300 hover:text-white transition-colors">
+                    Property Sales
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/services/property-rental" className="text-gray-300 hover:text-white transition-colors">
+                    Property Rental
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/services/investment-consulting" className="text-gray-300 hover:text-white transition-colors">
+                    Investment Consulting
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/services/property-management" className="text-gray-300 hover:text-white transition-colors">
+                    Property Management
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/services/market-analysis" className="text-gray-300 hover:text-white transition-colors">
+                    Market Analysis
+                  </Link>
+                </li>
               </ul>
             </div>
 
