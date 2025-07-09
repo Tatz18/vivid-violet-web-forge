@@ -1,6 +1,6 @@
 
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import HomeFooter from "@/components/HomeFooter";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { 
@@ -233,7 +233,7 @@ const Services = () => {
         </div>
       </section>
 
-      <Footer />
+      <HomeFooter />
     </div>
   );
 };

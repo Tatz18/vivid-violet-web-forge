@@ -1,5 +1,5 @@
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import HomeFooter from "@/components/HomeFooter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -414,7 +414,7 @@ const PropertyManagement = () => {
         </div>
       </section>
 
-      <Footer />
+      <HomeFooter />
     </div>
   );
 };

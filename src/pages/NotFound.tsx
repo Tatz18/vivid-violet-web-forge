@@ -1,7 +1,7 @@
 import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import HomeFooter from "@/components/HomeFooter";
 import { Button } from "@/components/ui/button";
 import { Home } from "lucide-react";
 
@@ -35,7 +35,7 @@ const NotFound = () => {
         </div>
       </div>
 
-      <Footer />
+      <HomeFooter />
     </div>
   );
 };
