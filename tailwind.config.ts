@@ -100,6 +100,12 @@ export default {
 				'float': {
 					'0%, 100%': { transform: 'translateY(0px)' },
 					'50%': { transform: 'translateY(-5px)' }
+				},
+				'slide-horizontal': {
+					'0%, 100%': { transform: 'translateX(0)' },
+					'25%': { transform: 'translateX(-100%)' },
+					'50%': { transform: 'translateX(-200%)' },
+					'75%': { transform: 'translateX(-300%)' }
 				}
 			},
 			animation: {
@@ -109,7 +115,8 @@ export default {
 				'fade-out': 'fade-out 0.3s ease-out',
 				'scale-in': 'scale-in 0.2s ease-out',
 				'slide-in-down': 'slide-in-down 0.3s ease-out',
-				'float': 'float 3s ease-in-out infinite'
+				'float': 'float 3s ease-in-out infinite',
+				'slide-horizontal': 'slide-horizontal 2s ease-in-out infinite'
 			}
 		}
 	},

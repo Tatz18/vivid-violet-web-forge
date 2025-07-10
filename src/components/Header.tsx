@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone, Mail, Facebook, Instagram, Linkedin } from "lucide-react";
@@ -7,7 +7,17 @@ import { ScheduleTourModal } from "@/components/ScheduleTourModal";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -20,7 +30,9 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
+    <header className={`sticky top-0 z-50 backdrop-blur-md shadow-sm border-b border-gray-100 transition-colors duration-300 ${
+      isScrolled ? 'bg-pink-500/95' : 'bg-white/95'
+    }`}>
       {/* Top Bar */}
       <div className="bg-primary text-primary-foreground py-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -76,7 +88,7 @@ const Header = () => {
             <img 
               src="/lovable-uploads/81af2cac-f0ff-4ba8-ad13-a820ef1020f9.png" 
               alt="Phoenix Realesthatic - Turning Properties into Prosperities" 
-              className="h-24 w-auto hover-scale"
+              className="h-24 w-auto hover-scale animate-[slide-horizontal_2s_ease-in-out_infinite]"
             />
           </Link>
 
