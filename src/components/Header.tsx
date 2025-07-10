@@ -31,7 +31,7 @@ const Header = () => {
 
   return (
     <header className={`sticky top-0 z-50 backdrop-blur-md shadow-sm border-b border-gray-100 transition-colors duration-300 ${
-      isScrolled ? 'bg-pink-500/95' : 'bg-white/95'
+      isScrolled ? 'bg-[#d745a6]/95' : 'bg-white/95'
     }`}>
       {/* Top Bar */}
       <div className="bg-primary text-primary-foreground py-2">
@@ -88,7 +88,7 @@ const Header = () => {
             <img 
               src="/lovable-uploads/81af2cac-f0ff-4ba8-ad13-a820ef1020f9.png" 
               alt="Phoenix Realesthatic - Turning Properties into Prosperities" 
-              className="h-24 w-auto hover-scale animate-[slide-horizontal_2s_ease-in-out_infinite]"
+              className="h-24 w-auto hover-scale animate-[slide-horizontal_8s_ease-in-out_infinite]"
             />
           </Link>
 
@@ -98,12 +98,15 @@ const Header = () => {
               <Link
                 key={item.name}
                 to={item.path}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 story-link animate-fade-in ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 story-link ${
                   isActive(item.path)
-                    ? "text-primary bg-primary/5"
-                    : "text-gray-600 hover:text-primary hover:bg-gray-50"
+                    ? isScrolled 
+                      ? "text-white bg-white/20" 
+                      : "text-primary bg-primary/5"
+                    : isScrolled
+                      ? "text-white hover:text-white hover:bg-white/10"
+                      : "text-gray-600 hover:text-primary hover:bg-gray-50"
                 }`}
-                style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {item.name}
               </Link>
@@ -111,12 +114,16 @@ const Header = () => {
           </div>
 
           {/* CTA Button */}
-          <div className="hidden md:flex items-center space-x-4 animate-fade-in">
+          <div className="hidden md:flex items-center space-x-4">
             <ScheduleTourModal>
               <Button 
                 variant="outline" 
                 size="sm"
-                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover-lift"
+                className={`transition-all duration-300 hover-lift ${
+                  isScrolled
+                    ? "border-white text-white hover:bg-white hover:text-[#d745a6]"
+                    : "border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                }`}
               >
                 Schedule Tour
               </Button>
@@ -126,7 +133,11 @@ const Header = () => {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
+            className={`md:hidden p-2 rounded-lg transition-colors ${
+              isScrolled
+                ? "text-white hover:text-white hover:bg-white/10"
+                : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+            }`}
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
