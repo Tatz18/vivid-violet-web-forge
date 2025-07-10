@@ -99,7 +99,7 @@ const Contact = () => {
       name: "Phoenix Realesthatic",
       address: "Regus Globsyn Crystals, X-11& 12, Block-EP, Saltlake Sector-V, Kolkata-91, IN",
       phone: "+91 93301 02817",
-      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400"
+      image: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.surekaproperties.com%2Fglobsyn-crystals.html&psig=AOvVaw0q7F2Iy74ByJiIpL7DwFYO&ust=1752233164014000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCPiSia2Xso4DFQAAAAAdAAAAABAE?w=400"
     }
   ];
 
