@@ -88,7 +88,7 @@ const Header = () => {
             <img 
               src="/lovable-uploads/81af2cac-f0ff-4ba8-ad13-a820ef1020f9.png" 
               alt="Phoenix Realesthatic - Turning Properties into Prosperities" 
-              className="h-24 w-auto hover-scale animate-[slide-horizontal_8s_ease-in-out_infinite]"
+              className="h-24 w-auto hover-scale"
             />
           </Link>
 
