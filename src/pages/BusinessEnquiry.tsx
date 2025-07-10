@@ -194,7 +194,7 @@ const BusinessEnquiry = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">Business Hotline</h4>
-                    <p className="text-gray-600">+91 98765 43210</p>
+                    <p className="text-gray-600">+91 93301 02817 </p>
                   </div>
                 </div>
                 
