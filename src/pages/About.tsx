@@ -91,22 +91,23 @@ const About = () => {
               </h1>
               
               <div className="bg-primary/10 rounded-3xl p-8 mb-8">
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">About Us</h2>
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Meet Our Founder</h2>
+                <h3 className="text-2xl font-semibold text-primary mb-4">Prasenjit Mallick</h3>
                 <p className="text-xl text-gray-600 leading-relaxed">
-                  Phoenix Realesthatic has been turning properties into prosperities since 2018. 
-                  We're committed to providing exceptional real estate services with integrity, 
-                  innovation, and unwavering dedication to our clients' success.
+                  Leading Phoenix Realesthatic since 2018, turning properties into prosperities with 
+                  unwavering dedication to excellence. With a vision to transform the real estate 
+                  landscape across Eastern India through innovation and client-focused service.
                 </p>
               </div>
             </div>
 
-            {/* Right Content - Image */}
+            {/* Right Content - Founder Image */}
             <div className="relative animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <div className="bg-gradient-to-br from-primary/20 to-blue-100 rounded-3xl overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&h=500&fit=crop" 
-                  alt="Real estate professional"
-                  className="w-full h-[500px] object-cover mix-blend-multiply"
+                  src="/lovable-uploads/39f9851d-ae49-449d-817a-1e87047ecfe8.png" 
+                  alt="Prasenjit Mallick - Founder & CEO"
+                  className="w-full h-[500px] object-cover"
                 />
               </div>
               {/* Floating stats card */}
