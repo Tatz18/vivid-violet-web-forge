@@ -93,11 +93,33 @@ const About = () => {
               <div className="bg-primary/10 rounded-3xl p-8 mb-8">
                 <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Meet Our Founder</h2>
                 <h3 className="text-2xl font-semibold text-primary mb-4">Prasenjit Mallick</h3>
-                <p className="text-xl text-gray-600 leading-relaxed">
-                  Leading Phoenix Realesthatic since 2018, turning properties into prosperities with 
-                  unwavering dedication to excellence. With a vision to transform the real estate 
-                  landscape across Eastern India through innovation and client-focused service.
-                </p>
+                
+                <div className="space-y-4">
+                  <p className="text-lg text-gray-600 leading-relaxed">
+                    "Since founding Phoenix Realesthatic in 2018, my vision has been simple yet ambitious - 
+                    to transform how people experience real estate. We've built more than just a business; 
+                    we've created a legacy of trust, innovation, and excellence."
+                  </p>
+                  
+                  <p className="text-lg text-gray-600 leading-relaxed">
+                    "With over a decade of combined team experience and having served 1500+ satisfied clients, 
+                    we continue to push boundaries in the real estate industry. Our 90% client satisfaction 
+                    rate represents families who found their dream homes and investors who achieved their goals."
+                  </p>
+                  
+                  <p className="text-lg text-gray-600 leading-relaxed italic">
+                    "At Phoenix Realesthatic, we don't just sell properties - we turn them into prosperities, 
+                    creating lasting value for our clients and communities across Eastern India."
+                  </p>
+                  
+                  <div className="pt-4 border-t border-gray-200">
+                    <div className="flex items-center text-sm text-gray-500">
+                      <span className="font-semibold">Prasenjit Mallick</span>
+                      <span className="mx-2">•</span>
+                      <span>Founder & CEO</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -225,66 +247,6 @@ const About = () => {
                       satisfaction rate. Over 10 years of combined team experience has helped us successfully 
                       facilitate 500+ property transactions across Kolkata and Eastern India.
                     </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Founder Section */}
-      <section className="py-20 bg-gradient-to-br from-primary/5 via-blue-50/30 to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Meet Our Founder</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Leading with vision, passion, and commitment to excellence
-            </p>
-          </div>
-          
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="text-center lg:text-left animate-fade-in">
-              <div className="relative inline-block">
-                <img 
-                  src="/lovable-uploads/39f9851d-ae49-449d-817a-1e87047ecfe8.png" 
-                  alt="Prasenjit Mallick - Founder"
-                  className="w-80 h-80 rounded-3xl object-cover shadow-2xl mx-auto lg:mx-0"
-                />
-                <div className="absolute -bottom-4 -right-4 bg-primary text-white rounded-2xl p-4 shadow-xl">
-                  <div className="text-sm font-semibold">Founder & CEO</div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Prasenjit Mallick</h3>
-              <p className="text-lg text-primary font-semibold mb-6">Founder & CEO</p>
-              
-              <div className="bg-white/80 rounded-3xl p-8 shadow-lg border border-gray-100">
-                <p className="text-gray-600 leading-relaxed mb-6 text-lg">
-                  "Since founding Phoenix Realesthatic in 2018, my vision has been simple yet ambitious - 
-                  to transform how people experience real estate. We've built more than just a business; 
-                  we've created a legacy of trust, innovation, and excellence."
-                </p>
-                
-                <p className="text-gray-600 leading-relaxed mb-6">
-                  "With over a decade of combined team experience and having served 1500+ satisfied clients, 
-                  we continue to push boundaries in the real estate industry. Our 90% client satisfaction 
-                  rate is not just a number - it represents families who found their dream homes and 
-                  investors who achieved their financial goals."
-                </p>
-                
-                <p className="text-gray-600 leading-relaxed">
-                  "At Phoenix Realesthatic, we don't just sell properties - we turn them into prosperities, 
-                  creating lasting value for our clients and communities across Eastern India."
-                </p>
-                
-                <div className="mt-6 pt-6 border-t border-gray-200">
-                  <div className="flex items-center text-sm text-gray-500">
-                    <span className="font-semibold">Prasenjit Mallick</span>
-                    <span className="mx-2">•</span>
-                    <span>Founder & CEO, Phoenix Realesthatic</span>
                   </div>
                 </div>
               </div>
