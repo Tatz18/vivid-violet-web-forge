@@ -139,7 +139,7 @@ const About = () => {
                     <TrendingUp className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-gray-900">₹500Cr+</div>
+                    <div className="text-2xl font-bold text-gray-900">₹100Cr+</div>
                     <div className="text-sm text-gray-600">Total Sales Value</div>
                   </div>
                 </div>
