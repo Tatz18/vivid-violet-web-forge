@@ -20,10 +20,10 @@ import {
 const About = () => {
   // Company statistics
   const stats = [
-    { number: "500+", label: "Happy Clients", icon: Users },
-    { number: "95%", label: "Client Satisfaction", icon: Star },
-    { number: "15+", label: "Years Experience", icon: Award },
-    { number: "1000+", label: "Properties Sold", icon: Building2 }
+    { number: "1500+", label: "Happy Clients", icon: Users },
+    { number: "90%", label: "Client Satisfaction", icon: Star },
+    { number: "10+", label: "Years Experience", icon: Award },
+    { number: "500+", label: "Properties Sold", icon: Building2 }
   ];
 
   // Our process steps
@@ -93,7 +93,7 @@ const About = () => {
               <div className="bg-primary/10 rounded-3xl p-8 mb-8">
                 <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">About Us</h2>
                 <p className="text-xl text-gray-600 leading-relaxed">
-                  Phoenix Realesthatic has been turning properties into prosperities since 2008. 
+                  Phoenix Realesthatic has been turning properties into prosperities since 2018. 
                   We're committed to providing exceptional real estate services with integrity, 
                   innovation, and unwavering dedication to our clients' success.
                 </p>
@@ -196,8 +196,9 @@ const About = () => {
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-2">Our Mission</h3>
                     <p className="text-gray-600">
-                      To transform the real estate experience by providing transparent, 
-                      innovative, and client-focused services that turn properties into prosperities.
+                      To revolutionize the real estate landscape by delivering unparalleled service excellence, 
+                      fostering lasting client relationships, and creating sustainable value through innovative 
+                      property solutions that transform lives and communities across Eastern India.
                     </p>
                   </div>
                 </div>
@@ -207,8 +208,9 @@ const About = () => {
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-2">Our Vision</h3>
                     <p className="text-gray-600">
-                      To be the most trusted and preferred real estate partner in Eastern India, 
-                      known for our integrity, expertise, and exceptional client service.
+                      To become the leading real estate conglomerate in Eastern India, setting industry benchmarks 
+                      through cutting-edge technology, sustainable development practices, and building a legacy of 
+                      trust that spans generations while contributing to the economic growth of our region.
                     </p>
                   </div>
                 </div>
@@ -218,9 +220,70 @@ const About = () => {
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-2">Our Journey</h3>
                     <p className="text-gray-600">
-                      Since 2008, we've successfully helped hundreds of families find their dream homes 
-                      and assisted investors in making profitable real estate decisions across Kolkata and beyond.
+                      Since 2018, we've rapidly grown to serve over 1500 happy clients, maintaining a 90% client 
+                      satisfaction rate. Over 10 years of combined team experience has helped us successfully 
+                      facilitate 500+ property transactions across Kolkata and Eastern India.
                     </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Founder Section */}
+      <section className="py-20 bg-gradient-to-br from-primary/5 via-blue-50/30 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Meet Our Founder</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Leading with vision, passion, and commitment to excellence
+            </p>
+          </div>
+          
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="text-center lg:text-left animate-fade-in">
+              <div className="relative inline-block">
+                <img 
+                  src="/lovable-uploads/39f9851d-ae49-449d-817a-1e87047ecfe8.png" 
+                  alt="Prasenjit Mallick - Founder"
+                  className="w-80 h-80 rounded-3xl object-cover shadow-2xl mx-auto lg:mx-0"
+                />
+                <div className="absolute -bottom-4 -right-4 bg-primary text-white rounded-2xl p-4 shadow-xl">
+                  <div className="text-sm font-semibold">Founder & CEO</div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Prasenjit Mallick</h3>
+              <p className="text-lg text-primary font-semibold mb-6">Founder & CEO</p>
+              
+              <div className="bg-white/80 rounded-3xl p-8 shadow-lg border border-gray-100">
+                <p className="text-gray-600 leading-relaxed mb-6 text-lg">
+                  "Since founding Phoenix Realesthatic in 2018, my vision has been simple yet ambitious - 
+                  to transform how people experience real estate. We've built more than just a business; 
+                  we've created a legacy of trust, innovation, and excellence."
+                </p>
+                
+                <p className="text-gray-600 leading-relaxed mb-6">
+                  "With over a decade of combined team experience and having served 1500+ satisfied clients, 
+                  we continue to push boundaries in the real estate industry. Our 90% client satisfaction 
+                  rate is not just a number - it represents families who found their dream homes and 
+                  investors who achieved their financial goals."
+                </p>
+                
+                <p className="text-gray-600 leading-relaxed">
+                  "At Phoenix Realesthatic, we don't just sell properties - we turn them into prosperities, 
+                  creating lasting value for our clients and communities across Eastern India."
+                </p>
+                
+                <div className="mt-6 pt-6 border-t border-gray-200">
+                  <div className="flex items-center text-sm text-gray-500">
+                    <span className="font-semibold">Prasenjit Mallick</span>
+                    <span className="mx-2">•</span>
+                    <span>Founder & CEO, Phoenix Realesthatic</span>
                   </div>
                 </div>
               </div>
