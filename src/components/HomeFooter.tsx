@@ -90,6 +90,11 @@ const HomeFooter = () => {
                   Contact
                 </Link>
               </li>
+              <li>
+                <Link to="/careers" className="text-gray-300 hover:text-white transition-colors">
+                  Career Opportunities
+                </Link>
+              </li>
             </ul>
           </div>
 
