@@ -117,7 +117,7 @@ const About = () => {
                     <div className="flex items-center text-sm text-gray-500">
                       <span className="font-semibold">Prasenjit Mallick</span>
                       <span className="mx-2">•</span>
-                      <span>Founder & CEO</span>
+                      <span>Founder</span>
                     </div>
                   </div>
                 </div>
@@ -140,7 +140,7 @@ const About = () => {
                     <TrendingUp className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-gray-900">₹100Cr+</div>
+                    <div className="text-2xl font-bold text-gray-900">₹10Cr+</div>
                     <div className="text-sm text-gray-600">Total Sales Value</div>
                   </div>
                 </div>
