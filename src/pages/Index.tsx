@@ -54,28 +54,28 @@ const Index = () => {
     {
       name: "Amit Sengupta",
       role: "Property Investor",
-      content: "Phoenix Realesthatic made my property investment journey incredible. Their market insights helped me choose the perfect location in Salt Lake. The team was professional and guided me through every step.",
+      content: "I was honestly skeptical about buying property in Kolkata, but these guys completely changed my mind. They showed me this amazing spot in Salt Lake that I never would've considered. The ROI has been fantastic! Really grateful for their patience with all my questions.",
       rating: 5,
       image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100"
     },
     {
       name: "Priya Chakraborty", 
       role: "First-time Buyer",
-      content: "Exceptional service from start to finish. They guided me through every step of buying my first home in Kolkata. The transparency and support were outstanding. Highly recommended!",
+      content: "As a first-time buyer, I was pretty nervous about the whole process. But they literally held my hand through everything - from understanding loan documents to negotiating with the seller. I'm typing this from my beautiful new apartment right now!",
       rating: 5,
       image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100"
     },
     {
       name: "Rajesh Banerjee",
       role: "Home Seller",
-      content: "Outstanding professionalism and market knowledge. They sold my property in Bhawanipur within just 2 weeks at the best price. The entire process was smooth and hassle-free.",
+      content: "I needed to sell quickly due to a job transfer, and honestly thought I'd have to settle for less. These folks got me three serious buyers in the first week! Sold at market price within two weeks. Can't ask for better than that.",
       rating: 5,
       image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100"
     },
     {
       name: "Sneha Roy",
       role: "Property Buyer",
-      content: "Found my dream 3BHK apartment through Phoenix Realesthatic. Their understanding of my requirements and budget constraints was remarkable. Great team with excellent service.",
+      content: "After months of searching on my own, I was getting frustrated. They listened to what I actually wanted - not just my budget, but my lifestyle too. Found me this perfect 3BHK with great natural light. My family absolutely loves it here!",
       rating: 5,
       image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100"
     }
@@ -576,16 +576,16 @@ const Index = () => {
           <div className="flex items-center justify-center space-x-12 md:space-x-16">
             <div className="flex items-center justify-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
               <img 
-                src="/lovable-uploads/4a54c843-f6bd-4e57-8340-23f3ce226eb6.png" 
-                alt="National Association of Realtors"
-                className="h-16 w-auto object-contain"
+                src="/lovable-uploads/ad9df93c-c658-4692-97d5-8a93f531d43b.png" 
+                alt="National Association of Realtors - India"
+                className="h-24 w-auto object-contain"
               />
             </div>
             <div className="flex items-center justify-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
               <img 
                 src="/lovable-uploads/9a9ff7fc-fbd2-4585-bc9e-aa11b7d33756.png" 
                 alt="RECA Kolkata"
-                className="h-16 w-auto object-contain"
+                className="h-24 w-auto object-contain"
               />
             </div>
           </div>

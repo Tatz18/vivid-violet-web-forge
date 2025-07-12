@@ -156,8 +156,12 @@ const Header = () => {
                   onClick={() => setIsMenuOpen(false)}
                   className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors hover-lift ${
                     isActive(item.path)
-                      ? "text-primary bg-primary/5"
-                      : "text-gray-600 hover:text-primary hover:bg-gray-50"
+                      ? isScrolled 
+                        ? "text-white bg-white/20" 
+                        : "text-primary bg-primary/5"
+                      : isScrolled
+                        ? "text-white hover:text-white hover:bg-white/10"
+                        : "text-gray-600 hover:text-primary hover:bg-gray-50"
                   }`}
                 >
                   {item.name}
