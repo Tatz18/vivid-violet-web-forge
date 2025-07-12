@@ -302,7 +302,7 @@ const Index = () => {
             {/* Right Content - Property Image */}
             <div className="relative animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <img 
-                src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=500&fit=crop" 
+                src="https://i.ytimg.com/vi/bHQFh9CR_JI/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBBthN4TDReEUEEHTkQ0QEoial95w?w=600&h=500&fit=crop" 
                 alt="Modern home"
                 className="rounded-3xl shadow-2xl w-full h-[500px] object-cover"
               />
