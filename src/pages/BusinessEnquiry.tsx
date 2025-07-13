@@ -20,6 +20,7 @@ import {
   Clock
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const BusinessEnquiry = () => {
   const [formData, setFormData] = useState({
@@ -41,27 +42,43 @@ const BusinessEnquiry = () => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the data to your backend
-    toast({
-      title: "Enquiry Submitted Successfully!",
-      description: "Our business development team will contact you within 24 hours."
-    });
     
-    // Reset form
-    setFormData({
-      companyName: "",
-      contactPerson: "",
-      email: "",
-      phone: "",
-      businessType: "",
-      projectType: "",
-      budget: "",
-      timeline: "",
-      location: "",
-      message: ""
-    });
+    try {
+      // Call edge function to send email
+      const { data, error } = await supabase.functions.invoke('send-business-enquiry', {
+        body: formData
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Enquiry Submitted Successfully!",
+        description: "Our business development team will contact you within 24 hours."
+      });
+      
+      // Reset form
+      setFormData({
+        companyName: "",
+        contactPerson: "",
+        email: "",
+        phone: "",
+        businessType: "",
+        projectType: "",
+        budget: "",
+        timeline: "",
+        location: "",
+        message: ""
+      });
+    } catch (error: any) {
+      console.error("Error submitting enquiry:", error);
+      toast({
+        title: "Submission Failed",
+        description: error.message || "Failed to submit enquiry. Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    }
   };
 
   const businessServices = [

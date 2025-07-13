@@ -8,14 +8,13 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-interface TourRequestData {
-  name: string;
-  phone: string;
+interface CareerApplicationData {
+  jobPosition: string;
+  fullName: string;
   email: string;
-  property: string;
-  tour_date: string;
-  tour_time: string;
-  special_requests: string;
+  phone: string;
+  experience: string;
+  coverLetter: string;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -25,35 +24,36 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { name, phone, email, property, tour_date, tour_time, special_requests }: TourRequestData = await req.json();
+    const { jobPosition, fullName, email, phone, experience, coverLetter }: CareerApplicationData = await req.json();
 
-    // Send tour request details to admin email
+    // Send career application details to admin email
     const emailResponse = await resend.emails.send({
       from: "Phoenix Realesthatic <noreply@phoenixrealesthatic.com>",
       to: ["phoenixrealesthatic@gmail.com"],
-      subject: "New Tour Request - Phoenix Realesthatic",
+      subject: `New Job Application - ${jobPosition} - Phoenix Realesthatic`,
       html: `
-        <h2>New Tour Request Received</h2>
-        <p>A customer has submitted a tour request with the following details:</p>
+        <h2>New Job Application Received</h2>
+        <p>A candidate has submitted an application with the following details:</p>
         
         <div style="background-color: #f9f9f9; padding: 20px; margin: 20px 0; border-radius: 8px;">
-          <h3>Customer Details:</h3>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Phone:</strong> ${phone}</p>
+          <h3>Candidate Details:</h3>
+          <p><strong>Position Applied For:</strong> ${jobPosition}</p>
+          <p><strong>Full Name:</strong> ${fullName}</p>
           <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Property of Interest:</strong> ${property}</p>
-          <p><strong>Preferred Date:</strong> ${tour_date}</p>
-          <p><strong>Preferred Time:</strong> ${tour_time}</p>
-          ${special_requests ? `<p><strong>Special Requests:</strong> ${special_requests}</p>` : ''}
+          <p><strong>Phone:</strong> ${phone}</p>
+          <p><strong>Experience Level:</strong> ${experience}</p>
+          
+          <h3>Cover Letter:</h3>
+          <p style="background-color: #fff; padding: 15px; border-left: 4px solid #007bff; margin-top: 10px;">${coverLetter}</p>
         </div>
         
-        <p>Please contact the customer to confirm the appointment.</p>
+        <p>Please review the application and contact the candidate for further evaluation.</p>
         
-        <p>Phoenix Realesthatic Admin Panel</p>
+        <p>Phoenix Realesthatic HR Team</p>
       `,
     });
 
-    console.log("Email sent successfully:", emailResponse);
+    console.log("Career application email sent successfully:", emailResponse);
 
     return new Response(
       JSON.stringify({ success: true, email: emailResponse }),
@@ -66,7 +66,7 @@ const handler = async (req: Request): Promise<Response> => {
       }
     );
   } catch (error: any) {
-    console.error("Error sending email:", error);
+    console.error("Error sending career application email:", error);
     return new Response(
       JSON.stringify({ error: error.message }),
       {

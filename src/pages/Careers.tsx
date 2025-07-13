@@ -95,7 +95,8 @@ const Careers = () => {
     setIsSubmitting(true);
     
     try {
-      const { error } = await supabase
+      // Save to database
+      const { error: dbError } = await supabase
         .from('job_applications')
         .insert({
           job_position: data.jobPosition,
@@ -106,7 +107,17 @@ const Careers = () => {
           cover_letter: data.coverLetter,
         });
 
-      if (error) throw error;
+      if (dbError) throw dbError;
+
+      // Send email notification
+      const { error: emailError } = await supabase.functions.invoke('send-career-application', {
+        body: data
+      });
+
+      if (emailError) {
+        console.error("Email sending failed:", emailError);
+        // Don't fail the entire submission if email fails
+      }
 
       setIsSubmitted(true);
       toast({
