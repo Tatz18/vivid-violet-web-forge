@@ -9,7 +9,7 @@ import { PropertyList } from "@/components/PropertyList";
 import { BulkPropertyImport } from "@/components/BulkPropertyImport";
 import { BlogForm } from "@/components/BlogForm";
 import { BlogList } from "@/components/BlogList";
-import { useAuth } from "@/components/AuthProvider";
+import { useSimpleAuth } from "@/components/SimpleAuth";
 
 const Dashboard = () => {
   const [properties, setProperties] = useState<any[]>([]);
@@ -22,18 +22,18 @@ const Dashboard = () => {
   const [editingBlog, setEditingBlog] = useState(null);
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { user, signOut } = useAuth();
+  const { isAuthenticated, logout } = useSimpleAuth();
 
   useEffect(() => {
     // Check authentication
-    if (!user) {
+    if (!isAuthenticated) {
       navigate("/auth");
     } else {
       fetchProperties();
       fetchBlogs();
     }
     setLoading(false);
-  }, [user, navigate]);
+  }, [isAuthenticated, navigate]);
 
   const fetchProperties = async () => {
     try {
@@ -72,7 +72,7 @@ const Dashboard = () => {
   };
 
   const handleSignOut = () => {
-    signOut();
+    logout();
     navigate("/auth");
   };
 
