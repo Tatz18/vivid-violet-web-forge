@@ -35,6 +35,12 @@ import { useState, useEffect } from "react";
 import React from "react";
 import { supabase } from "@/integrations/supabase/client";
 
+// Import testimonial images
+import testimonialAmit from "@/assets/testimonial-amit.jpg";
+import testimonialPriya from "@/assets/testimonial-priya.jpg";
+import testimonialRavi from "@/assets/testimonial-ravi.jpg";
+import testimonialSneha from "@/assets/testimonial-sneha.jpg";
+
 const Index = () => {
   const [searchLocation, setSearchLocation] = useState("");
   const [propertyType, setPropertyType] = useState("");
@@ -56,28 +62,28 @@ const Index = () => {
       role: "Property Investor",
       content: "I was honestly skeptical about buying property in Kolkata, but these guys completely changed my mind. They showed me this amazing spot in Salt Lake that I never would've considered. The ROI has been fantastic! Really grateful for their patience with all my questions.",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100"
+      image: testimonialAmit
     },
     {
       name: "Priya Chakraborty", 
       role: "First-time Buyer",
       content: "As a first-time buyer, I was pretty nervous about the whole process. But they literally held my hand through everything - from understanding loan documents to negotiating with the seller. I'm typing this from my beautiful new apartment right now!",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100"
+      image: testimonialPriya
     },
     {
       name: "Rajesh Banerjee",
       role: "Home Seller",
       content: "I needed to sell quickly due to a job transfer, and honestly thought I'd have to settle for less. These folks got me three serious buyers in the first week! Sold at market price within two weeks. Can't ask for better than that.",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100"
+      image: testimonialRavi
     },
     {
       name: "Sneha Roy",
       role: "Property Buyer",
       content: "After months of searching on my own, I was getting frustrated. They listened to what I actually wanted - not just my budget, but my lifestyle too. Found me this perfect 3BHK with great natural light. My family absolutely loves it here!",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100"
+      image: testimonialSneha
     }
   ];
 

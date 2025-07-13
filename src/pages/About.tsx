@@ -133,18 +133,6 @@ const About = () => {
                   className="w-full h-[500px] object-cover"
                 />
               </div>
-              {/* Floating stats card */}
-              <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-6 shadow-xl border border-gray-100">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                    <TrendingUp className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-gray-900">₹10Cr+</div>
-                    <div className="text-sm text-gray-600">Total Sales Value</div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
