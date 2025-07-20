@@ -29,8 +29,18 @@ const Hero = ({ title, subtitle, showSearch = false }: HeroProps) => {
   };
 
   return (
-    <section className="relative min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-white">
-      <div className="absolute inset-0 bg-black/20"></div>
+    <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden text-white">
+      {/* Video Background */}
+      <video 
+        autoPlay 
+        muted 
+        loop 
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src="https://cdn.pixabay.com/video/2022/03/06/110344-686273050_large.mp4" type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-black/50"></div>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-fade-in">
           {title}
