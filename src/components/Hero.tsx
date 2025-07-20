@@ -37,8 +37,10 @@ const Hero = ({ title, subtitle, showSearch = false }: HeroProps) => {
         loop 
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
+        onError={() => console.log('Video failed to load')}
       >
-        <source src="https://cdn.pixabay.com/video/2022/03/06/110344-686273050_large.mp4" type="video/mp4" />
+        <source src="https://player.vimeo.com/external/342571552.hd.mp4?s=6c04a8c8c2e1c0e3b1b1b1b1b1b1b1b1b1b1b1b1&profile_id=175" type="video/mp4" />
+        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-black/50"></div>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
