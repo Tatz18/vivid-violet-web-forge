@@ -36,17 +36,23 @@ const Hero = ({ title, subtitle, showSearch = false }: HeroProps) => {
         muted 
         loop 
         playsInline
-        preload="metadata"
+        preload="auto"
         className="absolute inset-0 w-full h-full object-cover"
         style={{ zIndex: 1 }}
+        onLoadStart={() => console.log('Video loading started')}
+        onCanPlay={() => console.log('Video can play and is ready')}
+        onPlay={() => console.log('Video started playing')}
+        onError={(e) => console.log('Video error:', e)}
+        onLoadedData={() => console.log('Video data loaded')}
       >
-        <source src="https://videos.pexels.com/video-files/3129957/3129957-uhd_3840_2160_30fps.mp4" type="video/mp4" />
-        <source src="https://videos.pexels.com/video-files/3571264/3571264-uhd_3840_2160_30fps.mp4" type="video/mp4" />
+        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
         <source src="https://sample-videos.com/zip/10/mp4/720/mp4-SampleVideo_720x480_1mb.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
       </video>
       
       {/* Pink Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-pink-500/40 via-purple-500/30 to-blue-500/20" style={{ zIndex: 2 }}></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-pink-500/20 via-purple-500/15 to-blue-500/10" style={{ zIndex: 0 }}></div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" style={{ zIndex: 10 }}>
         <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-fade-in">
