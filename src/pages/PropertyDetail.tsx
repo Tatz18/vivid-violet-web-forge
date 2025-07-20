@@ -15,13 +15,16 @@ import {
   ArrowLeft,
   MessageCircle,
   Calendar,
-  Home
+  Home,
+  Eye
 } from "lucide-react";
+import Image360Viewer from "@/components/Image360Viewer";
 
 const PropertyDetail = () => {
   const { id } = useParams();
   const [property, setProperty] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [show360View, setShow360View] = useState(false);
   
   useEffect(() => {
     const fetchProperty = async () => {
@@ -102,11 +105,41 @@ const PropertyDetail = () => {
           <div className="lg:col-span-2">
             {/* Property Images */}
             <div className="mb-8">
-              <img 
-                src={property.image_url || "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=800"} 
-                alt={property.title}
-                className="w-full h-96 object-cover rounded-lg shadow-lg"
-              />
+              <div className="relative">
+                {!show360View ? (
+                  <>
+                    <img 
+                      src={property.image_url || "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=800"} 
+                      alt={property.title}
+                      className="w-full h-96 object-cover rounded-lg shadow-lg"
+                    />
+                    <Button
+                      onClick={() => setShow360View(true)}
+                      className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white"
+                      size="sm"
+                    >
+                      <Eye className="w-4 h-4 mr-2" />
+                      360° View
+                    </Button>
+                  </>
+                ) : (
+                  <div className="space-y-4">
+                    <Image360Viewer 
+                      imageUrl="https://images.unsplash.com/photo-1483058712412-4245e9b90334"
+                      alt={`${property.title} 360° View`}
+                      width={800}
+                      height={400}
+                    />
+                    <Button
+                      onClick={() => setShow360View(false)}
+                      variant="outline"
+                      size="sm"
+                    >
+                      Back to Photo
+                    </Button>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Property Info */}
