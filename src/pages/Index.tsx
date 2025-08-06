@@ -231,6 +231,30 @@ const Index = () => {
     <div className="min-h-screen bg-white">
       <Header />
       
+      {/* Announcement Banner */}
+      <div className="bg-gradient-to-r from-primary via-primary/90 to-secondary text-white py-3 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="flex items-center justify-center text-center animate-pulse">
+            <div className="flex items-center gap-2">
+              <Building2 className="h-5 w-5 animate-bounce" />
+              <span className="font-semibold text-sm md:text-base">
+                🎉 Special Offer: Get 2% Off on Property Registration + Free Legal Consultation 
+                <span className="hidden md:inline"> | Limited Time Only - Valid Until Dec 31st</span>
+              </span>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="ml-4 bg-white/20 border-white/40 text-white hover:bg-white/30 text-xs hidden md:inline-flex"
+                onClick={() => navigate('/contact')}
+              >
+                Claim Offer
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-white py-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
