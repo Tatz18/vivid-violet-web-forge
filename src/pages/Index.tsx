@@ -1,6 +1,5 @@
 import Header from "@/components/Header";
 import HomeFooter from "@/components/HomeFooter";
-import AnnouncementModal from "@/components/AnnouncementModal";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -231,7 +230,6 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      <AnnouncementModal />
       
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-white py-20 overflow-hidden">
