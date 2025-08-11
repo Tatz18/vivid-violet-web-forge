@@ -238,7 +238,7 @@ const Index = () => {
             {/* Left Content */}
             <div className="animate-fade-in">
               <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                Discover and Your
+                Discover Your
                 <br />
                 <span className="text-white/90">Perfect Dream Home</span>
               </h1>
