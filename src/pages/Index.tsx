@@ -83,7 +83,7 @@ const Index = () => {
     description: "We begin by understanding your needs"
   }, {
     step: "2",
-    title: "choose from a list",
+    title: "Choose From a List",
     description: "Browse through our curated list of properties that match your specific criteria."
   }, {
     step: "3",
