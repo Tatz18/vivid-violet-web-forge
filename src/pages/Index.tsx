@@ -79,7 +79,7 @@ const Index = () => {
   // How it Works Steps
   const workSteps = [{
     step: "1",
-    title: "choose from a list",
+    title: "Start & Discuss",
     description: "We begin by understanding your needs"
   }, {
     step: "2",
