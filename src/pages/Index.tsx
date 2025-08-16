@@ -491,7 +491,7 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
-            <p className="text-xl text-gray-600">Real experiences from satisfied customers who achieved their real estate goals with us</p>
+            <p className="text-xl text-gray-600">These are real experiences from satisfied customers</p>
           </div>
           
           <div className="relative">
