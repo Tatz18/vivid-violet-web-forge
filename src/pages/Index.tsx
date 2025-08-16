@@ -80,7 +80,7 @@ const Index = () => {
   const workSteps = [{
     step: "1",
     title: "Start & Discuss",
-    description: "We start by understanding your needs, budget, and preferences for your perfect property."
+    description: "We begin by understanding your needs, budget, and preferences for your perfect property."
   }, {
     step: "2",
     title: "Choose A List",
