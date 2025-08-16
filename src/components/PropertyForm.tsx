@@ -96,10 +96,10 @@ export const PropertyForm = ({ onSuccess }: PropertyFormProps) => {
               <SelectValue placeholder="Select location" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="north kolkata">north kolkata</SelectItem>
-              <SelectItem value="central kolkata">central kolkata</SelectItem>
-              <SelectItem value="south kolkata">south kolkata</SelectItem>
-              <SelectItem value="hoogly">hoogly</SelectItem>
+              <SelectItem value="North Kolkata">North Kolkata</SelectItem>
+              <SelectItem value="Central Kolkata">Central Kolkata</SelectItem>
+              <SelectItem value="South Kolkata">South Kolkata</SelectItem>
+              <SelectItem value="Hoogly">Hoogly</SelectItem>
               <SelectItem value="Salt Lake">Salt Lake</SelectItem>
               <SelectItem value="New Town">New Town</SelectItem>
               <SelectItem value="Rajarhat">Rajarhat</SelectItem>
