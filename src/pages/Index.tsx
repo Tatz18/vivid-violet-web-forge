@@ -111,7 +111,7 @@ const Index = () => {
   }, {
     icon: CheckCircle,
     title: "Greater control",
-    description: "You maintain full control over decisions with our expert guidance and support."
+    description: "You make the final decisions, supported by our expert guidance"
   }, {
     icon: Star,
     title: "Increased transparency",
