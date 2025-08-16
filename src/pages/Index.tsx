@@ -268,8 +268,8 @@ const Index = () => {
                 <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
                   {step.step}
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-gray-900">Choose from alist</h3>
-                <p className="text-gray-600">We begin by understanding your needs</p>
+                <h3 className="text-xl font-semibold mb-4 text-gray-900">{step.title}</h3>
+                <p className="text-gray-600">{step.description}</p>
               </div>)}
           </div>
         </div>
