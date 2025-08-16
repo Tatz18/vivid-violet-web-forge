@@ -61,10 +61,10 @@ export const PopularLocations = () => {
 
   const getDefaultLocationImage = (location: string) => {
     const imageMap: Record<string, string> = {
-      "North Kolkata": "https://images.unsplash.com/photo-1590725175609-3ee9ecb6b7e4?w=400&h=300&fit=crop",
-      "Central Kolkata": "https://images.unsplash.com/photo-1729095755814-9c18b4f18c99?w=400&h=300&fit=crop",
-      "South Kolkata": "https://images.unsplash.com/photo-1628624747186-a941c476b7ef?w=400&h=300&fit=crop",
-      "Hooghly": "https://images.unsplash.com/photo-1647781550952-5fc6b7fc1f23?w=400&h=300&fit=crop",
+      "north kolkata": "https://images.unsplash.com/photo-1590725175609-3ee9ecb6b7e4?w=400&h=300&fit=crop",
+      "central kolkata": "https://images.unsplash.com/photo-1729095755814-9c18b4f18c99?w=400&h=300&fit=crop",
+      "south kolkata": "https://images.unsplash.com/photo-1628624747186-a941c476b7ef?w=400&h=300&fit=crop",
+      "hoogly": "https://images.unsplash.com/photo-1647781550952-5fc6b7fc1f23?w=400&h=300&fit=crop",
       "Salt Lake": "https://images.unsplash.com/photo-1719754093851-cf4dc6c8d3fa?w=400&h=300&fit=crop",
       "New Town": "https://images.unsplash.com/photo-1692950166096-17b97bac8dbc?w=400&h=300&fit=crop",
       "Rajarhat": "https://images.unsplash.com/photo-1654870531351-23fd30b1c0aa?w=400&h=300&fit=crop",
