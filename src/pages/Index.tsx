@@ -471,8 +471,8 @@ const Index = () => {
       <section className="py-16 bg-gradient-to-r from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Member Of</h2>
-            <p className="text-lg text-gray-600">Recognized and certified by leading real estate organizations</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Memberships & Affiliations</h2>
+            <p className="text-lg text-gray-600">We are recognized and certified by leading real estate organizations.</p>
           </div>
           
           <div className="flex items-center justify-center space-x-12 md:space-x-16">
