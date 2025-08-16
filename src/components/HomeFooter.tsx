@@ -122,6 +122,11 @@ const HomeFooter = () => {
                   Market Analysis
                 </Link>
               </li>
+              <li>
+                <Link to="/commercial" className="text-gray-300 hover:text-white transition-colors">
+                  Commercial Services
+                </Link>
+              </li>
             </ul>
           </div>
 
