@@ -372,7 +372,7 @@ const Index = () => {
       <section className="py-20 bg-gradient-to-bl from-primary/8 via-white to-primary/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900">Newest Property</h2>
+            <h2 className="text-4xl font-bold text-gray-900">Newest Properties</h2>
             <p className="text-xl text-gray-600 mt-4">Discover our latest property listings with modern amenities</p>
           </div>
           
