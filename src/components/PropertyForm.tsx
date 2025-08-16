@@ -91,12 +91,21 @@ export const PropertyForm = ({ onSuccess }: PropertyFormProps) => {
         </div>
         <div className="space-y-2">
           <Label htmlFor="location">Location</Label>
-          <Input
-            id="location"
-            value={formData.location}
-            onChange={(e) => handleInputChange("location", e.target.value)}
-            placeholder="Property location"
-          />
+          <Select value={formData.location} onValueChange={(value) => handleInputChange("location", value)}>
+            <SelectTrigger>
+              <SelectValue placeholder="Select location" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="North Kolkata">North Kolkata</SelectItem>
+              <SelectItem value="Central Kolkata">Central Kolkata</SelectItem>
+              <SelectItem value="South Kolkata">South Kolkata</SelectItem>
+              <SelectItem value="Hooghly">Hooghly</SelectItem>
+              <SelectItem value="Salt Lake">Salt Lake</SelectItem>
+              <SelectItem value="New Town">New Town</SelectItem>
+              <SelectItem value="Rajarhat">Rajarhat</SelectItem>
+              <SelectItem value="Howrah">Howrah</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
       </div>
 

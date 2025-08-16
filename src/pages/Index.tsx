@@ -9,6 +9,7 @@ import { Search, ArrowRight, MapPin, Building2, DollarSign, Home, Users, Clock, 
 import { useState, useEffect } from "react";
 import React from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { PopularLocations } from "@/components/PopularLocations";
 
 // Import testimonial images
 import testimonialAmit from "@/assets/testimonial-amit.jpg";
@@ -346,6 +347,9 @@ const Index = () => {
             </div>}
         </div>
       </section>
+
+      {/* Popular Locations Section */}
+      <PopularLocations />
 
       {/* Why Work With Us Section */}
       <section className="py-20 bg-gradient-to-t from-white to-primary/10">
