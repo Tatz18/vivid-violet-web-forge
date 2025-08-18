@@ -24,18 +24,14 @@ export const PropertyList = ({ properties, onUpdate }: PropertyListProps) => {
     try {
       console.log('Deleting property:', id);
       
-      // Use supabase functions invoke for proper authentication
-      const { data, error } = await supabase.functions.invoke('admin-property-operations', {
-        body: {
-          id,
-          operation: 'delete'
-        }
-      });
-
-      console.log('Function response:', { data, error });
+      // Direct database delete
+      const { error } = await supabase
+        .from('properties')
+        .delete()
+        .eq('id', id);
 
       if (error) {
-        console.error('Function error:', error);
+        console.error('Database error:', error);
         throw new Error(error.message || 'Failed to delete property');
       }
 

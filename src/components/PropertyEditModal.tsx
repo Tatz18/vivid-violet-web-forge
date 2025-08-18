@@ -53,23 +53,21 @@ export const PropertyEditModal = ({ property, isOpen, onClose, onUpdate }: Prope
     try {
       console.log('Updating property:', property.id, formData);
       
-      // Use supabase functions invoke for proper authentication
-      const { data, error } = await supabase.functions.invoke('admin-property-operations', {
-        body: {
-          id: property.id,
-          operation: 'update',
+      // Direct database update
+      const { data, error } = await supabase
+        .from('properties')
+        .update({
           ...formData,
           price: formData.price ? parseFloat(formData.price) : null,
           bedrooms: formData.bedrooms ? parseInt(formData.bedrooms) : null,
           bathrooms: formData.bathrooms ? parseInt(formData.bathrooms) : null,
           square_feet: formData.square_feet ? parseInt(formData.square_feet) : null,
-        }
-      });
-
-      console.log('Function response:', { data, error });
+        })
+        .eq('id', property.id)
+        .select();
 
       if (error) {
-        console.error('Function error:', error);
+        console.error('Database error:', error);
         throw new Error(error.message || 'Failed to update property');
       }
 
