@@ -128,7 +128,7 @@ const Index = () => {
         const {
           data,
           error
-        } = await supabase.from("properties_public").select("*").order("created_at", {
+        } = await supabase.from("properties").select("*").order("created_at", {
           ascending: false
         }).limit(6);
         if (error) throw error;
