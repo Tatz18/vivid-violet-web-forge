@@ -20,7 +20,7 @@ export default function Auth() {
 
     // Simple hardcoded authentication
     if (email === "phoenixrealeasthatic@gmail.com" && password === "Phoenix@2025") {
-      localStorage.setItem("adminAuth", "true");
+      localStorage.setItem("phoenix-admin-auth", "true");
       toast({
         title: "Welcome back!",
         description: "Successfully logged in to admin dashboard.",
