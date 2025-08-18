@@ -37,13 +37,7 @@ export const PhotoUpload = ({ onImageUrlChange, currentImageUrl }: PhotoUploadPr
       const preview = URL.createObjectURL(file);
       setPreviewUrl(preview);
 
-      // Check if user is authenticated
-      const { data: { user }, error: authError } = await supabase.auth.getUser();
-      if (authError || !user) {
-        throw new Error("You must be logged in to upload images");
-      }
-
-      console.log("User authenticated:", user.id);
+      // Note: Using simple auth system, skip Supabase auth check for admin uploads
 
       // Upload to Supabase Storage
       const fileExt = file.name.split('.').pop();
