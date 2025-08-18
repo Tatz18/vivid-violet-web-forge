@@ -33,12 +33,11 @@ export const PropertyForm = ({ onSuccess }: PropertyFormProps) => {
     setLoading(true);
 
     try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) throw new Error("Not authenticated");
+      // Create property without auth checks since we use simple auth
 
       const { error } = await supabase.from("properties").insert({
         ...formData,
-        user_id: user.id,
+        user_id: '5dc24f73-992e-4717-9d3e-679827894ec5', // Fixed admin user ID
         price: formData.price ? parseFloat(formData.price) : null,
         bedrooms: formData.bedrooms ? parseInt(formData.bedrooms) : null,
         bathrooms: formData.bathrooms ? parseInt(formData.bathrooms) : null,

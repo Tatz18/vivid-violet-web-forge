@@ -122,12 +122,12 @@ export const BulkPropertyImport = ({ onSuccess }: BulkPropertyImportProps) => {
 
     setLoading(true);
     try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) throw new Error("Not authenticated");
+      // Using fixed admin user ID since we use simple auth
+      const adminUserId = '5dc24f73-992e-4717-9d3e-679827894ec5';
 
       const propertiesWithUserId = parsedProperties.map(property => ({
         ...property,
-        user_id: user.id
+        user_id: adminUserId
       }));
 
       const { error } = await supabase
