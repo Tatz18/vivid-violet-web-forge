@@ -25,7 +25,6 @@ import TermsOfService from "./pages/TermsOfService";
 import BusinessEnquiry from "./pages/BusinessEnquiry";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
-import Dashboard from "./pages/Dashboard";
 import Careers from "./pages/Careers";
 import Commercial from "./pages/Commercial";
 
@@ -57,7 +56,6 @@ const App = () => (
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/business-enquiry" element={<BusinessEnquiry />} />
             <Route path="/auth" element={<Auth />} />
-            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/commercial" element={<Commercial />} />
             <Route path="*" element={<NotFound />} />
