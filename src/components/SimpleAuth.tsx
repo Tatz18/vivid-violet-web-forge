@@ -30,12 +30,21 @@ export const SimpleAuthProvider = ({ children }: { children: React.ReactNode }) 
     if (authStatus === "true") {
       setIsAuthenticated(true);
     }
+    
+    // Listen for localStorage changes (for when login happens in another tab or component)
+    const handleStorageChange = () => {
+      const authStatus = localStorage.getItem("phoenix-admin-auth");
+      setIsAuthenticated(authStatus === "true");
+    };
+    
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
   const login = (email: string, password: string): boolean => {
     if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
-      setIsAuthenticated(true);
       localStorage.setItem("phoenix-admin-auth", "true");
+      setIsAuthenticated(true);
       return true;
     }
     return false;

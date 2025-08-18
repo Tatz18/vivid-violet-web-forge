@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import { useSimpleAuth } from "@/components/SimpleAuth";
 import { ArrowLeft } from "lucide-react";
 
 export default function Auth() {
@@ -13,14 +14,16 @@ export default function Auth() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { login } = useSimpleAuth();
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
-    // Simple hardcoded authentication
-    if (email === "phoenixrealeasthatic@gmail.com" && password === "Phoenix@2025") {
-      localStorage.setItem("phoenix-admin-auth", "true");
+    // Use the context's login method
+    const success = login(email, password);
+    
+    if (success) {
       toast({
         title: "Welcome back!",
         description: "Successfully logged in to admin dashboard.",
