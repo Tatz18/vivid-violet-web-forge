@@ -51,29 +51,21 @@ export const PropertyEditModal = ({ property, isOpen, onClose, onUpdate }: Prope
     setLoading(true);
 
     try {
-      // Use admin edge function for property updates
-      const url = new URL(`https://isdfubjkhkyymtbkbgss.supabase.co/functions/v1/admin-property-operations`);
-      url.searchParams.set('id', property.id);
-      url.searchParams.set('operation', 'update');
-      
-      const response = await fetch(url.toString(), {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlzZGZ1YmpraGt5eW10YmtiZ3NzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE5MTI4NDQsImV4cCI6MjA2NzQ4ODg0NH0.jYRlJEinZBJ9S6YfFghk1BJ3MaS0Y40d9aQoyPl7PQ4`,
-        },
-        body: JSON.stringify({
+      // Use supabase functions invoke for proper authentication
+      const { data, error } = await supabase.functions.invoke('admin-property-operations', {
+        body: {
+          id: property.id,
+          operation: 'update',
           ...formData,
           price: formData.price ? parseFloat(formData.price) : null,
           bedrooms: formData.bedrooms ? parseInt(formData.bedrooms) : null,
           bathrooms: formData.bathrooms ? parseInt(formData.bathrooms) : null,
           square_feet: formData.square_feet ? parseInt(formData.square_feet) : null,
-        })
+        }
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to update property');
+      if (error) {
+        throw new Error(error.message || 'Failed to update property');
       }
 
       toast({

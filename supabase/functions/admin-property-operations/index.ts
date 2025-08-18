@@ -25,9 +25,8 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const url = new URL(req.url);
-    const propertyId = url.searchParams.get('id');
-    const operation = url.searchParams.get('operation');
+    const requestBody = await req.json();
+    const { id: propertyId, operation, ...updateData } = requestBody;
 
     if (!propertyId) {
       return new Response(
@@ -53,14 +52,14 @@ Deno.serve(async (req) => {
 
     console.log(`Admin property operation: ${operation} for property ${propertyId}`);
 
-    if (req.method === 'PATCH' && operation === 'update') {
-      const updateData: PropertyUpdateData = await req.json();
+    if (operation === 'update') {
+      const propertyUpdateData: PropertyUpdateData = updateData;
       
-      console.log('Updating property with data:', updateData);
+      console.log('Updating property with data:', propertyUpdateData);
 
       const { data, error } = await supabaseAdmin
         .from('properties')
-        .update(updateData)
+        .update(propertyUpdateData)
         .eq('id', propertyId)
         .select();
 
@@ -83,7 +82,7 @@ Deno.serve(async (req) => {
         }
       );
 
-    } else if (req.method === 'DELETE' && operation === 'delete') {
+    } else if (operation === 'delete') {
       console.log('Deleting property');
 
       const { error } = await supabaseAdmin

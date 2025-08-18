@@ -22,21 +22,16 @@ export const PropertyList = ({ properties, onUpdate }: PropertyListProps) => {
     
     setLoading(id);
     try {
-      // Use admin edge function for property deletion
-      const url = new URL(`https://isdfubjkhkyymtbkbgss.supabase.co/functions/v1/admin-property-operations`);
-      url.searchParams.set('id', id);
-      url.searchParams.set('operation', 'delete');
-      
-      const response = await fetch(url.toString(), {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlzZGZ1YmpraGt5eW10YmtiZ3NzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE5MTI4NDQsImV4cCI6MjA2NzQ4ODg0NH0.jYRlJEinZBJ9S6YfFghk1BJ3MaS0Y40d9aQoyPl7PQ4`,
+      // Use supabase functions invoke for proper authentication
+      const { data, error } = await supabase.functions.invoke('admin-property-operations', {
+        body: {
+          id,
+          operation: 'delete'
         }
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to delete property');
+      if (error) {
+        throw new Error(error.message || 'Failed to delete property');
       }
 
       toast({
