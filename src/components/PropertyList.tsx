@@ -22,6 +22,8 @@ export const PropertyList = ({ properties, onUpdate }: PropertyListProps) => {
     
     setLoading(id);
     try {
+      console.log('Deleting property:', id);
+      
       // Use supabase functions invoke for proper authentication
       const { data, error } = await supabase.functions.invoke('admin-property-operations', {
         body: {
@@ -30,7 +32,10 @@ export const PropertyList = ({ properties, onUpdate }: PropertyListProps) => {
         }
       });
 
+      console.log('Function response:', { data, error });
+
       if (error) {
+        console.error('Function error:', error);
         throw new Error(error.message || 'Failed to delete property');
       }
 

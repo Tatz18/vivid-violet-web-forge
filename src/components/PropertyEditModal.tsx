@@ -51,6 +51,8 @@ export const PropertyEditModal = ({ property, isOpen, onClose, onUpdate }: Prope
     setLoading(true);
 
     try {
+      console.log('Updating property:', property.id, formData);
+      
       // Use supabase functions invoke for proper authentication
       const { data, error } = await supabase.functions.invoke('admin-property-operations', {
         body: {
@@ -64,7 +66,10 @@ export const PropertyEditModal = ({ property, isOpen, onClose, onUpdate }: Prope
         }
       });
 
+      console.log('Function response:', { data, error });
+
       if (error) {
+        console.error('Function error:', error);
         throw new Error(error.message || 'Failed to update property');
       }
 
