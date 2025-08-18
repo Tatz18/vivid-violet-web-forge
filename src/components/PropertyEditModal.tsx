@@ -52,7 +52,18 @@ export const PropertyEditModal = ({ property, isOpen, onClose, onUpdate }: Prope
 
     try {
       console.log('Updating property:', property.id, formData);
-      console.log('Current user:', await supabase.auth.getUser());
+      
+      // Check authentication and admin status
+      const { data: { user } } = await supabase.auth.getUser();
+      console.log('Current user:', user);
+      
+      if (!user) {
+        throw new Error('You must be logged in to update properties');
+      }
+      
+      // Check if user is admin
+      const { data: adminCheck } = await supabase.rpc('is_admin');
+      console.log('Is admin:', adminCheck);
       
       // Direct database update
       const { data, error } = await supabase
@@ -72,6 +83,10 @@ export const PropertyEditModal = ({ property, isOpen, onClose, onUpdate }: Prope
       if (error) {
         console.error('Database error:', error);
         throw new Error(error.message || 'Failed to update property');
+      }
+      
+      if (!data || data.length === 0) {
+        throw new Error('No rows updated - you may not have permission to edit this property');
       }
 
       toast({
