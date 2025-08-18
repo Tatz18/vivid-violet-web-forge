@@ -52,6 +52,7 @@ export const PropertyEditModal = ({ property, isOpen, onClose, onUpdate }: Prope
 
     try {
       console.log('Updating property:', property.id, formData);
+      console.log('Current user:', await supabase.auth.getUser());
       
       // Direct database update
       const { data, error } = await supabase
@@ -65,6 +66,8 @@ export const PropertyEditModal = ({ property, isOpen, onClose, onUpdate }: Prope
         })
         .eq('id', property.id)
         .select();
+
+      console.log('Update result:', { data, error });
 
       if (error) {
         console.error('Database error:', error);
