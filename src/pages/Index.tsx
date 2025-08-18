@@ -176,18 +176,6 @@ const Index = () => {
   return <div className="min-h-screen bg-white">
       <Header />
       
-      {/* Admin Login Button for non-authenticated users */}
-      {!isAuthenticated && (
-        <div className="fixed top-20 right-4 z-50">
-          <Link to="/auth">
-            <Button variant="outline" size="sm">
-              <LogIn className="w-4 h-4 mr-2" />
-              Admin Login
-            </Button>
-          </Link>
-        </div>
-      )}
-      
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-white py-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
