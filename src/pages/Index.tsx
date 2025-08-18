@@ -5,11 +5,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Link, useNavigate } from "react-router-dom";
-import { Search, ArrowRight, MapPin, Building2, DollarSign, Home, Users, Clock, Award, Shield, CheckCircle, Phone, Star, Bed, Bath, Square, ChevronLeft, ChevronRight, Plus, Minus, Facebook, Instagram, Linkedin, Mail } from "lucide-react";
+import { Search, ArrowRight, MapPin, Building2, DollarSign, Home, Users, Clock, Award, Shield, CheckCircle, Phone, Star, Bed, Bath, Square, ChevronLeft, ChevronRight, Plus, Minus, Facebook, Instagram, Linkedin, Mail, LogIn } from "lucide-react";
 import { useState, useEffect } from "react";
 import React from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { PopularLocations } from "@/components/PopularLocations";
+import { useAuth } from "@/components/AuthProvider";
 
 // Import testimonial images
 import testimonialAmit from "@/assets/testimonial-amit.jpg";
@@ -25,6 +26,7 @@ const Index = () => {
   const [popularProperties, setPopularProperties] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const { user } = useAuth();
   const handleSearch = () => {
     navigate('/properties');
   };
@@ -173,6 +175,18 @@ const Index = () => {
   }, [testimonials.length, newestProperties.length]);
   return <div className="min-h-screen bg-white">
       <Header />
+      
+      {/* Admin Login Button for non-authenticated users */}
+      {!user && (
+        <div className="fixed top-20 right-4 z-50">
+          <Link to="/auth">
+            <Button variant="outline" size="sm">
+              <LogIn className="w-4 h-4 mr-2" />
+              Admin Login
+            </Button>
+          </Link>
+        </div>
+      )}
       
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-white py-20 overflow-hidden">

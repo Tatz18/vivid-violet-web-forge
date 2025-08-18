@@ -9,31 +9,30 @@ import { PropertyList } from "@/components/PropertyList";
 import { BulkPropertyImport } from "@/components/BulkPropertyImport";
 import { BlogForm } from "@/components/BlogForm";
 import { BlogList } from "@/components/BlogList";
-import { useSimpleAuth } from "@/components/SimpleAuth";
+import { useAuth } from "@/components/AuthProvider";
 
 const Dashboard = () => {
   const [properties, setProperties] = useState<any[]>([]);
   const [blogs, setBlogs] = useState<any[]>([]);
   const [activeTab, setActiveTab] = useState("properties");
-  const [loading, setLoading] = useState(true);
+  const [dashboardLoading, setDashboardLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [showBulkImport, setShowBulkImport] = useState(false);
   const [showBlogForm, setShowBlogForm] = useState(false);
   const [editingBlog, setEditingBlog] = useState(null);
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { isAuthenticated, logout } = useSimpleAuth();
+  const { user, loading, signOut } = useAuth();
 
   useEffect(() => {
     // Check authentication
-    if (!isAuthenticated) {
+    if (!loading && !user) {
       navigate("/auth");
-    } else {
+    } else if (user) {
       fetchProperties();
       fetchBlogs();
     }
-    setLoading(false);
-  }, [isAuthenticated, navigate]);
+  }, [user, loading, navigate]);
 
   const fetchProperties = async () => {
     try {
@@ -72,7 +71,7 @@ const Dashboard = () => {
   };
 
   const handleSignOut = () => {
-    logout();
+    signOut();
     navigate("/auth");
   };
 
@@ -109,6 +108,10 @@ const Dashboard = () => {
     return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
   }
 
+  if (!user) {
+    return null; // Will redirect to auth
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b">
@@ -133,7 +136,7 @@ const Dashboard = () => {
             </nav>
           </div>
           <div className="flex items-center gap-4">
-            <span className="text-sm text-muted-foreground">phoenixrealesthatic@gmail.com</span>
+            <span className="text-sm text-muted-foreground">{user.email}</span>
             <Button onClick={handleSignOut} variant="outline">
               Sign Out
             </Button>

@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/components/AuthProvider";
+import { supabase } from "@/integrations/supabase/client";
 import { Eye, EyeOff, Building } from "lucide-react";
 
 const AdminLogin = () => {
@@ -13,7 +14,7 @@ const AdminLogin = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { signIn, user } = useAuth();
+  const { user } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -28,7 +29,10 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
-      const { error } = await signIn(email, password);
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
       
       if (error) {
         toast({
