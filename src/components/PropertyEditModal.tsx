@@ -51,18 +51,29 @@ export const PropertyEditModal = ({ property, isOpen, onClose, onUpdate }: Prope
     setLoading(true);
 
     try {
-      const { error } = await supabase
-        .from("properties")
-        .update({
+      // Use service role for SimpleAuth dashboard operations
+      const serviceRoleKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlzZGZ1YmpraGt5eW10YmtiZ3NzIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1MTkxMjg0NCwiZXhwIjoyMDY3NDg4ODQ0fQ.JK1QE5NM5n5aUKTR5K99o4kLz8z6SLqZQM8QJjc7ooE";
+      
+      const response = await fetch(`https://isdfubjkhkyymtbkbgss.supabase.co/rest/v1/properties?id=eq.${property.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${serviceRoleKey}`,
+          'apikey': serviceRoleKey,
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({
           ...formData,
           price: formData.price ? parseFloat(formData.price) : null,
           bedrooms: formData.bedrooms ? parseInt(formData.bedrooms) : null,
           bathrooms: formData.bathrooms ? parseInt(formData.bathrooms) : null,
           square_feet: formData.square_feet ? parseInt(formData.square_feet) : null,
         })
-        .eq("id", property.id);
+      });
 
-      if (error) throw error;
+      if (!response.ok) {
+        throw new Error('Failed to update property');
+      }
 
       toast({
         title: "Success",

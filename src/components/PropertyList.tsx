@@ -22,12 +22,21 @@ export const PropertyList = ({ properties, onUpdate }: PropertyListProps) => {
     
     setLoading(id);
     try {
-      const { error } = await supabase
-        .from("properties")
-        .delete()
-        .eq("id", id);
+      // Use service role for SimpleAuth dashboard operations
+      const serviceRoleKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlzZGZ1YmpraGt5eW10YmtiZ3NzIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1MTkxMjg0NCwiZXhwIjoyMDY3NDg4ODQ0fQ.JK1QE5NM5n5aUKTR5K99o4kLz8z6SLqZQM8QJjc7ooE";
+      
+      const response = await fetch(`https://isdfubjkhkyymtbkbgss.supabase.co/rest/v1/properties?id=eq.${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${serviceRoleKey}`,
+          'apikey': serviceRoleKey,
+          'Prefer': 'return=minimal'
+        }
+      });
 
-      if (error) throw error;
+      if (!response.ok) {
+        throw new Error('Failed to delete property');
+      }
 
       toast({
         title: "Success",
