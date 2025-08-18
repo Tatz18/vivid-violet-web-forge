@@ -51,16 +51,16 @@ export const PropertyEditModal = ({ property, isOpen, onClose, onUpdate }: Prope
     setLoading(true);
 
     try {
-      // Use service role for SimpleAuth dashboard operations
-      const serviceRoleKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlzZGZ1YmpraGt5eW10YmtiZ3NzIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1MTkxMjg0NCwiZXhwIjoyMDY3NDg4ODQ0fQ.JK1QE5NM5n5aUKTR5K99o4kLz8z6SLqZQM8QJjc7ooE";
+      // Use admin edge function for property updates
+      const url = new URL(`https://isdfubjkhkyymtbkbgss.supabase.co/functions/v1/admin-property-operations`);
+      url.searchParams.set('id', property.id);
+      url.searchParams.set('operation', 'update');
       
-      const response = await fetch(`https://isdfubjkhkyymtbkbgss.supabase.co/rest/v1/properties?id=eq.${property.id}`, {
+      const response = await fetch(url.toString(), {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${serviceRoleKey}`,
-          'apikey': serviceRoleKey,
-          'Prefer': 'return=minimal'
+          'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlzZGZ1YmpraGt5eW10YmtiZ3NzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE5MTI4NDQsImV4cCI6MjA2NzQ4ODg0NH0.jYRlJEinZBJ9S6YfFghk1BJ3MaS0Y40d9aQoyPl7PQ4`,
         },
         body: JSON.stringify({
           ...formData,
@@ -72,7 +72,8 @@ export const PropertyEditModal = ({ property, isOpen, onClose, onUpdate }: Prope
       });
 
       if (!response.ok) {
-        throw new Error('Failed to update property');
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to update property');
       }
 
       toast({
