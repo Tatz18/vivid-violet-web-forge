@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import { ArrowLeft } from "lucide-react";
 
 export default function Auth() {
   const [email, setEmail] = useState("");
@@ -38,6 +39,17 @@ export default function Auth() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/10 to-secondary/10 p-4">
+      {/* Back to Homepage Button */}
+      <Link 
+        to="/" 
+        className="fixed top-4 left-4 z-10"
+      >
+        <Button variant="outline" size="sm">
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to Homepage
+        </Button>
+      </Link>
+      
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold">Phoenix Realesthatic</CardTitle>
