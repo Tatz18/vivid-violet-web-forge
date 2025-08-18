@@ -9,7 +9,7 @@ import { PropertyList } from "@/components/PropertyList";
 import { BulkPropertyImport } from "@/components/BulkPropertyImport";
 import { BlogForm } from "@/components/BlogForm";
 import { BlogList } from "@/components/BlogList";
-import { useAuth } from "@/components/AuthProvider";
+import { useSimpleAuth } from "@/components/SimpleAuth";
 
 const Dashboard = () => {
   const [properties, setProperties] = useState<any[]>([]);
@@ -22,17 +22,17 @@ const Dashboard = () => {
   const [editingBlog, setEditingBlog] = useState(null);
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { user, loading, signOut } = useAuth();
+  const { isAuthenticated, signOut } = useSimpleAuth();
 
   useEffect(() => {
-    // Check authentication
-    if (!loading && !user) {
+    if (!isAuthenticated) {
       navigate("/auth");
-    } else if (user) {
+    } else {
       fetchProperties();
       fetchBlogs();
     }
-  }, [user, loading, navigate]);
+    setDashboardLoading(false);
+  }, [isAuthenticated, navigate]);
 
   const fetchProperties = async () => {
     try {
@@ -104,12 +104,8 @@ const Dashboard = () => {
     setShowBlogForm(true);
   };
 
-  if (loading) {
+  if (dashboardLoading) {
     return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
-  }
-
-  if (!user) {
-    return null; // Will redirect to auth
   }
 
   return (
@@ -136,7 +132,7 @@ const Dashboard = () => {
             </nav>
           </div>
           <div className="flex items-center gap-4">
-            <span className="text-sm text-muted-foreground">{user.email}</span>
+            <span className="text-sm text-muted-foreground">phoenixrealeasthatic@gmail.com</span>
             <Button onClick={handleSignOut} variant="outline">
               Sign Out
             </Button>

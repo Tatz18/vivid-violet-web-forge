@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 import React from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { PopularLocations } from "@/components/PopularLocations";
-import { useAuth } from "@/components/AuthProvider";
+import { useSimpleAuth } from "@/components/SimpleAuth";
 
 // Import testimonial images
 import testimonialAmit from "@/assets/testimonial-amit.jpg";
@@ -26,7 +26,7 @@ const Index = () => {
   const [popularProperties, setPopularProperties] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { isAuthenticated } = useSimpleAuth();
   const handleSearch = () => {
     navigate('/properties');
   };
@@ -177,7 +177,7 @@ const Index = () => {
       <Header />
       
       {/* Admin Login Button for non-authenticated users */}
-      {!user && (
+      {!isAuthenticated && (
         <div className="fixed top-20 right-4 z-50">
           <Link to="/auth">
             <Button variant="outline" size="sm">

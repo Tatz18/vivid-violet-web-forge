@@ -4,6 +4,7 @@ interface SimpleAuthContextType {
   isAuthenticated: boolean;
   login: (email: string, password: string) => boolean;
   logout: () => void;
+  signOut: () => void;
 }
 
 const SimpleAuthContext = createContext<SimpleAuthContextType | undefined>(undefined);
@@ -49,6 +50,7 @@ export const SimpleAuthProvider = ({ children }: { children: React.ReactNode }) 
     isAuthenticated,
     login,
     logout,
+    signOut: logout, // Alias for logout
   };
 
   return (

@@ -4,7 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AuthProvider } from "@/components/AuthProvider";
+import { SimpleAuthProvider } from "@/components/SimpleAuth";
 import ChatBot from "@/components/ChatBot";
 import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
@@ -36,7 +36,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <AuthProvider>
+      <SimpleAuthProvider>
         <BrowserRouter>
           <ScrollToTop />
           <Routes>
@@ -64,7 +64,7 @@ const App = () => (
           </Routes>
           <ChatBot />
         </BrowserRouter>
-      </AuthProvider>
+      </SimpleAuthProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
