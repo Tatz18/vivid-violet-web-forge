@@ -10,7 +10,6 @@ import { useState, useEffect } from "react";
 import React from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { PopularLocations } from "@/components/PopularLocations";
-import { useSimpleAuth } from "@/components/SimpleAuth";
 
 // Import testimonial images
 import testimonialAmit from "@/assets/testimonial-amit.jpg";
@@ -26,7 +25,7 @@ const Index = () => {
   const [popularProperties, setPopularProperties] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const { isAuthenticated } = useSimpleAuth();
+  
   const handleSearch = () => {
     navigate('/properties');
   };
