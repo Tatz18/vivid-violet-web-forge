@@ -166,9 +166,6 @@ const HomeFooter = () => {
             <Link to="/terms-of-service" className="text-gray-400 hover:text-white text-sm transition-colors">
               Terms of Service
             </Link>
-            <Link to="/dashboard" className="text-gray-400 hover:text-white text-sm transition-colors">
-              Dashboard
-            </Link>
           </div>
         </div>
       </div>
