@@ -23,7 +23,7 @@ const About = () => {
   const stats = [
     { number: "1500+", label: "Happy Clients", icon: Users },
     { number: "90%", label: "Client Satisfaction", icon: Star },
-    { number: "10+", label: "Years Experience", icon: Award },
+    { number: "7+", label: "Years Experience", icon: Award },
     { number: "500+", label: "Properties Sold", icon: Building2 }
   ];
 
