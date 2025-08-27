@@ -36,15 +36,15 @@ const Header = () => {
       {/* Top Bar */}
       <div className="bg-primary text-primary-foreground py-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center text-xs sm:text-sm">
-            <div className="flex items-center space-x-3 sm:space-x-6">
-              <div className="flex items-center">
+          <div className="flex justify-between items-center text-xs">
+            <div className="flex items-center space-x-2 sm:space-x-6 overflow-hidden">
+              <div className="flex items-center flex-shrink-0">
                 <Phone className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
-                <span className="whitespace-nowrap">+91 93301 02817</span>
+                <span className="whitespace-nowrap text-xs sm:text-sm">+91 93301 02817</span>
               </div>
-              <div className="hidden sm:flex items-center">
-                <Mail className="w-4 h-4 mr-2" />
-                <span>info@phoenixrealesthatic.com</span>
+              <div className="flex items-center min-w-0">
+                <Mail className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                <span className="truncate text-xs sm:text-sm">info@phoenixrealesthatic.com</span>
               </div>
             </div>
             <div className="hidden md:flex items-center space-x-4">
