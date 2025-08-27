@@ -169,7 +169,15 @@ const Header = () => {
               ))}
                <div className="flex flex-col space-y-2 pt-4 border-t border-gray-100">
                  <ScheduleTourModal>
-                   <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                   <Button 
+                     variant="outline" 
+                     size="sm" 
+                     className={`transition-all duration-300 ${
+                       isScrolled
+                         ? "border-white text-white hover:bg-white hover:text-[#d745a6]"
+                         : "border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                     }`}
+                   >
                      Schedule Tour
                    </Button>
                  </ScheduleTourModal>
