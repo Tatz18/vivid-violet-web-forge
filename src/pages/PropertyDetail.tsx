@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import Header from "@/components/Header";
 import HomeFooter from "@/components/HomeFooter";
+import { formatPrice } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -76,10 +77,6 @@ const PropertyDetail = () => {
       </div>
     );
   }
-
-  const formatPrice = (price: number) => {
-    return `₹${(price / 100000).toFixed(1)} Lakhs`;
-  };
 
   const handleWhatsAppClick = () => {
     const formattedPrice = property.price ? formatPrice(property.price) : "Price on request";

@@ -2,6 +2,7 @@
 import Header from "@/components/Header";
 import HomeFooter from "@/components/HomeFooter";
 import PropertyCard from "@/components/PropertyCard";
+import { formatPrice } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
@@ -44,7 +45,7 @@ const Properties = () => {
       const transformedProperties = data?.map((property) => ({
         id: property.id,
         title: property.title,
-        price: property.price ? `₹${(property.price / 100000).toFixed(1)} Lakhs` : "Price on request",
+        price: property.price ? formatPrice(property.price) : "Price on request",
         location: property.location || "Location not specified",
         image: property.image_url || "https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=500",
         beds: property.bedrooms || 0,
