@@ -281,10 +281,10 @@ const Index = () => {
       {/* Popular Listing Section */}
       <section className="py-20 bg-gradient-to-br from-gray-50 via-primary/5 to-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-12">
-            <h2 className="text-4xl font-bold text-gray-900">Popular Listing</h2>
+          <div className="flex items-center justify-between mb-8 sm:mb-12 flex-col sm:flex-row gap-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 text-center sm:text-left">Popular Listing</h2>
             <Link to="/properties">
-              <Button className="bg-primary hover:bg-primary/90 text-white">
+              <Button className="bg-primary hover:bg-primary/90 text-white text-sm sm:text-base px-4 sm:px-6">
                 All View Property
               </Button>
             </Link>
@@ -313,34 +313,34 @@ const Index = () => {
               animationDelay: `${index * 0.1}s`
             }}>
                     <div className="relative">
-                      <img src={property.image} alt={property.title} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
+                      <img src={property.image} alt={property.title} className="w-full h-40 sm:h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
                       <div className="absolute top-4 left-4">
                         <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold">
                           {property.tag}
                         </span>
                       </div>
                     </div>
-                    <CardContent className="p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <h3 className="font-semibold text-gray-900 text-sm">{property.title}</h3>
-                        <span className="text-lg font-bold text-gray-900">{property.price}</span>
+                    <CardContent className="p-3 sm:p-4">
+                      <div className="flex items-center justify-between mb-2 gap-2">
+                        <h3 className="font-semibold text-gray-900 text-sm truncate flex-1">{property.title}</h3>
+                        <span className="text-sm sm:text-lg font-bold text-gray-900 flex-shrink-0">{property.price}</span>
                       </div>
-                      <div className="flex items-center text-gray-600 text-sm mb-3">
-                        <MapPin className="w-4 h-4 mr-1" />
-                        {property.location}
+                      <div className="flex items-center text-gray-600 text-xs sm:text-sm mb-3">
+                        <MapPin className="w-3 h-3 sm:w-4 sm:h-4 mr-1 flex-shrink-0" />
+                        <span className="truncate">{property.location}</span>
                       </div>
-                      <div className="flex items-center justify-between text-sm text-gray-600">
-                        <div className="flex items-center">
-                          <Bed className="w-4 h-4 mr-1" />
-                          {property.beds} Bed
+                      <div className="flex items-center justify-between text-xs sm:text-sm text-gray-600 gap-1">
+                        <div className="flex items-center min-w-0">
+                          <Bed className="w-3 h-3 sm:w-4 sm:h-4 mr-1 flex-shrink-0" />
+                          <span className="truncate">{property.beds} Bed</span>
                         </div>
-                        <div className="flex items-center">
-                          <Bath className="w-4 h-4 mr-1" />
-                          {property.baths} Bathroom
+                        <div className="flex items-center min-w-0">
+                          <Bath className="w-3 h-3 sm:w-4 sm:h-4 mr-1 flex-shrink-0" />
+                          <span className="truncate">{property.baths} Bath</span>
                         </div>
-                        <div className="flex items-center">
-                          <Square className="w-4 h-4 mr-1" />
-                          {property.sqft} sqft
+                        <div className="flex items-center min-w-0">
+                          <Square className="w-3 h-3 sm:w-4 sm:h-4 mr-1 flex-shrink-0" />
+                          <span className="truncate">{property.sqft} sqft</span>
                         </div>
                       </div>
                     </CardContent>

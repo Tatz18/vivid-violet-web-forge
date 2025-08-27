@@ -108,10 +108,10 @@ const Properties = () => {
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-[#dd4dc7] to-[#e966d4] text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 px-4">
             Find Your Perfect Property
           </h1>
-          <p className="text-xl mb-8 opacity-90 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl mb-6 sm:mb-8 opacity-90 max-w-3xl mx-auto px-4">
             Browse our extensive collection of premium properties and find your dream home today
           </p>
           <div className="flex items-center text-white/80">
@@ -125,8 +125,8 @@ const Properties = () => {
         {/* Search and Filters */}
         <Card className="mb-8 shadow-lg">
           <CardContent className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-              <div className="lg:col-span-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
+              <div className="sm:col-span-2 lg:col-span-2">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                   <Input
@@ -170,15 +170,15 @@ const Properties = () => {
               </Button>
             </div>
             
-            <div className="flex flex-wrap gap-4 mt-4 pt-4 border-t">
-              <Button variant="outline" size="sm">
-                <SlidersHorizontal className="w-4 h-4 mr-2" />
+            <div className="flex flex-wrap gap-2 sm:gap-4 mt-4 pt-4 border-t">
+              <Button variant="outline" size="sm" className="text-xs sm:text-sm">
+                <SlidersHorizontal className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                 Advanced Filters
               </Button>
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" className="text-xs sm:text-sm">
                 Sort: Price (Low to High)
               </Button>
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" className="text-xs sm:text-sm">
                 Map View
               </Button>
             </div>
@@ -186,23 +186,23 @@ const Properties = () => {
         </Card>
 
         {/* Results Header */}
-        <div className="flex justify-between items-center mb-8">
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900">
+        <div className="flex justify-between items-center mb-6 sm:mb-8 flex-col sm:flex-row gap-4">
+          <div className="text-center sm:text-left">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
               {filteredProperties.length} Properties Found
             </h2>
-            <p className="text-gray-600 mt-1">
+            <p className="text-sm sm:text-base text-gray-600 mt-1">
               {searchTerm ? `Showing results for "${searchTerm}"` : "Showing all available properties in your area"}
             </p>
           </div>
           <div className="flex gap-2">
-            <Button variant="outline" size="sm">Grid View</Button>
-            <Button variant="outline" size="sm">List View</Button>
+            <Button variant="outline" size="sm" className="text-xs sm:text-sm">Grid View</Button>
+            <Button variant="outline" size="sm" className="text-xs sm:text-sm">List View</Button>
           </div>
         </div>
 
         {/* Properties Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {loading ? (
             <div className="text-center">Loading properties...</div>
           ) : filteredProperties.length === 0 ? (
@@ -217,15 +217,15 @@ const Properties = () => {
         </div>
 
         {/* Load More */}
-        <div className="text-center mt-12">
-          <Button 
-            size="lg" 
-            variant="outline" 
-            className="px-8 border-primary text-primary hover:bg-primary hover:text-primary-foreground hover-scale"
-          >
-            Load More Properties
-          </Button>
-        </div>
+          <div className="text-center mt-8 sm:mt-12">
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="px-6 sm:px-8 text-sm sm:text-base border-primary text-primary hover:bg-primary hover:text-primary-foreground hover-scale"
+            >
+              Load More Properties
+            </Button>
+          </div>
       </div>
 
       <HomeFooter />

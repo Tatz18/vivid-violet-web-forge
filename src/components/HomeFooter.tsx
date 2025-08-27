@@ -3,22 +3,22 @@ import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react
 
 const HomeFooter = () => {
   return (
-    <footer className="bg-gradient-to-t from-gray-900 to-gray-800 text-white py-16">
+    <footer className="bg-gradient-to-t from-gray-900 to-gray-800 text-white py-12 sm:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2 sm:space-x-3">
               <img 
                 src="/lovable-uploads/81af2cac-f0ff-4ba8-ad13-a820ef1020f9.png" 
                 alt="Phoenix Realesthatic" 
-                className="h-28 w-auto"
+                className="h-20 sm:h-28 w-auto"
               />
             </div>
             <p className="text-gray-300 text-sm leading-relaxed">
               Turning Properties into Prosperities. Your trusted partner in real estate success with expert guidance and personalized service.
             </p>
-            <div className="flex space-x-4">
+            <div className="flex space-x-3 sm:space-x-4 justify-center sm:justify-start">
               <a 
                 href="https://www.facebook.com/profile.php?id=61574123769484" 
                 target="_blank" 
@@ -155,11 +155,11 @@ const HomeFooter = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">
+        <div className="border-t border-gray-700 mt-8 sm:mt-12 pt-6 sm:pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-gray-400 text-sm text-center md:text-left">
             © 2024 Phoenix Realesthatic. All rights reserved.
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
+          <div className="flex flex-wrap justify-center md:justify-end space-x-4 sm:space-x-6 mt-0">
             <Link to="/privacy-policy" className="text-gray-400 hover:text-white text-sm transition-colors">
               Privacy Policy
             </Link>

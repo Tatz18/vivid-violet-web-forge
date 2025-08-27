@@ -29,7 +29,7 @@ const Hero = ({ title, subtitle, showSearch = false }: HeroProps) => {
   };
 
   return (
-    <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden text-white">
+    <section className="relative min-h-[60vh] sm:min-h-[70vh] flex items-center justify-center overflow-hidden text-white">
       {/* Video Background */}
       <video 
         autoPlay 
@@ -55,25 +55,25 @@ const Hero = ({ title, subtitle, showSearch = false }: HeroProps) => {
       <div className="absolute inset-0 bg-gradient-to-br from-pink-500/20 via-purple-500/15 to-blue-500/10" style={{ zIndex: 0 }}></div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" style={{ zIndex: 10 }}>
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-fade-in">
+        <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 leading-tight animate-fade-in px-4">
           {title}
         </h1>
-        <p className="text-xl md:text-2xl mb-8 opacity-90 max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: '0.1s' }}>
+        <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 opacity-90 max-w-3xl mx-auto animate-fade-in px-4" style={{ animationDelay: '0.1s' }}>
           {subtitle}
         </p>
         
         {showSearch && (
-          <div className="max-w-2xl mx-auto mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            <div className="flex flex-col sm:flex-row gap-4 bg-white/10 backdrop-blur-sm p-4 rounded-lg">
+          <div className="max-w-2xl mx-auto mb-6 sm:mb-8 animate-fade-in px-4" style={{ animationDelay: '0.2s' }}>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 bg-white/10 backdrop-blur-sm p-3 sm:p-4 rounded-lg">
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Enter location, property type..."
-                className="flex-1 px-4 py-3 rounded-lg bg-white/20 backdrop-blur-sm border border-white/30 placeholder-white/70 text-white focus:outline-none focus:ring-2 focus:ring-white/50 transition-all duration-300"
+                className="flex-1 px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base rounded-lg bg-white/20 backdrop-blur-sm border border-white/30 placeholder-white/70 text-white focus:outline-none focus:ring-2 focus:ring-white/50 transition-all duration-300"
               />
-              <Button onClick={handleSearch} className="bg-white text-primary hover:bg-gray-100 hover-scale px-8 py-3">
+              <Button onClick={handleSearch} className="bg-white text-primary hover:bg-gray-100 hover-scale px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base">
                 <Search className="w-4 h-4 mr-2" />
                 Search
               </Button>
@@ -81,14 +81,14 @@ const Hero = ({ title, subtitle, showSearch = false }: HeroProps) => {
           </div>
         )}
         
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center animate-fade-in px-4" style={{ animationDelay: '0.3s' }}>
           <Link to="/properties">
-            <Button size="lg" className="bg-white text-primary hover:bg-gray-100 hover-scale px-8">
+            <Button size="lg" className="bg-white text-primary hover:bg-gray-100 hover-scale px-6 sm:px-8 text-sm sm:text-base w-full sm:w-auto">
               Browse Properties
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </Link>
-          <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 hover-lift px-8">
+          <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 hover-lift px-6 sm:px-8 text-sm sm:text-base w-full sm:w-auto">
             Learn More
           </Button>
         </div>

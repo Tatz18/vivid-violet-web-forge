@@ -141,17 +141,17 @@ const About = () => {
       {/* Statistics Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {stats.map((stat, index) => (
-              <Card key={index} className="text-center p-6 hover:shadow-lg transition-shadow border-0 bg-white/80 backdrop-blur-sm">
-                <CardContent className="p-0">
-                  <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <stat.icon className="w-8 h-8 text-primary" />
-                  </div>
-                  <div className="text-3xl font-bold text-gray-900 mb-2">{stat.number}</div>
-                  <div className="text-gray-600">{stat.label}</div>
-                </CardContent>
-              </Card>
+                <Card key={index} className="text-center p-4 sm:p-6 hover:shadow-lg transition-shadow border-0 bg-white/80 backdrop-blur-sm">
+                 <CardContent className="p-0">
+                   <div className="w-12 h-12 sm:w-16 sm:h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                     <stat.icon className="w-6 h-6 sm:w-8 sm:h-8 text-primary" />
+                   </div>
+                   <div className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">{stat.number}</div>
+                   <div className="text-sm sm:text-base text-gray-600">{stat.label}</div>
+                 </CardContent>
+               </Card>
             ))}
           </div>
         </div>
