@@ -130,16 +130,17 @@ export const ScheduleTourModal = ({ children }: ScheduleTourModalProps) => {
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={(newOpen) => {
+      // Only allow closing if explicitly triggered (not from clicks inside)
+      if (!newOpen && document.activeElement?.closest('[role="dialog"]')) {
+        return; // Don't close if focus is inside dialog
+      }
+      setOpen(newOpen);
+    }}>
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent 
-        className="max-w-md max-h-[90vh] overflow-y-auto z-40 bg-white"
-        onInteractOutside={(e) => {
-          e.preventDefault();
-        }}
-      >
+      <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto z-40 bg-white">
         <DialogHeader>
           <DialogTitle>Schedule a Property Tour</DialogTitle>
           <DialogDescription>
@@ -157,7 +158,6 @@ export const ScheduleTourModal = ({ children }: ScheduleTourModalProps) => {
         <form 
           onSubmit={handleSubmit} 
           className="space-y-4"
-          onClick={(e) => e.stopPropagation()}
         >
           {/* Personal Information */}
           <div className="space-y-2">
