@@ -134,7 +134,17 @@ export const ScheduleTourModal = ({ children }: ScheduleTourModalProps) => {
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto z-40 bg-white">
+      <DialogContent 
+        className="max-w-md max-h-[90vh] overflow-y-auto z-40 bg-white"
+        onPointerDownOutside={(e) => {
+          // Only close if clicking outside the dialog content
+          const target = e.target as Element;
+          if (!target.closest('[role="dialog"]')) {
+            setOpen(false);
+          }
+        }}
+        onEscapeKeyDown={() => setOpen(false)}
+      >
         <DialogHeader>
           <DialogTitle>Schedule a Property Tour</DialogTitle>
           <DialogDescription>
@@ -142,7 +152,11 @@ export const ScheduleTourModal = ({ children }: ScheduleTourModalProps) => {
           </DialogDescription>
         </DialogHeader>
         
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form 
+          onSubmit={handleSubmit} 
+          className="space-y-4"
+          onClick={(e) => e.stopPropagation()}
+        >
           {/* Personal Information */}
           <div className="space-y-2">
             <Label htmlFor="name">Full Name *</Label>
