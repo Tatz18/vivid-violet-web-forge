@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useToast } from "@/hooks/use-toast";
-import { CalendarIcon, Clock } from "lucide-react";
+import { CalendarIcon, Clock, X } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
@@ -136,20 +136,22 @@ export const ScheduleTourModal = ({ children }: ScheduleTourModalProps) => {
       </DialogTrigger>
       <DialogContent 
         className="max-w-md max-h-[90vh] overflow-y-auto z-40 bg-white"
-        onPointerDownOutside={(e) => {
-          // Only close if clicking outside the dialog content
-          const target = e.target as Element;
-          if (!target.closest('[role="dialog"]')) {
-            setOpen(false);
-          }
+        onInteractOutside={(e) => {
+          e.preventDefault();
         }}
-        onEscapeKeyDown={() => setOpen(false)}
       >
         <DialogHeader>
           <DialogTitle>Schedule a Property Tour</DialogTitle>
           <DialogDescription>
             Fill out the form below and we'll contact you to confirm your tour appointment.
           </DialogDescription>
+          <button 
+            onClick={() => setOpen(false)}
+            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none"
+          >
+            <X className="h-4 w-4" />
+            <span className="sr-only">Close</span>
+          </button>
         </DialogHeader>
         
         <form 
