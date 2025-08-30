@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useToast } from "@/hooks/use-toast";
-import { CalendarIcon, Clock, X } from "lucide-react";
+import { CalendarIcon, Clock } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
@@ -130,35 +130,19 @@ export const ScheduleTourModal = ({ children }: ScheduleTourModalProps) => {
   };
 
   return (
-    <Dialog open={open} onOpenChange={(newOpen) => {
-      // Only allow closing if explicitly triggered (not from clicks inside)
-      if (!newOpen && document.activeElement?.closest('[role="dialog"]')) {
-        return; // Don't close if focus is inside dialog
-      }
-      setOpen(newOpen);
-    }}>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto z-40 bg-white">
+      <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Schedule a Property Tour</DialogTitle>
           <DialogDescription>
             Fill out the form below and we'll contact you to confirm your tour appointment.
           </DialogDescription>
-          <button 
-            onClick={() => setOpen(false)}
-            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none"
-          >
-            <X className="h-4 w-4" />
-            <span className="sr-only">Close</span>
-          </button>
         </DialogHeader>
         
-        <form 
-          onSubmit={handleSubmit} 
-          className="space-y-4"
-        >
+        <form onSubmit={handleSubmit} className="space-y-4">
           {/* Personal Information */}
           <div className="space-y-2">
             <Label htmlFor="name">Full Name *</Label>
@@ -230,11 +214,7 @@ export const ScheduleTourModal = ({ children }: ScheduleTourModalProps) => {
                   {selectedDate ? format(selectedDate, "PPP") : "Select a date"}
                 </Button>
               </PopoverTrigger>
-              <PopoverContent 
-                className="w-auto p-0 z-[9999] bg-white border shadow-lg" 
-                align="start"
-                sideOffset={4}
-              >
+              <PopoverContent className="w-auto p-0" align="start">
                 <Calendar
                   mode="single"
                   selected={selectedDate}
@@ -245,7 +225,7 @@ export const ScheduleTourModal = ({ children }: ScheduleTourModalProps) => {
                     return date < today || date.getDay() === 0; // Disable past dates and Sundays
                   }}
                   initialFocus
-                  className="p-3 pointer-events-auto bg-white"
+                  className={cn("p-3 pointer-events-auto")}
                 />
               </PopoverContent>
             </Popover>
