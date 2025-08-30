@@ -27,9 +27,11 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     const { name, phone, email, property, tour_date, tour_time, special_requests }: TourRequestData = await req.json();
 
+    console.log("Processing tour request for:", { name, email, property });
+
     // Send tour request details to admin email
     const emailResponse = await resend.emails.send({
-      from: "Phoenix Realesthatic <noreply@phoenixrealesthatic.com>",
+      from: "Phoenix Realesthatic <onboarding@resend.dev>", // Using verified domain
       to: ["phoenixrealesthatic@gmail.com"],
       subject: "New Tour Request - Phoenix Realesthatic",
       html: `
@@ -56,7 +58,11 @@ const handler = async (req: Request): Promise<Response> => {
     console.log("Email sent successfully:", emailResponse);
 
     return new Response(
-      JSON.stringify({ success: true, email: emailResponse }),
+      JSON.stringify({ 
+        success: true, 
+        email: emailResponse,
+        message: "Tour request sent successfully to phoenixrealesthatic@gmail.com"
+      }),
       {
         status: 200,
         headers: {
@@ -68,7 +74,10 @@ const handler = async (req: Request): Promise<Response> => {
   } catch (error: any) {
     console.error("Error sending email:", error);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        error: error.message,
+        details: "Tour requests are sent to phoenixrealesthatic@gmail.com. Please check your Resend domain verification."
+      }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },
