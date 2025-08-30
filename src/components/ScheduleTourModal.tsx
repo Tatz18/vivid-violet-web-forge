@@ -214,7 +214,7 @@ export const ScheduleTourModal = ({ children }: ScheduleTourModalProps) => {
                   {selectedDate ? format(selectedDate, "PPP") : "Select a date"}
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-auto p-0" align="start">
+              <PopoverContent className="w-auto p-0 z-50 bg-popover border shadow-md" align="start">
                 <Calendar
                   mode="single"
                   selected={selectedDate}
@@ -225,7 +225,7 @@ export const ScheduleTourModal = ({ children }: ScheduleTourModalProps) => {
                     return date < today || date.getDay() === 0; // Disable past dates and Sundays
                   }}
                   initialFocus
-                  className={cn("p-3 pointer-events-auto")}
+                  className="p-3 pointer-events-auto"
                 />
               </PopoverContent>
             </Popover>
