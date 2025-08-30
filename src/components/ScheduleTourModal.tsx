@@ -134,7 +134,7 @@ export const ScheduleTourModal = ({ children }: ScheduleTourModalProps) => {
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto z-50">
+      <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto z-40 bg-white">
         <DialogHeader>
           <DialogTitle>Schedule a Property Tour</DialogTitle>
           <DialogDescription>
@@ -214,7 +214,11 @@ export const ScheduleTourModal = ({ children }: ScheduleTourModalProps) => {
                   {selectedDate ? format(selectedDate, "PPP") : "Select a date"}
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-auto p-0 z-[60]" align="start">
+              <PopoverContent 
+                className="w-auto p-0 z-[9999] bg-white border shadow-lg" 
+                align="start"
+                sideOffset={4}
+              >
                 <Calendar
                   mode="single"
                   selected={selectedDate}
@@ -225,7 +229,7 @@ export const ScheduleTourModal = ({ children }: ScheduleTourModalProps) => {
                     return date < today || date.getDay() === 0; // Disable past dates and Sundays
                   }}
                   initialFocus
-                  className="p-3 pointer-events-auto"
+                  className="p-3 pointer-events-auto bg-white"
                 />
               </PopoverContent>
             </Popover>
