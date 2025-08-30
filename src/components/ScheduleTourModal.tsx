@@ -89,10 +89,14 @@ export const ScheduleTourModal = ({ children }: ScheduleTourModalProps) => {
         special_requests: formData.special_requests || "None"
       };
 
+      console.log("Sending tour request:", emailData);
+
       // Call edge function to send email
       const { data, error } = await supabase.functions.invoke('send-tour-request', {
         body: emailData
       });
+
+      console.log("Email response:", { data, error });
 
       if (error) throw error;
 
@@ -215,9 +219,13 @@ export const ScheduleTourModal = ({ children }: ScheduleTourModalProps) => {
                   mode="single"
                   selected={selectedDate}
                   onSelect={setSelectedDate}
-                  disabled={(date) => date < new Date() || date.getDay() === 0} // Disable past dates and Sundays
+                  disabled={(date) => {
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+                    return date < today || date.getDay() === 0; // Disable past dates and Sundays
+                  }}
                   initialFocus
-                  className="pointer-events-auto"
+                  className={cn("p-3 pointer-events-auto")}
                 />
               </PopoverContent>
             </Popover>
