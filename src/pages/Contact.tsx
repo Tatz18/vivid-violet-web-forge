@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -30,6 +31,8 @@ const Contact = () => {
     message: ''
   });
   const [mapboxApiKey, setMapboxApiKey] = useState<string>('');
+  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
 
   useEffect(() => {
     // Get Google Maps API key from Supabase secrets
@@ -53,10 +56,55 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission here
+    
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      console.log('Sending contact message:', formData);
+
+      const { data, error } = await supabase.functions.invoke('send-contact-message', {
+        body: formData
+      });
+
+      console.log('Contact message response:', { data, error });
+
+      if (error) throw error;
+
+      toast({
+        title: "Message Sent Successfully!",
+        description: "Thank you for contacting us. We'll get back to you within 24 hours.",
+      });
+
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+      });
+
+    } catch (error: any) {
+      console.error("Error sending contact message:", error);
+      toast({
+        title: "Message Failed to Send",
+        description: error.message || "Failed to send your message. Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const contactInfo = [
@@ -212,10 +260,11 @@ const Contact = () => {
                     <Button 
                       type="submit" 
                       size="lg" 
+                      disabled={loading}
                       className="w-full bg-[#dd4dc7] hover:bg-[#c341b3] text-white"
                     >
                       <Send className="w-4 h-4 mr-2" />
-                      Send Message
+                      {loading ? "Sending Message..." : "Send Message"}
                     </Button>
                   </form>
                 </CardContent>
