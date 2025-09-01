@@ -187,7 +187,7 @@ const Index = () => {
                 <div className="w-12 h-12 border border-white/30 rounded-full flex items-center justify-center mr-4">
                   <Building2 className="w-6 h-6" />
                 </div>
-                <h2 className="text-xl font-light tracking-wider">ASTRA/VISTA</h2>
+                <h2 className="text-xl font-light tracking-wider">KOLKATA REALTY</h2>
               </div>
 
               {/* Main Heading */}
@@ -196,16 +196,16 @@ const Index = () => {
                 <br />
                 <span className="text-white/80">Real Estate</span>
                 <br />
-                Agility
+                Excellence
               </h1>
               
               <p className="text-lg mb-8 opacity-80 max-w-lg leading-relaxed">
-                Discover luxury homes across America with our premier real estate agency. Our expert team is dedicated to guiding you through every step of the home-buying process.
+                Discover luxury homes across Kolkata with our premier real estate agency. Our expert team is dedicated to guiding you through every step of the home-buying process.
               </p>
               
               <div className="flex items-center text-sm mb-12">
                 <MapPin className="w-4 h-4 mr-2" />
-                <span>New York, USA</span>
+                <span>Kolkata, West Bengal</span>
               </div>
 
               <div className="space-y-4 mb-12">
@@ -218,8 +218,10 @@ const Index = () => {
                   <Search className="w-5 h-5 mr-3 opacity-60" />
                   <input 
                     type="text" 
-                    placeholder="Enter an address, city, or zip code"
+                    placeholder="Enter location, property type..."
                     className="flex-1 bg-transparent placeholder-white/60 text-white outline-none"
+                    value={searchLocation}
+                    onChange={(e) => setSearchLocation(e.target.value)}
                   />
                 </div>
               </div>
@@ -285,6 +287,65 @@ const Index = () => {
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Secondary Hero Section - Our valued collaborators */}
+      <section className="py-20 bg-gray-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left - Content */}
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                Our valued
+                <br />
+                collaborators and friends
+                <br />
+                over the last decade
+              </h2>
+              
+              {/* Partner Logos */}
+              <div className="grid grid-cols-2 gap-8 mt-12">
+                <div className="flex items-center space-x-6">
+                  <div className="w-16 h-16 bg-white/10 rounded-lg flex items-center justify-center">
+                    <Building2 className="w-8 h-8" />
+                  </div>
+                  <div className="w-16 h-16 bg-white/10 rounded-lg flex items-center justify-center">
+                    <Home className="w-8 h-8" />
+                  </div>
+                </div>
+                <div className="flex items-center space-x-6">
+                  <div className="w-16 h-16 bg-white/10 rounded-lg flex items-center justify-center">
+                    <Users className="w-8 h-8" />
+                  </div>
+                  <div className="w-16 h-16 bg-white/10 rounded-lg flex items-center justify-center">
+                    <Award className="w-8 h-8" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right - Program Card */}
+            <div className="bg-gradient-to-br from-primary/20 to-primary/10 backdrop-blur-sm rounded-2xl p-8">
+              <div className="bg-white/5 rounded-xl p-6 mb-6">
+                <img 
+                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=300&fit=crop" 
+                  alt="Seller Program" 
+                  className="w-full h-48 object-cover rounded-lg mb-4"
+                />
+              </div>
+              
+              <h3 className="text-2xl font-bold mb-4">Seller's Assurance Program</h3>
+              <p className="text-white/80 mb-6 leading-relaxed">
+                We will work with you before you put your house on the market to ensure you get the best possible price, in the shortest amount of time, with the least amount of stress. Learn more about our comprehensive seller's program.
+              </p>
+              
+              <Button className="bg-white text-gray-900 hover:bg-white/90">
+                Learn more
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
             </div>
           </div>
         </div>
