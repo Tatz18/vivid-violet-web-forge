@@ -17,17 +17,17 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 320 65% 52%; /* #dd4dc7 */
+    --primary: 223 47% 11%; /* Dark navy/black theme */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 320 20% 96%;
-    --secondary-foreground: 320 65% 52%;
+    --secondary: 217 19% 27%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 215 25% 27%;
+    --muted-foreground: 217 10% 64.9%;
 
-    --accent: 320 30% 90%;
-    --accent-foreground: 320 65% 40%;
+    --accent: 212 27% 84%;
+    --accent-foreground: 223 47% 11%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -38,11 +38,11 @@ All colors MUST be HSL.
 
     --radius: 0.75rem;
 
-    /* Pink gradient variables */
-    --gradient-pink-primary: linear-gradient(135deg, hsl(320, 65%, 52%), hsl(340, 75%, 60%));
-    --gradient-pink-secondary: linear-gradient(135deg, hsl(340, 60%, 55%), hsl(350, 70%, 65%));
-    --gradient-pink-accent: linear-gradient(135deg, hsl(310, 60%, 50%), hsl(330, 80%, 55%));
-    --gradient-pink-glow: linear-gradient(135deg, hsl(320, 70%, 55%), hsl(340, 80%, 65%));
+    /* Dark gradient variables */
+    --gradient-dark-primary: linear-gradient(135deg, hsl(223, 47%, 11%), hsl(217, 19%, 27%));
+    --gradient-dark-secondary: linear-gradient(135deg, hsl(217, 19%, 27%), hsl(215, 25%, 27%));
+    --gradient-dark-accent: linear-gradient(135deg, hsl(223, 47%, 11%), hsl(212, 27%, 84%));
+    --gradient-hero: linear-gradient(135deg, hsl(223, 47%, 11%) 0%, hsl(217, 19%, 27%) 100%);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -124,19 +124,51 @@ All colors MUST be HSL.
   }
 
   /* Button gradient utilities */
-  .btn-gradient-pink {
-    background: var(--gradient-pink-primary);
+  .btn-gradient-dark {
+    background: var(--gradient-dark-primary);
     @apply text-white border-0 shadow-lg;
   }
 
-  .btn-gradient-pink-secondary {
-    background: var(--gradient-pink-secondary);
+  .btn-gradient-dark-secondary {
+    background: var(--gradient-dark-secondary);
     @apply text-white border-0 shadow-md;
   }
 
-  .btn-gradient-pink-accent {
-    background: var(--gradient-pink-accent);
+  .btn-gradient-dark-accent {
+    background: var(--gradient-dark-accent);
     @apply text-white border-0 shadow-sm;
+  }
+
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+
+  .geometric-pattern {
+    position: relative;
+  }
+
+  .geometric-pattern::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 200px;
+    height: 200px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: rotate(45deg);
+  }
+
+  .geometric-pattern::after {
+    content: '';
+    position: absolute;
+    bottom: 20%;
+    right: 15%;
+    width: 150px;
+    height: 150px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    transform: rotate(-15deg);
   }
 
   /* Button hover animations */
@@ -145,7 +177,7 @@ All colors MUST be HSL.
   }
 
   .btn-hover-glow:hover {
-    box-shadow: 0 10px 40px hsla(320, 65%, 52%, 0.4);
+    box-shadow: 0 10px 40px hsla(223, 47%, 11%, 0.4);
     transform: translateY(-2px) scale(1.02);
   }
 
@@ -154,12 +186,12 @@ All colors MUST be HSL.
     animation: pulse-pink 2s infinite;
   }
 
-  @keyframes pulse-pink {
+  @keyframes pulse-dark {
     0%, 100% {
-      box-shadow: 0 0 0 0 hsla(320, 65%, 52%, 0.7);
+      box-shadow: 0 0 0 0 hsla(223, 47%, 11%, 0.7);
     }
     50% {
-      box-shadow: 0 0 0 10px hsla(320, 65%, 52%, 0);
+      box-shadow: 0 0 0 10px hsla(223, 47%, 11%, 0);
     }
   }
 }
