@@ -179,25 +179,20 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-white py-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col items-center text-center">
-            {/* Property Image First */}
-            <div className="relative animate-fade-in mb-12">
-              <img src="https://i.ytimg.com/vi/bHQFh9CR_JI/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBBthN4TDReEUEEHTkQ0QEoial95w?w=600&h=500&fit=crop" alt="Modern home" className="rounded-3xl shadow-2xl w-full max-w-2xl h-[400px] object-cover" />
-            </div>
-
-            {/* Content Below Image */}
-            <div className="animate-fade-in" style={{animationDelay: '0.2s'}}>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div className="animate-fade-in">
               <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
                 Discover Your
                 <br />
                 <span className="text-white/90">Perfect Dream Home</span>
               </h1>
-              <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+              <p className="text-xl mb-8 opacity-90 max-w-lg">
                 Whether you're looking for a cozy retreat, a modern apartment or a spacious family home, we have the perfect property waiting for you.
               </p>
               
               {/* Search Form */}
-              <div className="bg-white rounded-2xl p-6 shadow-2xl animate-scale-in text-gray-900 max-w-lg mx-auto">
+              <div className="bg-white rounded-2xl p-6 shadow-2xl animate-scale-in text-gray-900">
                 <h3 className="text-lg font-semibold mb-4 text-gray-900">Find your Best Property what do you want!</h3>
                 <p className="text-sm text-gray-600 mb-4">Please fill all the details</p>
                 
@@ -250,6 +245,13 @@ const Index = () => {
                   </Button>
                 </div>
               </div>
+            </div>
+
+            {/* Right Content - Property Image */}
+            <div className="relative animate-fade-in" style={{
+            animationDelay: '0.2s'
+          }}>
+              <img src="https://i.ytimg.com/vi/bHQFh9CR_JI/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBBthN4TDReEUEEHTkQ0QEoial95w?w=600&h=500&fit=crop" alt="Modern home" className="rounded-3xl shadow-2xl w-full h-[500px] object-cover" />
             </div>
           </div>
         </div>
