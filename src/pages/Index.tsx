@@ -176,116 +176,96 @@ const Index = () => {
   return <div className="min-h-screen bg-white">
       <Header />
       
-      {/* Hero Section - Dribbble Design */}
-      <section className="relative min-h-screen bg-gradient-to-br from-primary via-primary/95 to-primary/90 overflow-hidden">
-        {/* Geometric Background Patterns */}
+      {/* Hero Section - Main Layout */}
+      <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
+        {/* Geometric Background Pattern */}
         <div className="absolute inset-0">
-          {/* Large curved line */}
-          <div className="absolute top-40 left-20 w-96 h-96">
-            <svg viewBox="0 0 400 400" className="w-full h-full opacity-10">
-              <path d="M50,200 Q200,50 350,200 Q200,350 50,200" stroke="white" strokeWidth="2" fill="none"/>
+          <div className="absolute top-32 left-32 w-96 h-96 opacity-20">
+            <svg viewBox="0 0 400 400" className="w-full h-full">
+              <path d="M50,200 Q200,50 350,200 Q200,350 50,200" stroke="white" strokeWidth="1" fill="none"/>
             </svg>
           </div>
-          {/* Geometric shapes */}
-          <div className="absolute top-32 right-32 w-24 h-24 bg-white/5 rounded-full blur-xl"></div>
-          <div className="absolute bottom-40 left-16 w-16 h-16 bg-white/10 rounded-full blur-lg"></div>
-          <div className="absolute top-1/2 right-1/4 w-12 h-12 bg-white/5 rounded-full blur-md"></div>
         </div>
         
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
-          <div className="grid lg:grid-cols-12 gap-8 h-full min-h-[80vh]">
-            {/* Main Content - Left Side */}
-            <div className="lg:col-span-7 flex flex-col justify-center">
-              <div className="animate-fade-in">
-                <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-none tracking-tight">
-                  Find Your
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+          <div className="grid lg:grid-cols-2 gap-12 min-h-screen">
+            {/* Left Column - Main Content */}
+            <div className="flex flex-col justify-center space-y-8">
+              <div>
+                <h1 className="text-6xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                  Experience
                   <br />
-                  <span className="text-white/90">Perfect</span>
+                  Real Estate
                   <br />
-                  <span className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">Home</span>
+                  <span className="text-white/90">Agility</span>
                 </h1>
                 
-                <p className="text-xl text-white/80 mb-12 max-w-2xl leading-relaxed">
-                  Discover exceptional properties with expert guidance. We make your property journey seamless, from browsing to buying your dream home.
+                <p className="text-lg text-white/70 mb-8 max-w-lg">
+                  Discover luxury homes across America with our premier real estate agency. Our expert team is dedicated to guiding you through every step of the home-buying process.
                 </p>
                 
-                {/* Location Badge */}
-                <div className="flex items-center mb-12">
-                  <div className="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-white/90 text-sm">
-                    📍 Kolkata, India
-                  </div>
+                {/* Location */}
+                <div className="flex items-center gap-2 mb-8">
+                  <MapPin className="w-4 h-4 text-white/60" />
+                  <span className="text-white/60 text-sm">New York USA</span>
                 </div>
                 
-                {/* Search Options */}
-                <div className="space-y-4 mb-16">
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <Button 
-                      onClick={handleSearch}
-                      className="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-6 py-3 text-base font-medium rounded-lg backdrop-blur-sm transition-all duration-300"
-                    >
-                      🏠 Find a home
-                    </Button>
-                    <Button 
-                      variant="outline" 
-                      className="border-white/20 text-white hover:bg-white/10 px-6 py-3 text-base font-medium rounded-lg backdrop-blur-sm"
-                    >
-                      💰 My home value
-                    </Button>
-                  </div>
-                  
-                  {/* Search Input */}
-                  <div className="flex items-center bg-white/10 backdrop-blur-sm rounded-lg p-2 border border-white/20">
-                    <Search className="w-5 h-5 text-white/60 ml-3" />
-                    <input
-                      type="text"
-                      placeholder="Enter an address, city, or zip"
-                      className="flex-1 bg-transparent text-white placeholder-white/60 px-3 py-2 outline-none"
-                    />
-                  </div>
+                {/* Action Buttons */}
+                <div className="flex gap-4 mb-8">
+                  <Button className="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-6 py-3">
+                    Find a home
+                  </Button>
+                  <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 px-6 py-3">
+                    My home value
+                  </Button>
+                </div>
+                
+                {/* Search Bar */}
+                <div className="flex items-center bg-white/5 border border-white/20 rounded-lg p-3 max-w-md">
+                  <Search className="w-5 h-5 text-white/60 mr-3" />
+                  <input
+                    type="text"
+                    placeholder="Enter an address, city or zip"
+                    className="flex-1 bg-transparent text-white placeholder-white/60 outline-none"
+                  />
                 </div>
               </div>
             </div>
             
-            {/* Current Listings Sidebar - Right Side */}
-            <div className="lg:col-span-5 flex flex-col justify-center">
-              <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl animate-fade-in" style={{animationDelay: '0.3s'}}>
+            {/* Right Column - Current Listings & Additional Sections */}
+            <div className="flex flex-col justify-center space-y-8">
+              {/* Current Listings Section */}
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
                 <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-2xl font-bold text-white">Current Listings</h3>
-                  <div className="w-16 h-1 bg-white/20 rounded-full">
-                    <div className="w-8 h-1 bg-white rounded-full"></div>
+                  <h3 className="text-xl font-bold text-white">Current Listings</h3>
+                  <div className="w-12 h-1 bg-white/20 rounded-full">
+                    <div className="w-6 h-1 bg-white rounded-full"></div>
                   </div>
                 </div>
                 
                 {loading ? (
-                  <div className="space-y-4">
+                  <div className="grid grid-cols-3 gap-3">
                     {[...Array(3)].map((_, i) => (
-                      <div key={i} className="bg-white/5 rounded-2xl p-4 animate-pulse">
-                        <div className="h-32 bg-white/10 rounded-xl mb-3"></div>
-                        <div className="h-4 bg-white/10 rounded mb-2"></div>
-                        <div className="h-3 bg-white/10 rounded w-2/3"></div>
+                      <div key={i} className="bg-white/5 rounded-lg p-2 animate-pulse">
+                        <div className="h-20 bg-white/10 rounded mb-2"></div>
+                        <div className="h-3 bg-white/10 rounded mb-1"></div>
+                        <div className="h-2 bg-white/10 rounded w-2/3"></div>
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <div className="space-y-4 max-h-96 overflow-y-auto">
+                  <div className="grid grid-cols-3 gap-3">
                     {popularProperties.slice(0, 3).map((property, index) => (
                       <Link key={property.id} to={`/property/${property.id}`}>
-                        <div className="bg-white/5 hover:bg-white/10 rounded-2xl overflow-hidden transition-all duration-300 group cursor-pointer">
+                        <div className="bg-white/5 hover:bg-white/10 rounded-lg overflow-hidden transition-all duration-300 group cursor-pointer">
                           <img 
                             src={property.image} 
                             alt={property.title}
-                            className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-300"
+                            className="w-full h-20 object-cover group-hover:scale-105 transition-transform duration-300"
                           />
-                          <div className="p-4">
-                            <div className="flex items-center justify-between mb-2">
-                              <h4 className="text-white font-bold text-lg">{property.price}</h4>
-                              <span className="text-white/60 text-sm">{property.beds}BR/{property.baths}BA</span>
-                            </div>
-                            <p className="text-white/80 text-sm mb-1 truncate">{property.title}</p>
-                            <p className="text-white/60 text-xs flex items-center">
-                              <MapPin className="w-3 h-3 mr-1" />
-                              {property.location}
-                            </p>
+                          <div className="p-2">
+                            <h4 className="text-white font-semibold text-xs mb-1">{property.price}</h4>
+                            <p className="text-white/60 text-xs truncate">{property.title}</p>
                           </div>
                         </div>
                       </Link>
@@ -293,68 +273,41 @@ const Index = () => {
                   </div>
                 )}
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Collaborators Section */}
-      <section className="py-20 bg-primary">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div className="text-white">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                Our valued
-                <br />
-                <span className="text-white/80">collaborators and friends</span>
-                <br />
-                <span className="text-white/60">over the last decade</span>
-              </h2>
               
-              {/* Logo Placeholders */}
-              <div className="grid grid-cols-2 gap-8 mt-12">
-                <div className="flex items-center justify-center h-16 bg-white/10 rounded-lg backdrop-blur-sm">
-                  <span className="text-white/80 font-semibold">WATG</span>
-                </div>
-                <div className="flex items-center justify-center h-16 bg-white/10 rounded-lg backdrop-blur-sm">
-                  <span className="text-white/80 font-semibold">IMPACT</span>
-                </div>
-                <div className="flex items-center justify-center h-16 bg-white/10 rounded-lg backdrop-blur-sm">
-                  <span className="text-white/80 font-semibold">360°</span>
-                </div>
-                <div className="flex items-center justify-center h-16 bg-white/10 rounded-lg backdrop-blur-sm">
-                  <span className="text-white/80 font-semibold">BH</span>
+              {/* Collaborators Section */}
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                <h3 className="text-white text-lg font-semibold mb-4">
+                  Our valued<br />
+                  <span className="text-white/70">collaborators and friends</span><br />
+                  <span className="text-white/50 text-sm">over the last decade</span>
+                </h3>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-white/5 rounded-lg p-3 flex items-center justify-center">
+                    <span className="text-white/80 font-semibold text-sm">WATG</span>
+                  </div>
+                  <div className="bg-white/5 rounded-lg p-3 flex items-center justify-center">
+                    <span className="text-white/80 font-semibold text-sm">IMPACT</span>
+                  </div>
+                  <div className="bg-white/5 rounded-lg p-3 flex items-center justify-center">
+                    <span className="text-white/80 font-semibold text-sm">360°</span>
+                  </div>
+                  <div className="bg-white/5 rounded-lg p-3 flex items-center justify-center">
+                    <span className="text-white/80 font-semibold text-sm">BH</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            
-            {/* Right Content - Seller's Assurance Program */}
-            <div>
-              <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20">
-                <div className="mb-6">
-                  <div className="text-white/60 text-sm mb-2">THE SMARTEST CHOICE FOR HOME SELLERS</div>
-                  <h3 className="text-2xl font-bold text-white mb-4">Seller's Assurance Program</h3>
-                  <p className="text-white/80 text-sm leading-relaxed mb-6">
-                    Get cash advances, price cues and sell with confidence! Understanding we'll try to offer the service you need to move the home-buying process forward.
-                  </p>
-                  <Button className="bg-white text-primary hover:bg-white/90 px-6 py-2 text-sm font-semibold rounded-lg">
-                    Learn more
-                  </Button>
-                </div>
-                
-                {/* Card Visual */}
-                <div className="bg-gradient-to-br from-white/20 to-white/5 rounded-2xl p-6 border border-white/20">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="text-white font-bold">AAA+ Real Estate</div>
-                    <div className="w-8 h-8 bg-white/20 rounded-full"></div>
-                  </div>
-                  <div className="text-white/60 text-xs mb-2">Our premium Advisor program</div>
-                  <div className="text-white/80 text-sm">
-                    <div className="mb-1">$240k+ revenue experience</div>
-                    <div>Learn more →</div>
-                  </div>
-                </div>
+              
+              {/* Seller's Assurance Program */}
+              <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                <div className="text-white/60 text-xs mb-2">THE SMARTEST CHOICE FOR HOME SELLERS</div>
+                <h3 className="text-white font-bold text-lg mb-3">Seller's Assurance Program</h3>
+                <p className="text-white/70 text-sm mb-4 leading-relaxed">
+                  Get cash advances, price cues and sell with confidence! Understanding we'll try to offer the service you need to move the home-buying process forward.
+                </p>
+                <Button className="bg-white text-slate-900 hover:bg-white/90 px-4 py-2 text-sm">
+                  Learn more
+                </Button>
               </div>
             </div>
           </div>
