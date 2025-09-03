@@ -176,13 +176,20 @@ const Index = () => {
   return <div className="min-h-screen bg-white">
       <Header />
       
-      {/* Hero Section - Modern Dribbble Design */}
-      <section className="relative min-h-screen bg-gradient-to-br from-primary via-primary/90 to-primary/80 overflow-hidden">
+      {/* Hero Section - Dribbble Design */}
+      <section className="relative min-h-screen bg-gradient-to-br from-primary via-primary/95 to-primary/90 overflow-hidden">
         {/* Geometric Background Patterns */}
         <div className="absolute inset-0">
-          <div className="absolute top-20 right-20 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-40 left-10 w-24 h-24 bg-white/5 rounded-full blur-2xl"></div>
-          <div className="absolute top-1/2 right-1/3 w-16 h-16 bg-white/10 rounded-full blur-xl"></div>
+          {/* Large curved line */}
+          <div className="absolute top-40 left-20 w-96 h-96">
+            <svg viewBox="0 0 400 400" className="w-full h-full opacity-10">
+              <path d="M50,200 Q200,50 350,200 Q200,350 50,200" stroke="white" strokeWidth="2" fill="none"/>
+            </svg>
+          </div>
+          {/* Geometric shapes */}
+          <div className="absolute top-32 right-32 w-24 h-24 bg-white/5 rounded-full blur-xl"></div>
+          <div className="absolute bottom-40 left-16 w-16 h-16 bg-white/10 rounded-full blur-lg"></div>
+          <div className="absolute top-1/2 right-1/4 w-12 h-12 bg-white/5 rounded-full blur-md"></div>
         </div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
@@ -190,50 +197,50 @@ const Index = () => {
             {/* Main Content - Left Side */}
             <div className="lg:col-span-7 flex flex-col justify-center">
               <div className="animate-fade-in">
-                <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-none">
+                <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-none tracking-tight">
                   Experience
                   <br />
                   <span className="text-white/90">Real Estate</span>
                   <br />
-                  <span className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">Excellence</span>
+                  <span className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">Agility</span>
                 </h1>
                 
-                <p className="text-xl text-white/90 mb-12 max-w-2xl leading-relaxed">
-                  Discover premium properties in Kolkata's most sought-after locations. 
-                  Whether you're looking for a modern apartment or a spacious family home, 
-                  we have the perfect property waiting for you.
+                <p className="text-xl text-white/80 mb-12 max-w-2xl leading-relaxed">
+                  Discover luxury homes across America with our premier real estate agency. Our expert team is dedicated to guiding you through every step of the home-buying process.
                 </p>
                 
-                {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 mb-16">
-                  <Button 
-                    onClick={handleSearch}
-                    className="bg-white text-primary hover:bg-white/90 px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-                  >
-                    Browse Properties
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    className="border-white/30 text-white hover:bg-white/10 px-8 py-4 text-lg font-semibold rounded-full backdrop-blur-sm"
-                  >
-                    Learn More
-                  </Button>
+                {/* Location Badge */}
+                <div className="flex items-center mb-12">
+                  <div className="bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-white/90 text-sm">
+                    📍 Kolkata, India
+                  </div>
                 </div>
                 
-                {/* Stats */}
-                <div className="grid grid-cols-3 gap-8 text-white">
-                  <div>
-                    <div className="text-3xl font-bold mb-2">500+</div>
-                    <div className="text-white/80 text-sm">Properties Sold</div>
+                {/* Search Options */}
+                <div className="space-y-4 mb-16">
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button 
+                      onClick={handleSearch}
+                      className="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-6 py-3 text-base font-medium rounded-lg backdrop-blur-sm transition-all duration-300"
+                    >
+                      🏠 Find a home
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      className="border-white/20 text-white hover:bg-white/10 px-6 py-3 text-base font-medium rounded-lg backdrop-blur-sm"
+                    >
+                      💰 My home value
+                    </Button>
                   </div>
-                  <div>
-                    <div className="text-3xl font-bold mb-2">50+</div>
-                    <div className="text-white/80 text-sm">Happy Clients</div>
-                  </div>
-                  <div>
-                    <div className="text-3xl font-bold mb-2">15+</div>
-                    <div className="text-white/80 text-sm">Years Experience</div>
+                  
+                  {/* Search Input */}
+                  <div className="flex items-center bg-white/10 backdrop-blur-sm rounded-lg p-2 border border-white/20">
+                    <Search className="w-5 h-5 text-white/60 ml-3" />
+                    <input
+                      type="text"
+                      placeholder="Enter an address, city, or zip"
+                      className="flex-1 bg-transparent text-white placeholder-white/60 px-3 py-2 outline-none"
+                    />
                   </div>
                 </div>
               </div>
@@ -241,17 +248,19 @@ const Index = () => {
             
             {/* Current Listings Sidebar - Right Side */}
             <div className="lg:col-span-5 flex flex-col justify-center">
-              <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl animate-fade-in" style={{animationDelay: '0.3s'}}>
+              <div className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-2xl animate-fade-in" style={{animationDelay: '0.3s'}}>
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-2xl font-bold text-white">Current Listings</h3>
-                  <span className="text-white/80 text-sm">{popularProperties.length} Properties</span>
+                  <div className="w-16 h-1 bg-white/20 rounded-full">
+                    <div className="w-8 h-1 bg-white rounded-full"></div>
+                  </div>
                 </div>
                 
                 {loading ? (
                   <div className="space-y-4">
                     {[...Array(3)].map((_, i) => (
                       <div key={i} className="bg-white/5 rounded-2xl p-4 animate-pulse">
-                        <div className="h-24 bg-white/10 rounded-xl mb-3"></div>
+                        <div className="h-32 bg-white/10 rounded-xl mb-3"></div>
                         <div className="h-4 bg-white/10 rounded mb-2"></div>
                         <div className="h-3 bg-white/10 rounded w-2/3"></div>
                       </div>
@@ -259,43 +268,93 @@ const Index = () => {
                   </div>
                 ) : (
                   <div className="space-y-4 max-h-96 overflow-y-auto">
-                    {popularProperties.slice(0, 4).map((property, index) => (
+                    {popularProperties.slice(0, 3).map((property, index) => (
                       <Link key={property.id} to={`/property/${property.id}`}>
-                        <div className="bg-white/5 hover:bg-white/10 rounded-2xl p-4 transition-all duration-300 group cursor-pointer">
-                          <div className="flex gap-4">
-                            <img 
-                              src={property.image} 
-                              alt={property.title}
-                              className="w-20 h-20 rounded-xl object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                            <div className="flex-1 min-w-0">
-                              <h4 className="text-white font-semibold mb-1 truncate">{property.title}</h4>
-                              <p className="text-white/70 text-sm mb-2 flex items-center">
-                                <MapPin className="w-3 h-3 mr-1" />
-                                <span className="truncate">{property.location}</span>
-                              </p>
-                              <div className="flex items-center justify-between">
-                                <span className="text-white font-bold">{property.price}</span>
-                                <div className="flex items-center gap-2 text-white/60 text-xs">
-                                  <span>{property.beds}B</span>
-                                  <span>{property.baths}Ba</span>
-                                  <span>{property.sqft}sf</span>
-                                </div>
-                              </div>
+                        <div className="bg-white/5 hover:bg-white/10 rounded-2xl overflow-hidden transition-all duration-300 group cursor-pointer">
+                          <img 
+                            src={property.image} 
+                            alt={property.title}
+                            className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                          <div className="p-4">
+                            <div className="flex items-center justify-between mb-2">
+                              <h4 className="text-white font-bold text-lg">{property.price}</h4>
+                              <span className="text-white/60 text-sm">{property.beds}BR/{property.baths}BA</span>
                             </div>
+                            <p className="text-white/80 text-sm mb-1 truncate">{property.title}</p>
+                            <p className="text-white/60 text-xs flex items-center">
+                              <MapPin className="w-3 h-3 mr-1" />
+                              {property.location}
+                            </p>
                           </div>
                         </div>
                       </Link>
                     ))}
                   </div>
                 )}
-                
-                <Link to="/properties">
-                  <Button className="w-full mt-6 bg-white/20 hover:bg-white/30 text-white border-0 backdrop-blur-sm rounded-xl py-3">
-                    View All Properties
-                    <ArrowRight className="w-4 h-4 ml-2" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Collaborators Section */}
+      <section className="py-20 bg-primary">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div className="text-white">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                Our valued
+                <br />
+                <span className="text-white/80">collaborators and friends</span>
+                <br />
+                <span className="text-white/60">over the last decade</span>
+              </h2>
+              
+              {/* Logo Placeholders */}
+              <div className="grid grid-cols-2 gap-8 mt-12">
+                <div className="flex items-center justify-center h-16 bg-white/10 rounded-lg backdrop-blur-sm">
+                  <span className="text-white/80 font-semibold">WATG</span>
+                </div>
+                <div className="flex items-center justify-center h-16 bg-white/10 rounded-lg backdrop-blur-sm">
+                  <span className="text-white/80 font-semibold">IMPACT</span>
+                </div>
+                <div className="flex items-center justify-center h-16 bg-white/10 rounded-lg backdrop-blur-sm">
+                  <span className="text-white/80 font-semibold">360°</span>
+                </div>
+                <div className="flex items-center justify-center h-16 bg-white/10 rounded-lg backdrop-blur-sm">
+                  <span className="text-white/80 font-semibold">BH</span>
+                </div>
+              </div>
+            </div>
+            
+            {/* Right Content - Seller's Assurance Program */}
+            <div>
+              <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20">
+                <div className="mb-6">
+                  <div className="text-white/60 text-sm mb-2">THE SMARTEST CHOICE FOR HOME SELLERS</div>
+                  <h3 className="text-2xl font-bold text-white mb-4">Seller's Assurance Program</h3>
+                  <p className="text-white/80 text-sm leading-relaxed mb-6">
+                    Get cash advances, price cues and sell with confidence! Understanding we'll try to offer the service you need to move the home-buying process forward.
+                  </p>
+                  <Button className="bg-white text-primary hover:bg-white/90 px-6 py-2 text-sm font-semibold rounded-lg">
+                    Learn more
                   </Button>
-                </Link>
+                </div>
+                
+                {/* Card Visual */}
+                <div className="bg-gradient-to-br from-white/20 to-white/5 rounded-2xl p-6 border border-white/20">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="text-white font-bold">AAA+ Real Estate</div>
+                    <div className="w-8 h-8 bg-white/20 rounded-full"></div>
+                  </div>
+                  <div className="text-white/60 text-xs mb-2">Our premium Advisor program</div>
+                  <div className="text-white/80 text-sm">
+                    <div className="mb-1">$240k+ revenue experience</div>
+                    <div>Learn more →</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
