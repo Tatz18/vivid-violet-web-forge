@@ -33,92 +33,92 @@ const Index = () => {
 
   // Testimonials Data
   const testimonials = [{
-    name: "Amit Sengupta",
+    name: "Sarah Mitchell",
     role: "Property Investor",
-    content: "I was honestly skeptical about buying property in Kolkata, but these guys completely changed my mind. They showed me this amazing spot in Salt Lake that I never would've considered. The ROI has been fantastic! Really grateful for their patience with all my questions.",
+    content: "Working with this team was a game-changer for my investment portfolio. They identified high-growth areas I never considered and helped me secure three profitable properties in just six months. Their market insights are unmatched.",
     rating: 5,
     image: testimonialAmit
   }, {
-    name: "Priya Chakraborty",
-    role: "First-time Buyer",
-    content: "As a first-time buyer, I was pretty nervous about the whole process. But they literally held my hand through everything - from understanding loan documents to negotiating with the seller. I'm typing this from my beautiful new apartment right now!",
+    name: "Michael Chen", 
+    role: "First-time Homebuyer",
+    content: "As someone who knew nothing about real estate, I was overwhelmed by the process. This team made everything simple and stress-free. They found me the perfect starter home within my budget and walked me through every step.",
     rating: 5,
     image: testimonialPriya
   }, {
-    name: "Rajesh Banerjee",
+    name: "Jennifer Rodriguez",
     role: "Home Seller",
-    content: "I needed to sell quickly due to a job transfer, and honestly thought I'd have to settle for less. These folks got me three serious buyers in the first week! Sold at market price within two weeks. Can't ask for better than that.",
+    content: "I needed to relocate quickly for work and was worried about selling my house fast. They marketed it brilliantly and had multiple offers within days. Sold above asking price in just two weeks - incredible service!",
     rating: 5,
     image: testimonialRavi
   }, {
-    name: "Sneha Roy",
-    role: "Property Buyer",
-    content: "After months of searching on my own, I was getting frustrated. They listened to what I actually wanted - not just my budget, but my lifestyle too. Found me this perfect 3BHK with great natural light. My family absolutely loves it here!",
+    name: "David Thompson",
+    role: "Luxury Buyer",
+    content: "Finding the right luxury property requires expertise and connections. This team delivered both. They understood my vision perfectly and found me a stunning penthouse that exceeded all my expectations. Truly professional service.",
     rating: 5,
     image: testimonialSneha
   }];
 
   // FAQ Data
   const faqs = [{
-    question: "How Much Can I Afford To Spend On A House?",
-    answer: "Your budget should typically be 3-4 times your annual income. Consider down payment, monthly payments, and additional costs like maintenance, taxes, and registration fees. Our experts can help you calculate the exact affordable range based on your financial situation."
+    question: "What Makes Your Property Service Different?",
+    answer: "We combine cutting-edge technology with personalized service to deliver exceptional results. Our team uses advanced market analytics, virtual tours, and comprehensive marketing strategies to ensure your property goals are achieved efficiently."
   }, {
-    question: "What Is The Process Of Buying A House?",
-    answer: "The process includes property search, site visits, price negotiation, token payment, loan approval, legal verification, registration, and possession. We guide you through each step ensuring transparency and smooth completion."
+    question: "How Long Does It Take to Buy a Property?",
+    answer: "The timeline varies based on your requirements and market conditions. Typically, it takes 30-60 days from offer acceptance to closing. We streamline the process with our expert guidance and established network of professionals."
   }, {
-    question: "What Should I Look For When Viewing A Property?",
-    answer: "Check the location, connectivity, legal documents, construction quality, amenities, parking, water supply, electricity backup, and future development plans. Our experts accompany you for detailed property evaluation."
+    question: "Do You Provide Investment Property Analysis?",
+    answer: "Yes, we offer comprehensive investment analysis including cash flow projections, ROI calculations, market trends, and growth potential assessments. Our investment specialists help you make informed decisions for maximum returns."
   }, {
-    question: "How Much Should I Offer When Buying A Home?",
-    answer: "Your offer should be based on market analysis, property condition, location benefits, and comparable sales in the area. We provide expert guidance on competitive pricing and negotiation strategies."
+    question: "What Areas Do You Cover?",
+    answer: "We serve the entire metropolitan area with specialized knowledge in luxury, commercial, and residential properties. Our extensive network covers prime locations and emerging neighborhoods with high growth potential."
   }, {
-    question: "What Documents Are Required For Property Purchase?",
-    answer: "Key documents include sale deed, khatiyan, mutation certificate, tax receipts, NOC from society, and loan approval letter. We assist in document verification and ensure all legal requirements are met."
+    question: "How Do You Determine Property Values?",
+    answer: "We use advanced comparative market analysis, recent sales data, property condition assessments, and market trend analysis. Our certified appraisers provide accurate valuations using both traditional and modern evaluation techniques."
   }, {
-    question: "How Long Does The Property Registration Process Take?",
-    answer: "Typically 15-30 days depending on document readiness and bank loan processing. With our assistance and proper preparation, the process can be completed efficiently within the timeline."
+    question: "What Support Do You Provide After Purchase?",
+    answer: "Our relationship doesn't end at closing. We provide ongoing support including property management referrals, maintenance recommendations, market updates, and assistance with future real estate needs."
   }];
 
   // How it Works Steps
   const workSteps = [{
     step: "1",
-    title: "Start & Discuss",
-    description: "We begin by understanding your needs"
+    title: "Discover & Explore",
+    description: "Browse our curated collection of premium properties with advanced search filters and virtual tours."
   }, {
     step: "2",
-    title: "Choose From a List",
-    description: "Browse through our curated list of properties that match your specific criteria."
+    title: "Expert Consultation",
+    description: "Connect with our certified real estate professionals for personalized guidance and market insights."
   }, {
     step: "3",
-    title: "Finalize & Buy",
-    description: "Complete the paperwork and finalize your dream property with our expert guidance."
+    title: "Secure & Close",
+    description: "Complete your purchase with confidence through our streamlined process and comprehensive support."
   }];
 
   // Why Work With Us Features
   const whyChooseUs = [{
     icon: Shield,
-    title: "Our Benefits",
-    description: "Comprehensive insurance coverage and legal protection for all transactions."
+    title: "Trusted Expertise",
+    description: "Over a decade of experience with certified professionals and proven track record in real estate excellence."
   }, {
     icon: Clock,
-    title: "Traditional methods",
-    description: "Time-tested approaches combined with modern technology for optimal results."
+    title: "Market Intelligence",
+    description: "Advanced analytics and real-time market data to help you make informed investment decisions."
   }, {
     icon: Users,
-    title: "Flexibility",
-    description: "Customized solutions and flexible payment terms to suit your requirements."
+    title: "Personalized Service",
+    description: "Tailored solutions and dedicated support throughout your entire property journey."
   }, {
     icon: Award,
-    title: "Communication",
-    description: "Clear and transparent communication throughout your property journey."
+    title: "Premium Network",
+    description: "Exclusive access to off-market properties and industry connections for the best opportunities."
   }, {
     icon: CheckCircle,
-    title: "Greater control",
-    description: "You make the final decisions, supported by our expert guidance"
+    title: "Full Transparency",
+    description: "Complete transparency in all transactions with detailed reports and clear communication."
   }, {
     icon: Star,
-    title: "Increased transparency",
-    description: "Complete transparency in pricing, documentation, and all property details."
+    title: "Exceptional Results",
+    description: "Consistently exceeding client expectations with superior service and outstanding outcomes."
   }];
 
   // Fetch properties from database
@@ -198,15 +198,15 @@ const Index = () => {
             <div className="lg:col-span-7 flex flex-col justify-center">
               <div className="animate-fade-in">
                 <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-none tracking-tight">
-                  Experience
+                  Find Your
                   <br />
-                  <span className="text-white/90">Real Estate</span>
+                  <span className="text-white/90">Perfect</span>
                   <br />
-                  <span className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">Agility</span>
+                  <span className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">Home</span>
                 </h1>
                 
                 <p className="text-xl text-white/80 mb-12 max-w-2xl leading-relaxed">
-                  Discover luxury homes across America with our premier real estate agency. Our expert team is dedicated to guiding you through every step of the home-buying process.
+                  Discover exceptional properties with expert guidance. We make your property journey seamless, from browsing to buying your dream home.
                 </p>
                 
                 {/* Location Badge */}
