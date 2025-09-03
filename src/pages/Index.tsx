@@ -176,82 +176,127 @@ const Index = () => {
   return <div className="min-h-screen bg-white">
       <Header />
       
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 text-white py-20 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div className="animate-fade-in">
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                Discover Your
-                <br />
-                <span className="text-white/90">Perfect Dream Home</span>
-              </h1>
-              <p className="text-xl mb-8 opacity-90 max-w-lg">
-                Whether you're looking for a cozy retreat, a modern apartment or a spacious family home, we have the perfect property waiting for you.
-              </p>
-              
-              {/* Search Form */}
-              <div className="bg-white rounded-2xl p-6 shadow-2xl animate-scale-in text-gray-900">
-                <h3 className="text-lg font-semibold mb-4 text-gray-900">Find your Best Property what do you want!</h3>
-                <p className="text-sm text-gray-600 mb-4">Please fill all the details</p>
+      {/* Hero Section - Modern Dribbble Design */}
+      <section className="relative min-h-screen bg-gradient-to-br from-primary via-primary/90 to-primary/80 overflow-hidden">
+        {/* Geometric Background Patterns */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 right-20 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-40 left-10 w-24 h-24 bg-white/5 rounded-full blur-2xl"></div>
+          <div className="absolute top-1/2 right-1/3 w-16 h-16 bg-white/10 rounded-full blur-xl"></div>
+        </div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
+          <div className="grid lg:grid-cols-12 gap-8 h-full min-h-[80vh]">
+            {/* Main Content - Left Side */}
+            <div className="lg:col-span-7 flex flex-col justify-center">
+              <div className="animate-fade-in">
+                <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-none">
+                  Experience
+                  <br />
+                  <span className="text-white/90">Real Estate</span>
+                  <br />
+                  <span className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">Excellence</span>
+                </h1>
                 
-                <div className="space-y-4">
-                  <div className="flex items-center">
-                    <MapPin className="w-5 h-5 text-gray-400 mr-3" />
-                    <div className="flex-1">
-                      <label className="block text-sm text-gray-600 mb-1">Kolkata, Location</label>
-                      <Input placeholder="Enter location" className="border-0 bg-gray-50" />
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center">
-                    <Home className="w-5 h-5 text-gray-400 mr-3" />
-                    <div className="flex-1">
-                      <label className="block text-sm text-gray-600 mb-1">Apartment Types</label>
-                      <Select>
-                        <SelectTrigger className="border-0 bg-gray-50">
-                          <SelectValue placeholder="Select type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="2bhk">2 BHK</SelectItem>
-                          <SelectItem value="3bhk">3 BHK</SelectItem>
-                          <SelectItem value="4bhk">4 BHK</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center">
-                    <DollarSign className="w-5 h-5 text-gray-400 mr-3" />
-                    <div className="flex-1">
-                      <label className="block text-sm text-gray-600 mb-1">₹30-50 Lakh</label>
-                      <Select>
-                        <SelectTrigger className="border-0 bg-gray-50">
-                          <SelectValue placeholder="Budget range" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="30-50">₹30-50 Lakh</SelectItem>
-                          <SelectItem value="50-80">₹50-80 Lakh</SelectItem>
-                          <SelectItem value="80-1cr">₹80 Lakh - 1 Crore</SelectItem>
-                          <SelectItem value="1cr+">₹1 Crore+</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-                  
-                  <Button onClick={handleSearch} className="w-full bg-gray-900 hover:bg-gray-800 text-white py-3 text-lg font-semibold rounded-lg">
-                    Search
+                <p className="text-xl text-white/90 mb-12 max-w-2xl leading-relaxed">
+                  Discover premium properties in Kolkata's most sought-after locations. 
+                  Whether you're looking for a modern apartment or a spacious family home, 
+                  we have the perfect property waiting for you.
+                </p>
+                
+                {/* CTA Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 mb-16">
+                  <Button 
+                    onClick={handleSearch}
+                    className="bg-white text-primary hover:bg-white/90 px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                  >
+                    Browse Properties
+                    <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
+                  <Button 
+                    variant="outline" 
+                    className="border-white/30 text-white hover:bg-white/10 px-8 py-4 text-lg font-semibold rounded-full backdrop-blur-sm"
+                  >
+                    Learn More
+                  </Button>
+                </div>
+                
+                {/* Stats */}
+                <div className="grid grid-cols-3 gap-8 text-white">
+                  <div>
+                    <div className="text-3xl font-bold mb-2">500+</div>
+                    <div className="text-white/80 text-sm">Properties Sold</div>
+                  </div>
+                  <div>
+                    <div className="text-3xl font-bold mb-2">50+</div>
+                    <div className="text-white/80 text-sm">Happy Clients</div>
+                  </div>
+                  <div>
+                    <div className="text-3xl font-bold mb-2">15+</div>
+                    <div className="text-white/80 text-sm">Years Experience</div>
+                  </div>
                 </div>
               </div>
             </div>
-
-            {/* Right Content - Property Image */}
-            <div className="relative animate-fade-in" style={{
-            animationDelay: '0.2s'
-          }}>
-              <img src="https://i.ytimg.com/vi/bHQFh9CR_JI/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBBthN4TDReEUEEHTkQ0QEoial95w?w=600&h=500&fit=crop" alt="Modern home" className="rounded-3xl shadow-2xl w-full h-[500px] object-cover" />
+            
+            {/* Current Listings Sidebar - Right Side */}
+            <div className="lg:col-span-5 flex flex-col justify-center">
+              <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl animate-fade-in" style={{animationDelay: '0.3s'}}>
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-2xl font-bold text-white">Current Listings</h3>
+                  <span className="text-white/80 text-sm">{popularProperties.length} Properties</span>
+                </div>
+                
+                {loading ? (
+                  <div className="space-y-4">
+                    {[...Array(3)].map((_, i) => (
+                      <div key={i} className="bg-white/5 rounded-2xl p-4 animate-pulse">
+                        <div className="h-24 bg-white/10 rounded-xl mb-3"></div>
+                        <div className="h-4 bg-white/10 rounded mb-2"></div>
+                        <div className="h-3 bg-white/10 rounded w-2/3"></div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="space-y-4 max-h-96 overflow-y-auto">
+                    {popularProperties.slice(0, 4).map((property, index) => (
+                      <Link key={property.id} to={`/property/${property.id}`}>
+                        <div className="bg-white/5 hover:bg-white/10 rounded-2xl p-4 transition-all duration-300 group cursor-pointer">
+                          <div className="flex gap-4">
+                            <img 
+                              src={property.image} 
+                              alt={property.title}
+                              className="w-20 h-20 rounded-xl object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                            <div className="flex-1 min-w-0">
+                              <h4 className="text-white font-semibold mb-1 truncate">{property.title}</h4>
+                              <p className="text-white/70 text-sm mb-2 flex items-center">
+                                <MapPin className="w-3 h-3 mr-1" />
+                                <span className="truncate">{property.location}</span>
+                              </p>
+                              <div className="flex items-center justify-between">
+                                <span className="text-white font-bold">{property.price}</span>
+                                <div className="flex items-center gap-2 text-white/60 text-xs">
+                                  <span>{property.beds}B</span>
+                                  <span>{property.baths}Ba</span>
+                                  <span>{property.sqft}sf</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+                
+                <Link to="/properties">
+                  <Button className="w-full mt-6 bg-white/20 hover:bg-white/30 text-white border-0 backdrop-blur-sm rounded-xl py-3">
+                    View All Properties
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
