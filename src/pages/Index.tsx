@@ -53,16 +53,16 @@ const Index = () => {
       {/* Main Hero Section - Exact Dribbble Layout */}
       <section className="relative min-h-screen bg-slate-900 overflow-hidden">
         {/* Curved Line Background Element */}
-        <div className="absolute top-20 left-20 w-80 h-80 opacity-10">
+        <div className="absolute top-32 left-32 w-96 h-96 opacity-20">
           <svg viewBox="0 0 400 400" className="w-full h-full">
-            <path d="M50,200 Q200,50 350,200 Q200,350 50,200" stroke="white" strokeWidth="1" fill="none"/>
+            <path d="M50,200 Q200,50 350,200 Q200,350 50,200" stroke="white" strokeWidth="2" fill="none"/>
           </svg>
         </div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
           <div className="grid lg:grid-cols-2 gap-8 min-h-[90vh]">
             {/* Left Column - Main Content */}
-            <div className="flex flex-col justify-center space-y-8">
+            <div className="flex flex-col justify-center space-y-8 relative">
               <div>
                 <h1 className="text-6xl md:text-7xl font-bold text-white mb-6 leading-tight">
                   Experience
@@ -101,6 +101,15 @@ const Index = () => {
                     className="flex-1 bg-transparent text-white placeholder-white/60 outline-none text-sm"
                   />
                 </div>
+              </div>
+              
+              {/* Architectural Building Image - Key Missing Element */}
+              <div className="absolute -bottom-20 -left-20 w-96 h-80 opacity-80 z-0">
+                <img 
+                  src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800" 
+                  alt="Modern architecture"
+                  className="w-full h-full object-cover rounded-2xl transform rotate-12 shadow-2xl"
+                />
               </div>
             </div>
             
@@ -198,6 +207,49 @@ const Index = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+        
+        {/* Bottom Current Listings Section - As shown in Dribbble */}
+        <div className="absolute bottom-8 left-8 right-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-2xl font-bold text-white">Current Listings</h2>
+              <div className="w-24 h-1 bg-white/20 rounded-full">
+                <div className="w-12 h-1 bg-white rounded-full"></div>
+              </div>
+            </div>
+            
+            {loading ? (
+              <div className="flex gap-6">
+                {[...Array(3)].map((_, i) => (
+                  <div key={i} className="w-80 h-48 bg-white/5 rounded-2xl animate-pulse"></div>
+                ))}
+              </div>
+            ) : (
+              <div className="flex gap-6 overflow-x-auto pb-4">
+                {popularProperties.slice(0, 3).map((property) => (
+                  <Link key={property.id} to={`/property/${property.id}`}>
+                    <div className="w-80 h-48 bg-white/5 hover:bg-white/10 rounded-2xl overflow-hidden transition-all duration-300 group cursor-pointer backdrop-blur-sm border border-white/10">
+                      <img 
+                        src={property.image} 
+                        alt={property.title}
+                        className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="p-4">
+                        <h4 className="text-white font-bold text-lg mb-1">{property.price}</h4>
+                        <p className="text-white/80 text-sm mb-1">{property.title}</p>
+                        <div className="flex items-center gap-4 text-white/60 text-xs">
+                          <span>{property.beds} beds</span>
+                          <span>{property.baths} baths</span>
+                          <span>{property.sqft} sqft</span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </section>
