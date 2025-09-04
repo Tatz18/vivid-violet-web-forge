@@ -54,37 +54,6 @@ All colors MUST be HSL.
     --sidebar-ring: 320 65% 52%;
   }
 
-  /* Dark theme for the ASTRAVISTA design */
-  .dark-theme {
-    --background: 220 25% 8%; /* Very dark navy */
-    --foreground: 0 0% 95%; /* Almost white */
-
-    --card: 220 20% 12%; /* Slightly lighter dark */
-    --card-foreground: 0 0% 95%;
-
-    --popover: 220 25% 8%;
-    --popover-foreground: 0 0% 95%;
-
-    --primary: 0 0% 100%; /* White for buttons */
-    --primary-foreground: 220 25% 8%; /* Dark text on white buttons */
-
-    --secondary: 220 15% 15%;
-    --secondary-foreground: 0 0% 95%;
-
-    --muted: 220 15% 20%;
-    --muted-foreground: 0 0% 70%;
-
-    --accent: 220 15% 15%;
-    --accent-foreground: 0 0% 95%;
-
-    --destructive: 0 62.8% 50%;
-    --destructive-foreground: 0 0% 95%;
-
-    --border: 220 15% 20%;
-    --input: 220 15% 15%;
-    --ring: 0 0% 95%;
-  }
-
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
